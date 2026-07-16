@@ -71,7 +71,7 @@ Schedule Pro is an enterprise-grade employee scheduling and project management s
 | OAuth2 | 6.1.5 | Google OAuth2 login |
 | Maven | 3.9+ | Build tool |
 | Lombok | 1.18.30 | Boilerplate reduction |
-| Thymeleaf | 3.1.2 | Email templates |
+
 
 ### Frontend
 | Technology | Version | Purpose |
@@ -104,10 +104,27 @@ Before you begin, ensure you have the following installed:
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository
-
+## 🚀 Quick Start
 ```bash
+
+1. Clone the Repository
 git clone https://github.com/your-username/schedulepro.git
 cd schedulepro
 
+2. Backend Setup
+cd backend
+cd schedulepro-backend
+./mvnw spring-boot:run
+
+3. Frontend Setup
+cd frontend
+npm install
+npm start
+
+4. Access the Application
+
+📍 API:
+     backend: http://localhost:8080    
+     Frontend: http://localhost:3000                     
+📍 Swagger: http://localhost:8080/swagger-ui.html    
 
