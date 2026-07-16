@@ -2,9 +2,8 @@ spring:
   application:
     name: schedulepro-backend
 
-  # ===== DATABASE CONFIGURATION =====
   datasource:
-    url: jdbc:postgresql://localhost:5433/ScheduleProDB
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/ScheduleProDB}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:project123}
     driver-class-name: org.postgresql.Driver
@@ -14,7 +13,6 @@ spring:
       connection-timeout: 30000
       pool-name: ScheduleProHikariPool
 
-  # ===== JPA CONFIGURATION =====
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,19 +27,17 @@ spring:
             non_contextual_creation: true
     open-in-view: false
 
-  # ===== JACKSON CONFIGURATION =====
   jackson:
     serialization:
       write-dates-as-timestamps: false
     time-zone: UTC
     default-property-inclusion: non_null
 
-  # ===== MAIL CONFIGURATION - USING ENVIRONMENT VARIABLES =====
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: sweetdemo93@gmail.com
-    password: qwemkuwehmqjgfls # ← Environment variable
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:sweetdemo93@gmail.com}
+    password: ${MAIL_PASSWORD:qwemkuwehmqjgfls}
     properties:
       mail:
         smtp:
@@ -52,57 +48,41 @@ spring:
             trust: smtp.gmail.com
     default-encoding: UTF-8
 
-  # ===== OAUTH2 CONFIGURATION =====
-  # ===== OAUTH2 CONFIGURATION =====
   security:
     oauth2:
       client:
         registration:
           google:
-            client-id: 157330384875-cjedpfpffmnb0nisf5l6d8809sg31hlm.apps.googleusercontent.com
-            client-secret: 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
+            client-id: ${GOOGLE_CLIENT_ID:157330384875-cjedpfpffmnb0nisf5l6d8809sg31hlm.apps.googleusercontent.com}
+            client-secret: ${GOOGLE_CLIENT_SECRET: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}
             scope:
               - email
               - profile
-            redirect-uri: "http://localhost:8080/login/oauth2/code/google"
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             client-name: Google
-            authorization-grant-type: authorization_code
-            provider:
-              google:
-                authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
-                token-uri: https://oauth2.googleapis.com/token
-                user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
-                jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
-                user-name-attribute: sub
-                # ✅ Timeouts at provider level
-                connect-timeout: 30000
-                read-timeout: 30000
 
-  # ===== MULTIPART FILE UPLOAD =====
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
       enabled: true
 
-  # ===== FLYWAY =====
   flyway:
     enabled: false
     baseline-on-migrate: true
     locations: classpath:db/migration
 
-  # ===== ALLOW CIRCULAR REFERENCES =====
   main:
     allow-circular-references: true
     allow-bean-definition-overriding: true
 
-# ===== JWT CONFIGURATION =====
+# ===== JWT =====
 jwt:
   secret: ${JWT_SECRET:scheduleProSecretKey2024MustBe32CharsLongAndSecure!!!}
-  expiration: 86400000
-  refresh-expiration: 604800000
+  expiration: ${JWT_EXPIRATION_MS:86400000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
 
-# ===== CORS CONFIGURATION =====
+# ===== CORS =====
 cors:
   allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
 

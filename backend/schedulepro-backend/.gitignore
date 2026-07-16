@@ -1,0 +1,28 @@
+# Environment variables
+.env
+.env.dev
+.env.prod
+.env.qa
+.env.local
+
+# Backend
+*.class
+*.jar
+*.war
+*.log
+target/
+build/
+.idea/
+*.iml
+.vscode/
+
+# Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
