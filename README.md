@@ -103,11 +103,10 @@ Before you begin, ensure you have the following installed:
 ```bash
 
 1. Clone the Repository
-git clone https://github.com/your-username/schedulepro.git
+git clone  https://github.com/Jyotimirgale25/schedulepro.git 
 cd schedulepro
 
 2. Backend Setup
-cd backend
 cd schedulepro-backend
 ./mvnw spring-boot:run
 
