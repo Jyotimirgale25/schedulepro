@@ -1,0 +1,663 @@
+/* ============================================
+   SWAP OVERVIEW - Global Selectors
+   ============================================ */
+
+/* --------------------------------------------
+   CONTAINER
+   -------------------------------------------- */
+.admin-swap-overview-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f7fa;
+  min-height: 100vh;
+  animation: adminSwapFadeIn 0.5s ease;
+}
+
+/* ===== HEADER ===== */
+.admin-swap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-swap-header h4 {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin-swap-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ===== CLEAR ALL BUTTON ===== */
+.admin-swap-clear-all-btn {
+  padding: 8px 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.admin-swap-clear-all-btn:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* ===== FILTER SECTION ===== */
+.admin-swap-filter-section {
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.admin-swap-filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-swap-filter-btn {
+  padding: 8px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.admin-swap-filter-btn:hover {
+  background: #f8f9fa;
+  border-color: #ced4da;
+}
+
+.admin-swap-filter-btn.admin-swap-active {
+  background: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+
+.admin-swap-filter-btn.admin-swap-active:hover {
+  background: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* ===== STATS CARDS ===== */
+.admin-swap-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-swap-stat {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-swap-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.admin-swap-stat span {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.admin-swap-stat strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.admin-swap-stat.admin-swap-pending {
+  border-left: 4px solid #ffc107;
+}
+
+.admin-swap-stat.admin-swap-pending strong {
+  color: #ffc107;
+}
+
+.admin-swap-stat.admin-swap-approved {
+  border-left: 4px solid #28a745;
+}
+
+.admin-swap-stat.admin-swap-approved strong {
+  color: #28a745;
+}
+
+.admin-swap-stat.admin-swap-rejected {
+  border-left: 4px solid #dc3545;
+}
+
+.admin-swap-stat.admin-swap-rejected strong {
+  color: #dc3545;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.admin-swap-table-wrapper {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+/* ===== TABLE ===== */
+.admin-swap-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.admin-swap-table thead {
+  background: #f8f9fa;
+}
+
+.admin-swap-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-swap-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.admin-swap-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.admin-swap-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.admin-swap-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== USER INFO ===== */
+.admin-swap-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-swap-user-info strong {
+  font-size: 14px;
+  color: #1a1a2e;
+}
+
+.admin-swap-user-info small {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* ===== REASON CELL ===== */
+.admin-swap-reason-cell {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== STATUS BADGES ===== */
+.admin-swap-status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.admin-swap-status-badge.admin-swap-approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.admin-swap-status-badge.admin-swap-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.admin-swap-status-badge.admin-swap-pending-admin {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.admin-swap-status-badge.admin-swap-rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.admin-swap-action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.admin-swap-approve-btn {
+  padding: 4px 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.admin-swap-approve-btn:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+.admin-swap-reject-btn {
+  padding: 4px 12px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.admin-swap-reject-btn:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+.admin-swap-waiting-text {
+  color: #6c757d;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.admin-swap-no-action {
+  color: #adb5bd;
+  font-size: 13px;
+}
+
+/* ===== LOADING ===== */
+.admin-swap-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.admin-swap-loading-container::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  border: 3px solid #e9ecef;
+  border-top-color: #0d6efd;
+  border-radius: 50%;
+  animation: adminSwapSpin 0.8s linear infinite;
+}
+
+@keyframes adminSwapSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== EMPTY STATE ===== */
+.admin-swap-empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  color: #6c757d;
+}
+
+.admin-swap-empty-state p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ===== MODAL ===== */
+.admin-swap-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: adminSwapFadeIn 0.3s ease;
+}
+
+@keyframes adminSwapFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.admin-swap-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: adminSwapSlideUp 0.3s ease;
+}
+
+@keyframes adminSwapSlideUp {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.admin-swap-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.admin-swap-modal-header h4 {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 18px;
+}
+
+.admin-swap-modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0 4px;
+  transition: color 0.3s ease;
+}
+
+.admin-swap-modal-close:hover {
+  color: #dc3545;
+}
+
+.admin-swap-modal-body {
+  padding: 20px 24px;
+}
+
+.admin-swap-modal-body p {
+  margin: 6px 0;
+  color: #495057;
+  font-size: 14px;
+}
+
+.admin-swap-modal-body p strong {
+  color: #1a1a2e;
+}
+
+.admin-swap-warning-text {
+  color: #dc3545 !important;
+  font-weight: 500;
+  margin-top: 10px !important;
+}
+
+/* ===== FORM ===== */
+.admin-swap-form-group {
+  margin-top: 16px;
+}
+
+.admin-swap-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #495057;
+  font-size: 14px;
+}
+
+.admin-swap-form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+.admin-swap-form-control:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.admin-swap-form-control::placeholder {
+  color: #adb5bd;
+}
+
+/* ===== MODAL FOOTER ===== */
+.admin-swap-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #e9ecef;
+}
+
+.admin-swap-btn-cancel {
+  padding: 8px 20px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-swap-btn-cancel:hover {
+  background: #5a6268;
+}
+
+.admin-swap-btn-submit {
+  padding: 8px 20px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-swap-btn-submit:hover {
+  background: #0b5ed7;
+}
+
+.admin-swap-btn-danger {
+  padding: 8px 20px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-swap-btn-danger:hover {
+  background: #c82333;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .admin-swap-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-swap-overview-container {
+    padding: 12px;
+  }
+
+  .admin-swap-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .admin-swap-header h4 {
+    text-align: center;
+  }
+
+  .admin-swap-header-actions {
+    justify-content: center;
+  }
+
+  .admin-swap-filter-buttons {
+    justify-content: center;
+  }
+
+  .admin-swap-filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .admin-swap-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .admin-swap-stat {
+    padding: 12px 16px;
+  }
+
+  .admin-swap-stat strong {
+    font-size: 18px;
+  }
+
+  .admin-swap-table th,
+  .admin-swap-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .admin-swap-action-buttons {
+    flex-direction: column;
+  }
+
+  .admin-swap-approve-btn,
+  .admin-swap-reject-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-swap-modal-content {
+    width: 95%;
+    margin: 10px;
+  }
+
+  .admin-swap-modal-header,
+  .admin-swap-modal-body,
+  .admin-swap-modal-footer {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-swap-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-swap-filter-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .admin-swap-clear-all-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .admin-swap-table th,
+  .admin-swap-table td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .admin-swap-status-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+
+  .admin-swap-approve-btn,
+  .admin-swap-reject-btn {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}

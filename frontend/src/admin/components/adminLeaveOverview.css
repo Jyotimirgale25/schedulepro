@@ -1,0 +1,629 @@
+/* ============================================
+   LEAVE OVERVIEW - Global Selectors
+   ============================================ */
+
+/* --------------------------------------------
+   CONTAINER
+   -------------------------------------------- */
+.admin-leave-overview-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f7fa;
+  min-height: 100vh;
+  animation: adminLeaveFadeIn 0.5s ease;
+}
+
+/* ===== HEADER ===== */
+.admin-leave-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-leave-header h4 {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin-leave-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ===== FILTER BUTTONS ===== */
+.admin-leave-filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-leave-filter-btn {
+  padding: 8px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.admin-leave-filter-btn:hover {
+  background: #f8f9fa;
+  border-color: #ced4da;
+}
+
+.admin-leave-filter-btn.admin-leave-active {
+  background: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+
+.admin-leave-filter-btn.admin-leave-active:hover {
+  background: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* ===== CLEAR ALL BUTTON ===== */
+.admin-leave-clear-all-btn {
+  padding: 8px 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.admin-leave-clear-all-btn:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* ===== STATS CARDS ===== */
+.admin-leave-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-leave-stat {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-leave-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.admin-leave-stat span {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.admin-leave-stat strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.admin-leave-stat.admin-leave-pending {
+  border-left: 4px solid #ffc107;
+}
+
+.admin-leave-stat.admin-leave-pending strong {
+  color: #ffc107;
+}
+
+.admin-leave-stat.admin-leave-approved {
+  border-left: 4px solid #28a745;
+}
+
+.admin-leave-stat.admin-leave-approved strong {
+  color: #28a745;
+}
+
+.admin-leave-stat.admin-leave-rejected {
+  border-left: 4px solid #dc3545;
+}
+
+.admin-leave-stat.admin-leave-rejected strong {
+  color: #dc3545;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.admin-leave-table-wrapper {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+/* ===== TABLE ===== */
+.admin-leave-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.admin-leave-table thead {
+  background: #f8f9fa;
+}
+
+.admin-leave-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-leave-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.admin-leave-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.admin-leave-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.admin-leave-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== EMPLOYEE INFO ===== */
+.admin-leave-employee-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-leave-employee-info strong {
+  font-size: 14px;
+  color: #1a1a2e;
+}
+
+.admin-leave-employee-info small {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* ===== REASON CELL ===== */
+.admin-leave-reason-cell {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== STATUS BADGES ===== */
+.admin-leave-status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.admin-leave-status-badge.admin-leave-approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.admin-leave-status-badge.admin-leave-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.admin-leave-status-badge.admin-leave-rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.admin-leave-action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.admin-leave-approve-btn {
+  padding: 4px 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-leave-approve-btn:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+.admin-leave-reject-btn {
+  padding: 4px 12px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-leave-reject-btn:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+.admin-leave-no-action {
+  color: #6c757d;
+  font-size: 13px;
+}
+
+/* ===== LOADING ===== */
+.admin-leave-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.admin-leave-loading-container::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  border: 3px solid #e9ecef;
+  border-top-color: #0d6efd;
+  border-radius: 50%;
+  animation: adminLeaveSpin 0.8s linear infinite;
+}
+
+@keyframes adminLeaveSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== EMPTY STATE ===== */
+.admin-leave-empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  color: #6c757d;
+}
+
+.admin-leave-empty-state p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ===== MODAL ===== */
+.admin-leave-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: adminLeaveFadeIn 0.3s ease;
+}
+
+@keyframes adminLeaveFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.admin-leave-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: adminLeaveSlideUp 0.3s ease;
+}
+
+@keyframes adminLeaveSlideUp {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.admin-leave-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.admin-leave-modal-header h4 {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 18px;
+}
+
+.admin-leave-modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0 4px;
+  transition: color 0.3s ease;
+}
+
+.admin-leave-modal-close:hover {
+  color: #dc3545;
+}
+
+.admin-leave-modal-body {
+  padding: 20px 24px;
+}
+
+.admin-leave-modal-body p {
+  margin: 6px 0;
+  color: #495057;
+  font-size: 14px;
+}
+
+.admin-leave-modal-body p strong {
+  color: #1a1a2e;
+}
+
+.admin-leave-warning-text {
+  color: #dc3545 !important;
+  font-weight: 500;
+  margin-top: 10px !important;
+}
+
+/* ===== FORM GROUP ===== */
+.admin-leave-form-group {
+  margin-top: 16px;
+}
+
+.admin-leave-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #495057;
+  font-size: 14px;
+}
+
+.admin-leave-form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.admin-leave-form-control:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.admin-leave-form-control::placeholder {
+  color: #adb5bd;
+}
+
+/* ===== MODAL FOOTER ===== */
+.admin-leave-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #e9ecef;
+}
+
+.admin-leave-btn-cancel {
+  padding: 8px 20px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-leave-btn-cancel:hover {
+  background: #5a6268;
+}
+
+.admin-leave-btn-submit {
+  padding: 8px 20px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-leave-btn-submit:hover {
+  background: #0b5ed7;
+}
+
+.admin-leave-btn-danger {
+  padding: 8px 20px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-leave-btn-danger:hover {
+  background: #c82333;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .admin-leave-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-leave-overview-container {
+    padding: 12px;
+  }
+
+  .admin-leave-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .admin-leave-header h4 {
+    text-align: center;
+  }
+
+  .admin-leave-header-actions {
+    justify-content: center;
+  }
+
+  .admin-leave-filter-buttons {
+    justify-content: center;
+  }
+
+  .admin-leave-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .admin-leave-stat {
+    padding: 12px 16px;
+  }
+
+  .admin-leave-stat strong {
+    font-size: 18px;
+  }
+
+  .admin-leave-table th,
+  .admin-leave-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .admin-leave-action-buttons {
+    flex-direction: column;
+  }
+
+  .admin-leave-approve-btn,
+  .admin-leave-reject-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-leave-modal-content {
+    width: 95%;
+    margin: 10px;
+  }
+
+  .admin-leave-modal-header,
+  .admin-leave-modal-body,
+  .admin-leave-modal-footer {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-leave-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-leave-filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .admin-leave-clear-all-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .admin-leave-table th,
+  .admin-leave-table td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .admin-leave-status-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+}

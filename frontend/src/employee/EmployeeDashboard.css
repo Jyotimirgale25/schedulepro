@@ -1,0 +1,378 @@
+/* EmployeeDashboard.css */
+
+/* ============================================
+   DASHBOARD LAYOUT
+   ============================================ */
+.empdash-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f6fa;
+  width: 100%;
+}
+
+/* ============================================
+   SIDEBAR - Fixed position with width transition
+   ============================================ */
+.empdash-dashboard .employee-sidebar {
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 280px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  overflow: hidden;
+}
+
+/* When sidebar is collapsed */
+.empdash-dashboard.sidebar-collapsed .employee-sidebar {
+  width: 72px;
+}
+
+/* ============================================
+   MAIN CONTENT - Adjusts margin with sidebar
+   ============================================ */
+.empdash-main-content {
+  flex: 1;
+  margin-left: 280px; /* Match sidebar width */
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  padding: 0;
+  background: #f5f6fa;
+  width: calc(100% - 280px);
+  position: relative;
+}
+
+/* When sidebar is collapsed */
+.empdash-main-content.collapsed {
+  margin-left: 72px; /* Match collapsed sidebar width */
+  width: calc(100% - 72px);
+}
+
+/* ============================================
+   TOP BAR - Sticky with proper width
+   ============================================ */
+.empdash-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.empdash-welcome-text h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.empdash-welcome-text p {
+  margin: 2px 0 0 0;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.empdash-top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.empdash-refresh-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #6c757d;
+}
+
+.empdash-refresh-btn:hover {
+  background: #f1f3f5;
+  transform: rotate(180deg);
+}
+
+.empdash-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 4px;
+  background: #f8f9fa;
+  border-radius: 30px;
+  border: 1px solid #e9ecef;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.empdash-user-info:hover {
+  background: #f1f3f5;
+}
+
+.empdash-user-avatar-small {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #667eea;
+}
+
+.empdash-user-avatar-placeholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
+.empdash-user-info strong {
+  font-size: 13px;
+  color: #1a1a2e;
+}
+
+.empdash-user-info small {
+  display: block;
+  font-size: 10px;
+  color: #6c757d;
+  margin-top: -2px;
+}
+
+/* ============================================
+   DASHBOARD CONTENT WRAPPER
+   ============================================ */
+.empdash-content-wrapper {
+  padding: 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+.empdash-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+.empdash-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e9ecef;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.empdash-loading p {
+  margin-top: 16px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* ============================================
+   ERROR STATE
+   ============================================ */
+.empdash-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f5f6fa;
+  text-align: center;
+  padding: 24px;
+}
+
+.empdash-error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.empdash-error h3 {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  color: #1a1a2e;
+}
+
+.empdash-error p {
+  color: #6c757d;
+  font-size: 15px;
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+.empdash-retry-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.empdash-retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.empdash-logout-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.empdash-logout-btn:hover {
+  background: #c82333;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .empdash-dashboard .employee-sidebar {
+    width: 72px !important;
+  }
+
+  .empdash-main-content {
+    margin-left: 72px !important;
+    width: calc(100% - 72px) !important;
+  }
+
+  .empdash-main-content.collapsed {
+    margin-left: 72px !important;
+    width: calc(100% - 72px) !important;
+  }
+
+  .empdash-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .empdash-welcome-text h3 {
+    font-size: 16px;
+  }
+
+  .empdash-top-bar-right {
+    justify-content: space-between;
+  }
+
+  .empdash-user-info strong {
+    font-size: 12px;
+  }
+
+  .empdash-content-wrapper {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .empdash-dashboard .employee-sidebar {
+    width: 60px !important;
+  }
+
+  .empdash-main-content {
+    margin-left: 60px !important;
+    width: calc(100% - 60px) !important;
+  }
+
+  .empdash-main-content.collapsed {
+    margin-left: 60px !important;
+    width: calc(100% - 60px) !important;
+  }
+
+  .empdash-top-bar {
+    padding: 10px 12px;
+  }
+
+  .empdash-welcome-text h3 {
+    font-size: 14px;
+  }
+
+  .empdash-welcome-text p {
+    font-size: 12px;
+  }
+
+  .empdash-user-avatar-small,
+  .empdash-user-avatar-placeholder {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .empdash-user-info {
+    padding: 2px 8px 2px 2px;
+  }
+
+  .empdash-user-info strong {
+    font-size: 11px;
+  }
+
+  .empdash-user-info small {
+    font-size: 9px;
+  }
+
+  .empdash-refresh-btn {
+    font-size: 16px;
+    padding: 4px 6px;
+  }
+
+  .empdash-content-wrapper {
+    padding: 12px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+button:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}

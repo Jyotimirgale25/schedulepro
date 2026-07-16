@@ -1,0 +1,876 @@
+/* ============================================
+   ADMIN ANNOUNCEMENTS - Professional Design
+   ============================================ */
+
+/* =====================================
+   CONTAINER
+===================================== */
+.admin-announcements-container {
+  min-height: 100vh;
+  padding: 24px;
+  background: #f8fafc;
+  animation: adminAnnounceFadeIn 0.5s ease;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+.admin-announcements-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
+.admin-announcements-header h4 {
+  font-size: 18px;
+  color: #0f172a;
+  font-weight: 600;
+  margin: 0;
+}
+
+.admin-announcements-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-announcements-btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-announcements-btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* =====================================
+   SAVE MESSAGE
+===================================== */
+.admin-announcements-save-message {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.admin-announcements-save-message.admin-announcements-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.admin-announcements-save-message.admin-announcements-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* =====================================
+   STATS
+===================================== */
+.admin-announcements-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-announcements-stat {
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  border: 1px solid #e9edf2;
+}
+
+.admin-announcements-stat span {
+  display: block;
+  color: #94a3b8;
+  font-size: 13px !important; 
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-announcements-stat strong {
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+}
+
+.admin-announcements-stat.admin-announcements-stat-active strong {
+  color: black;
+}
+
+.admin-announcements-stat.admin-announcements-stat-inactive strong {
+  color: black;
+}
+
+/* =====================================
+   ANNOUNCEMENT CARDS
+===================================== */
+.admin-announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-announcements-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e9edf2;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.admin-announcements-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: #d1d9e6;
+}
+
+.admin-announcements-card.admin-announcements-priority-general {
+  border-left: 4px solid #2563eb;
+}
+
+.admin-announcements-card.admin-announcements-priority-important {
+  border-left: 4px solid #f59e0b;
+}
+
+.admin-announcements-card.admin-announcements-priority-urgent {
+  border-left: 4px solid #dc2626;
+}
+
+/* Card Header */
+.admin-announcements-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+}
+
+.admin-announcements-title-group {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.admin-announcements-title-group h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  word-break: break-word;
+  text-align: left;
+}
+
+.admin-announcements-badge-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  justify-content: flex-start;
+}
+
+.admin-announcements-content {
+  margin: 10px 0 14px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569;
+  word-break: break-word;
+  text-align: left;
+}
+
+/* =====================================
+   BADGES
+===================================== */
+.admin-announcements-priority-general {
+  background: #eef2ff;
+  color: #2563eb;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-announcements-priority-important {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-announcements-priority-urgent {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-announcements-status-active {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-announcements-status-inactive {
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =====================================
+   ACTIONS
+===================================== */
+.admin-announcements-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.admin-announcements-edit-btn,
+.admin-announcements-toggle-btn,
+.admin-announcements-delete-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #94a3b8;
+}
+
+.admin-announcements-edit-btn:hover {
+  background: #eef2ff;
+  color: #2563eb;
+}
+
+.admin-announcements-toggle-btn:hover {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.admin-announcements-delete-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+.admin-announcements-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 1px solid #e9edf2;
+  padding-top: 12px;
+  margin-top: 4px;
+  color: #94a3b8;
+  font-size: 13px;
+  width: 100%;
+  text-align: left;
+}
+
+.admin-announcements-footer span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =====================================
+   EMPTY STATE
+===================================== */
+.admin-announcements-no-announcements {
+  background: #ffffff;
+  padding: 60px;
+  border-radius: 12px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 16px;
+  border: 1px solid #e9edf2;
+}
+
+/* =====================================
+   LOADING
+===================================== */
+.admin-announcements-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 16px;
+  color: #94a3b8;
+  gap: 12px;
+}
+
+.admin-announcements-loading-container::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e9edf2;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: adminAnnounceSpin 0.8s linear infinite;
+}
+
+@keyframes adminAnnounceSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================
+   MODAL
+===================================== */
+.admin-announcements-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: adminAnnounceFadeIn 0.2s ease;
+}
+
+.admin-announcements-modal-content {
+  width: 560px;
+  max-width: 95%;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+  animation: adminAnnounceSlideUp 0.3s ease;
+}
+
+.admin-announcements-modal-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9edf2;
+  background: #fafbfc;
+}
+
+.admin-announcements-modal-header h4 {
+  font-size: 18px;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 600;
+}
+
+.admin-announcements-modal-close {
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.admin-announcements-modal-close:hover {
+  color: #dc2626;
+}
+
+.admin-announcements-form {
+  padding: 24px;
+}
+
+.admin-announcements-form-group {
+  margin-bottom: 16px;
+}
+
+.admin-announcements-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.admin-announcements-form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+.admin-announcements-form-control:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+textarea.admin-announcements-form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.admin-announcements-form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-announcements-form-row .admin-announcements-form-group {
+  flex: 1;
+}
+
+.admin-announcements-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.admin-announcements-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.admin-announcements-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e9edf2;
+}
+
+.admin-announcements-btn-cancel,
+.admin-announcements-btn-submit,
+.admin-announcements-btn-delete {
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.admin-announcements-btn-cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.admin-announcements-btn-cancel:hover {
+  background: #e2e8f0;
+}
+
+.admin-announcements-btn-submit {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.admin-announcements-btn-submit:hover {
+  background: #1d4ed8;
+}
+
+.admin-announcements-btn-delete {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.admin-announcements-btn-delete:hover {
+  background: #b91c1c;
+}
+
+/* =====================================
+   DELETE MODAL
+===================================== */
+.admin-announcements-delete-modal {
+  max-width: 420px;
+}
+
+.admin-announcements-delete-warning {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.admin-announcements-warning-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.admin-announcements-warning-text {
+  margin-top: 6px;
+  color: #dc2626;
+  font-size: 13px;
+}
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+@keyframes adminAnnounceFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes adminAnnounceSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+@media (max-width: 768px) {
+  .admin-announcements-container {
+    padding: 16px;
+  }
+
+  .admin-announcements-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .admin-announcements-header h4 {
+    font-size: 18px;
+  }
+
+  .admin-announcements-header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-announcements-btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-announcements-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .admin-announcements-stat {
+    padding: 14px;
+  }
+
+  .admin-announcements-stat strong {
+    font-size: 18px;
+  }
+
+  .admin-announcements-card {
+    padding: 16px 18px;
+  }
+
+  .admin-announcements-card-header {
+    flex-direction: column;
+  }
+
+  .admin-announcements-actions {
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .admin-announcements-form-row {
+    flex-direction: column;
+  }
+
+  .admin-announcements-modal-buttons {
+    flex-direction: column;
+  }
+
+  .admin-announcements-btn-cancel,
+  .admin-announcements-btn-submit,
+  .admin-announcements-btn-delete {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-announcements-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .admin-announcements-modal-content {
+    max-width: 98%;
+  }
+
+  .admin-announcements-no-announcements {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-announcements-container {
+    padding: 10px;
+  }
+
+  .admin-announcements-header {
+    padding: 12px 16px;
+  }
+
+  .admin-announcements-header h4 {
+    font-size: 16px;
+  }
+
+  .admin-announcements-card {
+    padding: 12px 14px;
+  }
+
+  .admin-announcements-title-group h3 {
+    font-size: 16px;
+  }
+
+  .admin-announcements-content {
+    font-size: 13px;
+  }
+
+  .admin-announcements-form {
+    padding: 16px;
+  }
+
+  .admin-announcements-modal-header {
+    padding: 14px 16px;
+  }
+
+  .admin-announcements-modal-header h4 {
+    font-size: 16px;
+  }
+
+  .admin-announcements-stat strong {
+    font-size: 18px;
+  }
+}
+/* =====================================
+   FIX: White Cards with Left Align
+===================================== */
+.admin-announcements-card {
+  background: #ffffff !important;
+  text-align: left !important;
+  border: 1px solid #aac2e0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+}
+
+.admin-announcements-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  border-color: #a7bfe6 !important;
+}
+
+/* Remove colored left borders - keep them white */
+.admin-announcements-card.admin-announcements-priority-general,
+.admin-announcements-card.admin-announcements-priority-important,
+.admin-announcements-card.admin-announcements-priority-urgent {
+  border-left: 4px solid #f20a0a !important;
+}
+
+/* Left align all content */
+.admin-announcements-card * {
+  text-align: left !important;
+}
+
+.admin-announcements-title-group h3 {
+  text-align: left !important;
+}
+
+.admin-announcements-content {
+  text-align: left !important;
+}
+
+.admin-announcements-footer {
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+.admin-announcements-footer span {
+  text-align: left !important;
+}
+
+.admin-announcements-badge-group {
+  justify-content: flex-start !important;
+}
+
+.admin-announcements-card-header {
+  justify-content: space-between !important;
+}
+
+.admin-announcements-actions {
+  justify-content: flex-end !important;
+}
+/* ===== FIX: Text Alignment in Project Cards ===== */
+
+/* Fix for card header */
+.admin-projects-card-header h3 {
+    text-align: left !important;
+}
+
+/* Fix for description */
+.admin-projects-desc {
+    text-align: left !important;
+}
+
+/* Fix for dates */
+.admin-projects-dates {
+    text-align: left !important;
+}
+
+/* Fix for mini stats */
+.admin-projects-stats-mini {
+    justify-content: flex-start !important;
+}
+
+.admin-projects-mini-stat {
+    align-items: flex-start !important;
+}
+
+/* Fix for status */
+.admin-projects-status {
+    justify-content: flex-start !important;
+}
+/* ============================================
+   FINAL FIX - FORCE LEFT ALIGNMENT
+   ============================================ */
+
+/* Force left alignment for ALL project cards */
+.admin-projects-card,
+.admin-projects-card * {
+    text-align: left !important;
+}
+
+/* Fix card header */
+.admin-projects-card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+}
+
+.admin-projects-card-header h3 {
+    text-align: left !important;
+    margin: 0 !important;
+    flex: 1 !important;
+}
+
+/* Fix description */
+.admin-projects-desc {
+    text-align: left !important;
+    display: block !important;
+}
+
+/* Fix dates */
+.admin-projects-dates {
+    text-align: left !important;
+    display: block !important;
+}
+
+/* Fix mini stats */
+.admin-projects-stats-mini {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 20px !important;
+}
+
+.admin-projects-mini-stat {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+.admin-projects-mini-stat span {
+    text-align: left !important;
+}
+
+.admin-projects-mini-stat strong {
+    text-align: left !important;
+}
+
+/* Fix status */
+.admin-projects-status {
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin-top: 8px !important;
+}
+
+.admin-projects-status span {
+    text-align: left !important;
+    display: inline-block !important;
+}
+
+/* Fix progress bar container */
+.admin-projects-progress {
+    width: 100% !important;
+}
+
+/* Fix card actions */
+.admin-projects-card-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+}

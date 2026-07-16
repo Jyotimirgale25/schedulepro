@@ -1,0 +1,581 @@
+/* Schedule.css - Unique scoped class names for Schedule component */
+
+/* ============================================
+   1. CONTAINER
+   ============================================ */
+.sched-container {
+  background: white;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  animation: schedFadeIn 0.5s ease-out;
+}
+
+@keyframes schedFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   2. HEADER
+   ============================================ */
+.sched-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sched-header h4 {
+  font-size: 16px;
+  color: #0f172a;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ============================================
+   3. VIEW TOGGLE
+   ============================================ */
+.sched-view-toggle {
+  display: flex;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 30px;
+}
+
+.sched-view-btn {
+  padding: 5px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.sched-view-btn:hover {
+  color: #0f172a;
+}
+
+.sched-view-active {
+  background: #3b82f6;
+  color: white;
+}
+
+/* ============================================
+   4. LOADING
+   ============================================ */
+.sched-loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* ============================================
+   5. NO SCHEDULE
+   ============================================ */
+.sched-no-data {
+  text-align: center;
+  padding: 40px;
+  background: #f8fafc;
+  border-radius: 14px;
+  color: #64748b;
+}
+
+.sched-no-data-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.sched-no-data p {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.sched-no-data small {
+  font-size: 10px;
+}
+
+/* ============================================
+   6. WEEK VIEW TABLE
+   ============================================ */
+.sched-table-wrapper {
+  overflow-x: auto;
+}
+
+.sched-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sched-table th {
+  text-align: left;
+  padding: 10px 8px;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.sched-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-size: 12px;
+}
+
+.sched-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ============================================
+   7. TABLE CELLS
+   ============================================ */
+.sched-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sched-date-number {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sched-date-month {
+  font-size: 9px;
+  color: #64748b;
+}
+
+.sched-day-cell {
+  font-weight: 500;
+}
+
+.sched-shift-cell {
+  font-weight: 500;
+}
+
+.sched-status-cell {
+  font-weight: 500;
+}
+
+.sched-no-data-cell {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+}
+
+/* ============================================
+   8. STATUS BADGES
+   ============================================ */
+.sched-badge-scheduled {
+  padding: 3px 8px;
+  border-radius: 16px;
+  font-size: 9px;
+  font-weight: 500;
+  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.sched-badge-pending {
+  padding: 3px 8px;
+  border-radius: 16px;
+  font-size: 9px;
+  font-weight: 500;
+  display: inline-block;
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.sched-badge-completed {
+  padding: 3px 8px;
+  border-radius: 16px;
+  font-size: 9px;
+  font-weight: 500;
+  display: inline-block;
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.sched-badge-secondary {
+  padding: 3px 8px;
+  border-radius: 16px;
+  font-size: 9px;
+  font-weight: 500;
+  display: inline-block;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* ============================================
+   9. CALENDAR VIEW
+   ============================================ */
+.sched-calendar-view {
+  background: white;
+  border-radius: 14px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+/* ============================================
+   10. CALENDAR NAVIGATION
+   ============================================ */
+.sched-calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.sched-calendar-nav-btn {
+  background: #f1f5f9;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.sched-calendar-nav-btn:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.sched-calendar-month-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 120px;
+  text-align: center;
+  margin: 0;
+}
+
+.sched-calendar-today-btn {
+  background: #3b82f6;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 14px;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.sched-calendar-today-btn:hover {
+  background: #2563eb;
+}
+
+/* ============================================
+   11. CALENDAR STATS
+   ============================================ */
+.sched-calendar-stats {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.sched-cal-stat {
+  background: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.sched-cal-stat span {
+  font-size: 9px;
+  color: #64748b;
+  display: block;
+}
+
+.sched-cal-stat strong {
+  font-size: 12px;
+  color: #1e293b;
+}
+
+.sched-cal-stat-scheduled strong {
+  color: #10b981;
+}
+
+.sched-cal-stat-pending strong {
+  color: #f59e0b;
+}
+
+/* ============================================
+   12. CALENDAR TABLE
+   ============================================ */
+.sched-calendar-table-wrapper {
+  overflow-x: auto;
+}
+
+.sched-calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.sched-calendar-table th,
+.sched-calendar-table td {
+  border: 1px solid #e2e8f0;
+  padding: 5px 3px;
+  text-align: center;
+  vertical-align: top;
+  min-width: 55px;
+  height: 55px;
+}
+
+.sched-calendar-weekday {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+  font-size: 10px;
+  padding: 6px 3px !important;
+}
+
+/* ============================================
+   13. CALENDAR CELLS
+   ============================================ */
+.sched-calendar-cell {
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sched-calendar-cell:hover {
+  background: #f8fafc;
+}
+
+.sched-calendar-empty {
+  background: #fafcff;
+}
+
+.sched-today {
+  background: #eff6ff;
+}
+
+.sched-today .sched-calendar-day-number {
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.sched-has-schedule {
+  background: #f0fdf4;
+}
+
+.sched-calendar-day-number {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 3px;
+}
+
+/* ============================================
+   14. SHIFT BADGE
+   ============================================ */
+.sched-calendar-shift-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.sched-shift-badge {
+  font-size: 7px;
+  background: #e0e7ff;
+  color: #3b82f6;
+  padding: 1px 3px;
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   15. CALENDAR LEGEND
+   ============================================ */
+.sched-calendar-legend {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.sched-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 3px;
+}
+
+.sched-legend-scheduled {
+  background: #10b981;
+}
+
+.sched-legend-today {
+  background: #3b82f6;
+}
+
+.sched-calendar-legend span {
+  font-size: 9px;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ============================================
+   16. RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .sched-container {
+    padding: 12px;
+  }
+  
+  .sched-calendar-table th,
+  .sched-calendar-table td {
+    min-width: 45px;
+    height: 45px;
+    padding: 3px 2px;
+  }
+  
+  .sched-calendar-weekday {
+    font-size: 9px;
+    padding: 4px 2px !important;
+  }
+  
+  .sched-calendar-day-number {
+    font-size: 10px;
+  }
+  
+  .sched-shift-badge {
+    font-size: 6px;
+    max-width: 35px;
+  }
+  
+  .sched-calendar-nav-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+  
+  .sched-calendar-month-title {
+    font-size: 12px;
+    min-width: 100px;
+  }
+  
+  .sched-cal-stat {
+    padding: 2px 8px;
+  }
+  
+  .sched-cal-stat strong {
+    font-size: 11px;
+  }
+  
+  .sched-table th,
+  .sched-table td {
+    padding: 6px 4px;
+    font-size: 10px;
+  }
+  
+  .sched-date-number {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sched-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .sched-view-toggle {
+    width: 100%;
+  }
+  
+  .sched-view-btn {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .sched-calendar-nav {
+    gap: 6px;
+  }
+  
+  .sched-calendar-month-title {
+    font-size: 11px;
+    min-width: 80px;
+  }
+  
+  .sched-calendar-table th,
+  .sched-calendar-table td {
+    min-width: 35px;
+    height: 38px;
+    padding: 2px 1px;
+  }
+  
+  .sched-calendar-weekday {
+    font-size: 8px;
+    padding: 3px 1px !important;
+  }
+  
+  .sched-calendar-day-number {
+    font-size: 9px;
+  }
+  
+  .sched-shift-badge {
+    font-size: 5px;
+    max-width: 28px;
+    padding: 1px 2px;
+  }
+  
+  .sched-calendar-stats {
+    gap: 4px;
+  }
+  
+  .sched-cal-stat {
+    padding: 2px 6px;
+  }
+  
+  .sched-cal-stat span {
+    font-size: 8px;
+  }
+  
+  .sched-cal-stat strong {
+    font-size: 10px;
+  }
+  
+  .sched-calendar-legend {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .sched-calendar-legend span {
+    font-size: 8px;
+  }
+}

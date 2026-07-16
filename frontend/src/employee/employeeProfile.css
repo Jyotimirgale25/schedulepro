@@ -1,0 +1,1145 @@
+/* Profile.css - Complete Styling */
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+.profile-container {
+  padding: 24px;
+  background: #f5f6fa;
+  border-radius: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 500px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+/* ============================================
+   PROFILE HEADER
+   ============================================ */
+.profile-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 32px 24px 24px;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-header h3 {
+  margin: 12px 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.role-badge-profile {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   PROFILE PHOTO
+   ============================================ */
+.profile-photo-section {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.05);
+  border-color: white;
+}
+
+.profile-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  font-weight: 600;
+}
+
+/* ============================================
+   PHOTO OPTIONS MODAL
+   ============================================ */
+.photo-options-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.photo-options-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 380px;
+  width: 90%;
+  animation: slideUp 0.2s ease;
+}
+
+.photo-options-content h4 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.photo-option-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.photo-option-btn:hover {
+  background: #f8f9fa;
+  border-color: #667eea;
+  transform: translateY(-1px);
+}
+
+.photo-option-btn.cancel {
+  background: #f1f3f5;
+  border-color: #f1f3f5;
+  color: #6c757d;
+}
+
+.photo-option-btn.cancel:hover {
+  background: #e9ecef;
+}
+
+/* ============================================
+   CAMERA MODAL
+   ============================================ */
+.camera-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.camera-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  animation: slideUp 0.2s ease;
+}
+
+.camera-content h4 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.camera-video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+  max-height: 400px;
+}
+
+.camera-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.capture-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.capture-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.close-camera-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-camera-btn:hover {
+  background: #c82333;
+}
+
+/* ============================================
+   CROP MODAL
+   ============================================ */
+.crop-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.crop-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.2s ease;
+}
+
+.crop-content h4 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.crop-container {
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.crop-image {
+  display: block;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+.crop-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+.crop-cancel {
+  background: #f1f3f5;
+  color: #495057;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.crop-cancel:hover {
+  background: #e9ecef;
+}
+
+.crop-save {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.crop-save:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.profile-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 16px 24px 0;
+  border-bottom: 2px solid #f1f3f5;
+  background: #fafbfc;
+  flex-shrink: 0;
+}
+
+.profile-tab {
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6c757d;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s ease;
+}
+
+.profile-tab:hover {
+  background: #f1f3f5;
+  color: #1a1a2e;
+}
+
+.profile-tab.active {
+  color: #667eea;
+  background: white;
+  font-weight: 600;
+  box-shadow: 0 -2px 8px rgba(102, 126, 234, 0.1);
+}
+
+/* ============================================
+   PROFILE BODY
+   ============================================ */
+.profile-body {
+  padding: 24px;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tab-content {
+  flex: 1;
+  margin-bottom: 20px;
+  min-height: 200px;
+}
+
+/* ============================================
+   INFO SECTION (View Mode)
+   ============================================ */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 150px;
+}
+
+.info-row {
+  display: flex;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.info-row label {
+  min-width: 140px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+  flex-shrink: 0;
+}
+
+.info-row span {
+  font-size: 14px;
+  color: #1a1a2e;
+  word-break: break-word;
+}
+
+.no-data-text {
+  color: #adb5bd;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ============================================
+   EDIT SECTION
+   ============================================ */
+.edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 150px;
+}
+
+.edit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edit-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.edit-row input,
+.edit-row select,
+.edit-row textarea {
+  padding: 10px 14px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  color: #212529;
+  background: white;
+}
+
+.edit-row input:focus,
+.edit-row select:focus,
+.edit-row textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.edit-row textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.edit-row small {
+  color: #6c757d;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* ============================================
+   SKILLS & LANGUAGES
+   ============================================ */
+.skills-container,
+.languages-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 30px;
+}
+
+.skill-tag,
+.language-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.skill-tag.editable,
+.language-tag.editable {
+  background: #f1f3f5;
+  color: #1a1a2e;
+}
+
+.remove-skill,
+.remove-language {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 2px;
+  font-weight: 700;
+}
+
+.remove-skill:hover,
+.remove-language:hover {
+  color: #c82333;
+  transform: scale(1.2);
+}
+
+.add-skill,
+.add-language {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.add-skill input,
+.add-language input {
+  flex: 1;
+  padding: 6px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.add-skill input:focus,
+.add-language input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.add-skill button,
+.add-language button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-skill button:hover,
+.add-language button:hover {
+  background: #5a6fd6;
+  transform: scale(1.05);
+}
+
+/* ============================================
+   SOCIAL LINKS
+   ============================================ */
+.social-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 40px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-link.linkedin {
+  background: #0077b5;
+  color: white;
+}
+
+.social-link.github {
+  background: #24292e;
+  color: white;
+}
+
+.social-link.twitter {
+  background: #1da1f2;
+  color: white;
+}
+
+/* ============================================
+   HISTORY TAB (Profile & Photo History)
+   ============================================ */
+.history-tab {
+  max-height: 400px;
+  overflow-y: auto;
+  min-height: 200px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f3f5;
+}
+
+.history-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1a1a2e;
+}
+
+.history-header h4 span {
+  font-size: 13px;
+  font-weight: 400;
+  color: #6c757d;
+  margin-left: 8px;
+}
+
+.clear-history-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-history-btn:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 100px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  background: #f1f3f5;
+}
+
+/* ============================================
+   PHOTO HISTORY ITEMS
+   ============================================ */
+.photo-history-item {
+  padding: 12px 16px;
+}
+
+.history-photo-preview {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #e9ecef;
+  background: #f1f3f5;
+}
+
+.history-photo-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.history-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-action {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a2e;
+  text-transform: capitalize;
+}
+
+.history-time {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.history-current-badge {
+  background: #28a745;
+  color: white;
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.history-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.history-revert-btn {
+  background: #ffc107;
+  color: #856404;
+  border: none;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.history-revert-btn:hover {
+  background: #e0a800;
+  transform: scale(1.05);
+}
+
+.history-delete-btn {
+  background: #f8d7da;
+  color: #721c24;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.history-delete-btn:hover {
+  background: #f5c6cb;
+  transform: scale(1.05);
+}
+
+.no-history {
+  text-align: center;
+  color: #6c757d;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+/* ============================================
+   PROFILE ACTIONS
+   ============================================ */
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 2px solid #f1f3f5;
+  flex-wrap: wrap;
+  margin-top: auto;
+  min-height: 60px;
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.4);
+}
+
+.btn-cancel-profile {
+  background: #f1f3f5;
+  color: #495057;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel-profile:hover {
+  background: #e9ecef;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 12px;
+  }
+
+  .profile-card {
+    min-height: 500px;
+  }
+
+  .profile-header {
+    padding: 24px 16px 20px;
+  }
+
+  .profile-header h3 {
+    font-size: 18px;
+  }
+
+  .profile-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-avatar {
+    font-size: 36px;
+  }
+
+  .profile-tabs {
+    padding: 12px 16px 0;
+    gap: 2px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .profile-tab {
+    font-size: 12px;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .profile-body {
+    padding: 16px;
+    min-height: 300px;
+  }
+
+  .tab-content {
+    min-height: 180px;
+  }
+
+  .info-section {
+    min-height: 120px;
+  }
+
+  .edit-section {
+    min-height: 120px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 12px;
+  }
+
+  .info-row label {
+    min-width: auto;
+    font-size: 12px;
+  }
+
+  .info-row span {
+    font-size: 13px;
+  }
+
+  .camera-content,
+  .crop-content,
+  .photo-options-content {
+    padding: 16px;
+  }
+
+  .camera-video {
+    max-height: 300px;
+  }
+
+  .crop-image {
+    max-height: 300px;
+  }
+
+  .history-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .history-current-badge,
+  .history-actions {
+    margin-left: auto;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+    min-height: 50px;
+  }
+
+  .btn-edit,
+  .btn-save,
+  .btn-cancel-profile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .add-skill,
+  .add-language {
+    flex-direction: column;
+  }
+
+  .add-skill button,
+  .add-language button {
+    width: 100%;
+  }
+
+  .history-photo-preview {
+    width: 48px;
+    height: 48px;
+  }
+
+  .photo-history-item {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 8px;
+  }
+
+  .profile-card {
+    border-radius: 12px;
+    min-height: 450px;
+  }
+
+  .profile-header h3 {
+    font-size: 16px;
+  }
+
+  .profile-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-tab {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .profile-body {
+    padding: 12px;
+    min-height: 280px;
+  }
+
+  .tab-content {
+    min-height: 150px;
+  }
+
+  .info-section {
+    min-height: 100px;
+  }
+
+  .edit-section {
+    min-height: 100px;
+  }
+
+  .camera-buttons {
+    flex-direction: column;
+  }
+
+  .crop-buttons {
+    flex-direction: column;
+  }
+
+  .crop-buttons button {
+    width: 100%;
+  }
+
+  .social-links {
+    flex-direction: column;
+  }
+
+  .social-link {
+    justify-content: center;
+  }
+
+  .history-item {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .history-photo-preview {
+    margin: 0 auto;
+  }
+
+  .history-current-badge,
+  .history-actions {
+    margin: 0 auto;
+  }
+
+  .history-actions {
+    justify-content: center;
+  }
+
+  .profile-actions {
+    min-height: 40px;
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+.history-tab::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-tab::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border-radius: 4px;
+}
+
+.history-tab::-webkit-scrollbar-thumb {
+  background: #c4c9d4;
+  border-radius: 4px;
+}
+
+.history-tab::-webkit-scrollbar-thumb:hover {
+  background: #a8aeb9;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+  .btn-edit,
+  .btn-save {
+    border: 2px solid ButtonText;
+  }
+
+  .profile-photo {
+    border: 4px solid CanvasText;
+  }
+
+  .history-photo-preview {
+    border: 2px solid CanvasText;
+  }
+}

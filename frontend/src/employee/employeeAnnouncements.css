@@ -1,0 +1,475 @@
+/* Announcements.css - Employee Announcements - Clean White Design */
+
+/* ===== CONTAINER ===== */
+.employee-announcements-container {
+  padding: 0;
+  animation: annFadeIn 0.5s ease;
+}
+
+@keyframes annFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== LOADING ===== */
+.announcements-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+  color: #6b7280;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f4f6;
+  border-top: 3px solid #667eea;
+  border-radius: 50%;
+  animation: annSpin 0.8s linear infinite;
+}
+
+@keyframes annSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== HEADER ===== */
+.announcements-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-icon {
+  font-size: 28px;
+  background: #ffffff;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+}
+
+.header-text h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 2px 0;
+}
+
+.header-text p {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.unread-badge {
+  background: #ef4444;
+  color: white;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mark-all-read-btn {
+  background: #ffffff;
+  color: #3b82f6;
+  border: 1px solid #e5e7eb;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mark-all-read-btn:hover {
+  background: #f8fafc;
+  border-color: #d1d5db;
+}
+
+/* ===== FILTERS ===== */
+.announcements-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: #f8fafc;
+  border-color: #d1d5db;
+  color: #1a1a2e;
+}
+
+.filter-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.filter-btn.active:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* ===== ANNOUNCEMENTS LIST ===== */
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== ANNOUNCEMENT CARD - CLEAN WHITE ===== */
+.announcement-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.announcement-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db;
+}
+
+/* Priority indicators - subtle left border */
+.announcement-card.priority-urgent {
+  border-left: 4px solid #dc2626;
+}
+
+.announcement-card.priority-important {
+  border-left: 4px solid #f59e0b;
+}
+
+.announcement-card.priority-general {
+  border-left: 4px solid #3b82f6;
+}
+
+/* Read/Unread states */
+.announcement-card.read {
+  opacity: 0.75;
+}
+
+.announcement-card.unread {
+  border-left: 4px solid #8b5cf6;
+  background: #faf5ff;
+}
+
+.announcement-card.unread {
+  cursor: pointer;
+}
+
+.announcement-card.unread:hover {
+  background: #f5f0ff;
+}
+
+/* ===== CARD HEADER ===== */
+.announcement-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.announcement-title-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.unread-dot {
+  color: #8b5cf6;
+  font-size: 10px;
+  animation: annPulse 1.5s infinite;
+}
+
+@keyframes annPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.announcement-title-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.announcement-date {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.date-icon {
+  font-size: 12px;
+}
+
+/* ===== PRIORITY BADGE - TEXT ONLY WITH COLOR ===== */
+.priority-badge {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.priority-badge.urgent {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.priority-badge.important {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.priority-badge.general {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+/* ===== CARD BODY ===== */
+.announcement-body {
+  margin: 4px 0 10px 0;
+  padding: 10px 0;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.announcement-body p {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== CARD FOOTER ===== */
+.announcement-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  padding: 2px 0;
+}
+
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  width: 100%;
+}
+
+.footer-info .author,
+.footer-info .expiry,
+.footer-info .read-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.footer-info .author {
+  color: #6b7280;
+}
+
+.footer-info .read-status {
+  color: #16a34a;
+  font-weight: 500;
+  background: #dcfce7;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+}
+
+/* ===== NO ANNOUNCEMENTS ===== */
+.no-announcements {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.no-announcements .empty-icon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.no-announcements h5 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.no-announcements p {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .announcements-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-left {
+    width: 100%;
+  }
+  
+  .header-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .announcement-card {
+    padding: 14px 16px;
+  }
+  
+  .announcement-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .announcement-title-section h3 {
+    font-size: 15px;
+  }
+  
+  .announcement-body p {
+    font-size: 13px;
+  }
+  
+  .announcement-footer {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .footer-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  
+  .footer-info .author,
+  .footer-info .expiry,
+  .footer-info .read-status {
+    font-size: 12px;
+  }
+  
+  .announcements-filters {
+    gap: 6px;
+  }
+  
+  .filter-btn {
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+  
+  .header-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  
+  .header-text h4 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .announcement-card {
+    padding: 12px 14px;
+  }
+  
+  .announcement-title-section h3 {
+    font-size: 14px;
+  }
+  
+  .announcement-body p {
+    font-size: 13px;
+  }
+  
+  .announcement-body {
+    padding: 8px 0;
+    margin: 2px 0 8px 0;
+  }
+  
+  .footer-info .author,
+  .footer-info .expiry,
+  .footer-info .read-status {
+    font-size: 11px;
+  }
+  
+  .no-announcements {
+    padding: 40px 16px;
+  }
+  
+  .no-announcements .empty-icon {
+    font-size: 40px;
+  }
+  
+  .header-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+  
+  .header-text h4 {
+    font-size: 16px;
+  }
+  
+  .header-text p {
+    font-size: 12px;
+  }
+}

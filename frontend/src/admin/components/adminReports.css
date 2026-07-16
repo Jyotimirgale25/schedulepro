@@ -1,0 +1,577 @@
+/* ============================================
+   ADMIN REPORTS - Global Selectors
+   ============================================ */
+
+/* --------------------------------------------
+   CONTAINER
+   -------------------------------------------- */
+.admin-reports-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f7fa;
+  min-height: 100vh;
+  animation: adminReportFadeIn 0.5s ease;
+}
+
+/* ===== HEADER ===== */
+.admin-reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-reports-header h4 {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin-reports-header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-reports-btn-download {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-reports-btn-download:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.admin-reports-btn-download-csv {
+  padding: 10px 20px;
+  background: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-reports-btn-download-csv:hover {
+  background: #138496;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+/* ===== DATE RANGE FILTER ===== */
+.admin-reports-date-range-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+}
+
+.admin-reports-date-range-filter label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.admin-reports-date-range-filter input[type="date"] {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.admin-reports-date-range-filter input[type="date"]:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.admin-reports-btn-filter {
+  padding: 8px 20px;
+  background: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-reports-btn-filter:hover {
+  background: #0b5ed7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+}
+
+.admin-reports-filter-info {
+  font-size: 13px;
+  color: #6c757d;
+  padding: 4px 12px;
+  background: #e9ecef;
+  border-radius: 12px;
+}
+
+/* ===== REPORT TABS ===== */
+.admin-reports-controls {
+  margin-bottom: 24px;
+}
+
+.admin-reports-tabs {
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+}
+
+.admin-reports-tab {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.admin-reports-tab:hover {
+  background: #f8f9fa;
+  color: #1a1a2e;
+}
+
+.admin-reports-tab.admin-reports-active {
+  background: #0d6efd;
+  color: white;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+}
+
+/* ===== REPORT CARDS ===== */
+.admin-reports-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.admin-reports-card h5 {
+  margin: 0 0 16px 0;
+  color: #1a1a2e;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.admin-reports-card h5 span {
+  font-weight: 400;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.admin-reports-card.admin-reports-large {
+  padding: 28px;
+}
+
+/* ===== STATS GRIDS ===== */
+.admin-reports-stats-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.admin-reports-stats-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.admin-reports-stats-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* ===== STAT ITEMS ===== */
+.admin-reports-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #0ef44f;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-reports-stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-reports-stat-item span {
+  font-size: 13px;
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.admin-reports-stat-item strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.admin-reports-stat-item.admin-reports-pending {
+  border-left-color: #ffc107;
+}
+.admin-reports-stat-item.admin-reports-pending strong {
+  color: #ffc107;
+}
+
+.admin-reports-stat-item.admin-reports-progress {
+  border-left-color: #17a2b8;
+}
+.admin-reports-stat-item.admin-reports-progress strong {
+  color: #17a2b8;
+}
+
+.admin-reports-stat-item.admin-reports-submitted {
+  border-left-color: #0d6efd;
+}
+.admin-reports-stat-item.admin-reports-submitted strong {
+  color: #0d6efd;
+}
+
+.admin-reports-stat-item.admin-reports-approved {
+  border-left-color: #28a745;
+}
+.admin-reports-stat-item.admin-reports-approved strong {
+  color: #28a745;
+}
+
+.admin-reports-stat-item.admin-reports-rejected {
+  border-left-color: #dc3545;
+}
+.admin-reports-stat-item.admin-reports-rejected strong {
+  color: #dc3545;
+}
+
+.admin-reports-stat-item.admin-reports-high {
+  border-left-color: #dc3545;
+}
+.admin-reports-stat-item.admin-reports-high strong {
+  color: #dc3545;
+}
+
+.admin-reports-stat-item.admin-reports-medium {
+  border-left-color: #ffc107;
+}
+.admin-reports-stat-item.admin-reports-medium strong {
+  color: #ffc107;
+}
+
+.admin-reports-stat-item.admin-reports-low {
+  border-left-color: #28a745;
+}
+.admin-reports-stat-item.admin-reports-low strong {
+  color: #28a745;
+}
+
+/* ===== COMPLETION RATE ===== */
+.admin-reports-completion-rate {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-reports-completion-rate span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.admin-reports-rate-bar {
+  flex: 1;
+  min-width: 150px;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.admin-reports-rate-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745, #20c997);
+  border-radius: 4px;
+  transition: width 0.8s ease;
+}
+
+.admin-reports-completion-rate strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: #28a745;
+  min-width: 60px;
+}
+
+/* ===== USER REPORT TABLE ===== */
+.admin-reports-user-table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-reports-user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-reports-user-table thead {
+  background: #f8f9fa;
+}
+
+.admin-reports-user-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.admin-reports-user-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.admin-reports-user-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.admin-reports-user-table td.admin-reports-good {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.admin-reports-user-table td.admin-reports-average {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.admin-reports-user-table td.admin-reports-poor {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* ===== LOADING ===== */
+.admin-reports-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.admin-reports-loading-container::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  border: 3px solid #e9ecef;
+  border-top-color: #0d6efd;
+  border-radius: 50%;
+  animation: adminReportSpin 0.8s linear infinite;
+}
+
+@keyframes adminReportSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== EMPTY STATE ===== */
+.admin-reports-empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  color: #6c757d;
+  background: white;
+  border-radius: 12px;
+}
+
+.admin-reports-empty-state p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .admin-reports-stats-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .admin-reports-stats-grid-5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-reports-container {
+    padding: 12px;
+  }
+
+  .admin-reports-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .admin-reports-header-actions {
+    justify-content: center;
+  }
+
+  .admin-reports-date-range-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-reports-date-range-filter input[type="date"] {
+    width: 100%;
+  }
+
+  .admin-reports-btn-filter {
+    width: 100%;
+  }
+
+  .admin-reports-tabs {
+    justify-content: center;
+  }
+
+  .admin-reports-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .admin-reports-stats-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-reports-stats-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-reports-stats-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-reports-stat-item {
+    padding: 12px;
+  }
+
+  .admin-reports-stat-item strong {
+    font-size: 20px;
+  }
+
+  .admin-reports-completion-rate {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .admin-reports-rate-bar {
+    width: 100%;
+  }
+
+  .admin-reports-user-table {
+    font-size: 12px;
+  }
+
+  .admin-reports-user-table th,
+  .admin-reports-user-table td {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-reports-stats-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-reports-stats-grid-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-reports-stats-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-reports-card {
+    padding: 16px;
+  }
+
+  .admin-reports-card.admin-reports-large {
+    padding: 16px;
+  }
+
+  .admin-reports-header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-reports-btn-download,
+  .admin-reports-btn-download-csv {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-reports-filter-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .admin-reports-user-table {
+    font-size: 11px;
+  }
+
+  .admin-reports-user-table th,
+  .admin-reports-user-table td {
+    padding: 6px 8px;
+  }
+}

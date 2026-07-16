@@ -1,0 +1,760 @@
+/* Invitations.css - Unique scoped class names for Invitations component */
+
+/* ===== CONTAINER ===== */
+.inv-container {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: invFadeIn 0.5s ease;
+}
+
+/* ===== HEADER ===== */
+.inv-header {
+  margin-bottom: 28px;
+}
+
+.inv-header h4 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inv-header p {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ===== LOADING ===== */
+.inv-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* ===== TABS ===== */
+.inv-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.inv-tab-btn {
+  padding: 10px 24px;
+  background: transparent;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.inv-tab-btn:hover:not(:disabled) {
+  color: #1a1a2e;
+  background: #f8fafc;
+}
+
+.inv-tab-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inv-tab-active {
+  color: #667eea;
+  background: #eef2ff;
+}
+
+.inv-tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.inv-delete-all-btn {
+  color: #dc2626;
+  margin-left: auto;
+}
+
+.inv-delete-all-btn:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ===== NO DATA ===== */
+.inv-no-data,
+.inv-no-history {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9fafb;
+  border-radius: 16px;
+  border: 2px dashed #e5e7eb;
+}
+
+.inv-empty-icon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.inv-no-data h5,
+.inv-no-history h5 {
+  font-size: 20px;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.inv-no-data p,
+.inv-no-history p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.inv-refresh-btn {
+  padding: 8px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.inv-refresh-btn:hover {
+  background: #5a6fd6;
+  transform: scale(1.02);
+}
+
+/* ===== INVITATION LIST ===== */
+.inv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== INVITATION CARD ===== */
+.inv-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px 28px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.inv-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db;
+}
+
+.inv-card-pending {
+  border-left: 4px solid #667eea;
+}
+
+.inv-card-expired {
+  opacity: 0.6;
+  border-color: #fca5a5;
+}
+
+/* ===== CARD HEADER ===== */
+.inv-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.inv-manager-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.inv-manager-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.inv-manager-info h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+}
+
+.inv-manager-info p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ===== EXPIRY BADGE ===== */
+.inv-expiry-badge {
+  flex-shrink: 0;
+}
+
+.inv-days-left {
+  background: #dbeafe;
+  color: #2563eb;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.inv-expired {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ===== DETAILS - MORE SPACING ===== */
+.inv-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 32px;
+  margin-bottom: 16px;
+  padding: 14px 0;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.inv-detail-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.inv-detail-label {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+  min-width: 90px;
+}
+
+.inv-detail-value {
+  font-size: 14px;
+  color: #1a1a2e;
+  font-weight: 500;
+}
+
+/* ===== ACTIONS ===== */
+.inv-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.inv-btn-accept,
+.inv-btn-decline {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inv-btn-accept {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+}
+
+.inv-btn-accept:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.inv-btn-accept:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inv-btn-decline {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.inv-btn-decline:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ===== HISTORY - MORE SPACING ===== */
+.inv-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.inv-history-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.inv-history-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db;
+}
+
+.inv-history-accepted {
+  border-left: 4px solid #22c55e;
+}
+
+.inv-history-rejected {
+  border-left: 4px solid #dc2626;
+}
+
+.inv-history-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.inv-history-status-icon {
+  font-size: 28px;
+}
+
+.inv-history-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+}
+
+.inv-history-info p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.inv-history-status {
+  margin-left: auto;
+}
+
+.inv-history-details {
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.inv-history-details .inv-detail-item {
+  padding: 6px 0;
+}
+
+/* ===== DELETE HISTORY BUTTON ===== */
+.inv-delete-history-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  color: #9ca3af;
+}
+
+.inv-delete-history-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ===== STATUS BADGES ===== */
+.inv-status-accepted {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inv-status-rejected {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inv-status-pending {
+  background: #fef3c7;
+  color: #d97706;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inv-status-default {
+  background: #f3f4f6;
+  color: #6b7280;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ===== SUCCESS & REJECTION MESSAGES ===== */
+.inv-success-message {
+  margin-top: 10px;
+  padding: 12px 16px;
+  background: #dcfce7;
+  border-radius: 8px;
+}
+
+.inv-success-message .inv-detail-value {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.inv-rejection-message {
+  margin-top: 10px;
+  padding: 12px 16px;
+  background: #fee2e2;
+  border-radius: 8px;
+}
+
+.inv-rejection-message .inv-detail-value {
+  color: #dc2626;
+}
+
+.inv-rejection-reason-text {
+  font-style: italic;
+}
+
+/* ===== MODAL ===== */
+.inv-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.inv-modal-content {
+  background: white;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: invModalSlideIn 0.3s ease;
+}
+
+.inv-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.inv-modal-header h4 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.inv-modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.inv-modal-close:hover {
+  background: #f3f4f6;
+  color: #1a1a2e;
+}
+
+.inv-modal-content form {
+  padding: 22px;
+}
+
+/* ===== FORM ===== */
+.inv-form-group {
+  margin-bottom: 18px;
+}
+
+.inv-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.inv-form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.inv-form-control:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.inv-form-control:disabled {
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.inv-form-control::placeholder {
+  color: #9ca3af;
+}
+
+.inv-form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.inv-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.inv-form-group small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ===== MODAL BUTTONS ===== */
+.inv-modal-buttons {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.inv-btn-cancel,
+.inv-btn-submit {
+  flex: 1;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.inv-btn-cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.inv-btn-cancel:hover {
+  background: #e5e7eb;
+}
+
+.inv-btn-submit {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.inv-btn-submit:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.inv-btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.inv-btn-danger:hover {
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes invFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes invModalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .inv-container {
+    padding: 16px;
+  }
+  
+  .inv-details {
+    grid-template-columns: 1fr;
+    gap: 6px 0;
+  }
+  
+  .inv-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .inv-form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .inv-modal-content {
+    max-width: 100%;
+    margin: 10px;
+  }
+  
+  .inv-actions {
+    flex-direction: column;
+  }
+  
+  .inv-actions .inv-btn-accept,
+  .inv-actions .inv-btn-decline {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .inv-tabs {
+    gap: 8px;
+  }
+  
+  .inv-tab-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .inv-history-header {
+    flex-wrap: wrap;
+  }
+  
+  .inv-history-status {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .inv-delete-all-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .inv-card {
+    padding: 18px 20px;
+  }
+  
+  .inv-history-card {
+    padding: 16px 18px;
+  }
+  
+  .inv-detail-label {
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inv-header h4 {
+    font-size: 20px;
+  }
+  
+  .inv-card {
+    padding: 14px 16px;
+  }
+  
+  .inv-modal-header h4 {
+    font-size: 17px;
+  }
+  
+  .inv-modal-buttons {
+    flex-direction: column;
+  }
+  
+  .inv-btn-cancel,
+  .inv-btn-submit {
+    width: 100%;
+  }
+  
+  .inv-detail-label {
+    min-width: 70px;
+    font-size: 12px;
+  }
+  
+  .inv-detail-value {
+    font-size: 13px;
+  }
+  
+  .inv-manager-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+  }
+  
+  .inv-manager-info h4 {
+    font-size: 15px;
+  }
+}

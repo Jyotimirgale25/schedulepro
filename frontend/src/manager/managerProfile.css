@@ -1,0 +1,1952 @@
+/* ManagerProfile.css - Manager Specific Styling with Global Selectors */
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+.manager-profile-container {
+  padding: 24px;
+  background: #f5f6fa;
+  border-radius: 12px;
+  min-height: 500px;
+  animation: managerProfileFadeIn 0.5s ease;
+}
+
+.manager-profile-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   PROFILE HEADER - Manager Theme
+   ============================================ */
+.manager-profile-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 32px 24px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.manager-profile-header h3 {
+  margin: 12px 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.manager-profile-role-badge {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* ============================================
+   PROFILE PHOTO
+   ============================================ */
+.manager-profile-photo-section {
+  position: relative;
+  display: inline-block;
+}
+
+.manager-profile-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 215, 0, 0.8);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.manager-profile-photo:hover {
+  transform: scale(1.05);
+  border-color: #ffd700;
+}
+
+.manager-profile-photo:hover .manager-profile-photo-edit-icon {
+  opacity: 1;
+}
+
+.manager-profile-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manager-profile-avatar {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 215, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.manager-profile-photo-edit-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 6px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   PHOTO OPTIONS MODAL
+   ============================================ */
+.manager-profile-photo-options-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: managerProfileFadeIn 0.2s ease;
+}
+
+.manager-profile-photo-options-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 380px;
+  width: 90%;
+  animation: managerProfileSlideUp 0.2s ease;
+}
+
+.manager-profile-photo-options-content h4 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.manager-profile-photo-option-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.manager-profile-photo-option-btn:hover {
+  background: #f8f9fa;
+  border-color: #1a1a2e;
+  transform: translateY(-1px);
+}
+
+.manager-profile-photo-option-btn.manager-profile-cancel {
+  background: #f1f3f5;
+  border-color: #f1f3f5;
+  color: #6c757d;
+}
+
+.manager-profile-photo-option-btn.manager-profile-cancel:hover {
+  background: #e9ecef;
+}
+
+/* ============================================
+   CAMERA MODAL
+   ============================================ */
+.manager-profile-camera-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: managerProfileFadeIn 0.2s ease;
+}
+
+.manager-profile-camera-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  animation: managerProfileSlideUp 0.2s ease;
+}
+
+.manager-profile-camera-content h4 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.manager-profile-camera-video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+  max-height: 400px;
+}
+
+.manager-profile-camera-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.manager-profile-capture-btn {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-capture-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(26, 26, 46, 0.4);
+}
+
+.manager-profile-close-camera-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-close-camera-btn:hover {
+  background: #c82333;
+}
+
+/* ============================================
+   CROP MODAL
+   ============================================ */
+.manager-profile-crop-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: managerProfileFadeIn 0.2s ease;
+}
+
+.manager-profile-crop-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: managerProfileSlideUp 0.2s ease;
+}
+
+.manager-profile-crop-content h4 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1a1a2e;
+  text-align: center;
+}
+
+.manager-profile-crop-container {
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.manager-profile-crop-image {
+  display: block;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+.manager-profile-crop-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+.manager-profile-crop-cancel {
+  background: #f1f3f5;
+  color: #495057;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-crop-cancel:hover {
+  background: #e9ecef;
+}
+
+.manager-profile-crop-save {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-crop-save:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* ============================================
+   TABS - Manager Theme
+   ============================================ */
+.manager-profile-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 16px 24px 0;
+  border-bottom: 2px solid #f1f3f5;
+  background: #fafbfc;
+}
+
+.manager-profile-tab {
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6c757d;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s ease;
+}
+
+.manager-profile-tab:hover {
+  background: #f1f3f5;
+  color: #1a1a2e;
+}
+
+.manager-profile-tab.manager-profile-active {
+  color: #1a1a2e;
+  background: white;
+  font-weight: 600;
+  box-shadow: 0 -2px 8px rgba(26, 26, 46, 0.1);
+  border-bottom: 2px solid #ffd700;
+}
+
+/* ============================================
+   PROFILE BODY
+   ============================================ */
+.manager-profile-body {
+  padding: 24px;
+}
+
+.manager-profile-tab-content {
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   INFO SECTION (View Mode)
+   ============================================ */
+.manager-profile-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.manager-profile-info-row {
+  display: flex;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.manager-profile-info-row label {
+  min-width: 160px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+  flex-shrink: 0;
+}
+
+.manager-profile-info-row span {
+  font-size: 14px;
+  color: #1a1a2e;
+  word-break: break-word;
+}
+
+/* ============================================
+   EDIT SECTION
+   ============================================ */
+.manager-profile-edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.manager-profile-edit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.manager-profile-edit-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.manager-profile-edit-row input,
+.manager-profile-edit-row select,
+.manager-profile-edit-row textarea {
+  padding: 10px 14px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  color: #212529;
+  background: white;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.manager-profile-edit-row input:focus,
+.manager-profile-edit-row select:focus,
+.manager-profile-edit-row textarea:focus {
+  outline: none;
+  border-color: #1a1a2e;
+  box-shadow: 0 0 0 4px rgba(26, 26, 46, 0.1);
+}
+
+.manager-profile-edit-row textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ============================================
+   MANAGER-SPECIFIC: DEPARTMENTS
+   ============================================ */
+.manager-profile-departments-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.manager-profile-department-tag {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.manager-profile-department-tag.manager-profile-editable {
+  background: #f1f3f5;
+  color: #1a1a2e;
+}
+
+.manager-profile-remove-dept {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 2px;
+  font-weight: 700;
+}
+
+.manager-profile-remove-dept:hover {
+  color: #c82333;
+  transform: scale(1.2);
+}
+
+.manager-profile-add-dept {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.manager-profile-add-dept input {
+  flex: 1;
+  padding: 6px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.manager-profile-add-dept input:focus {
+  outline: none;
+  border-color: #1a1a2e;
+}
+
+.manager-profile-add-dept button {
+  background: #1a1a2e;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.manager-profile-add-dept button:hover {
+  background: #0f3460;
+  transform: scale(1.05);
+}
+
+/* ============================================
+   SKILLS & LANGUAGES
+   ============================================ */
+.manager-profile-skills-container,
+.manager-profile-languages-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.manager-profile-skill-tag,
+.manager-profile-language-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.manager-profile-skill-tag.manager-profile-editable,
+.manager-profile-language-tag.manager-profile-editable {
+  background: #f1f3f5;
+  color: #1a1a2e;
+}
+
+.manager-profile-remove-skill,
+.manager-profile-remove-language {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 2px;
+  font-weight: 700;
+}
+
+.manager-profile-remove-skill:hover,
+.manager-profile-remove-language:hover {
+  color: #c82333;
+  transform: scale(1.2);
+}
+
+.manager-profile-add-skill,
+.manager-profile-add-language {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.manager-profile-add-skill input,
+.manager-profile-add-language input {
+  flex: 1;
+  padding: 6px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.manager-profile-add-skill input:focus,
+.manager-profile-add-language input:focus {
+  outline: none;
+  border-color: #1a1a2e;
+}
+
+.manager-profile-add-skill button,
+.manager-profile-add-language button {
+  background: #1a1a2e;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.manager-profile-add-skill button:hover,
+.manager-profile-add-language button:hover {
+  background: #0f3460;
+  transform: scale(1.05);
+}
+
+/* ============================================
+   SOCIAL LINKS
+   ============================================ */
+.manager-profile-social-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.manager-profile-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.manager-profile-social-link.manager-profile-linkedin {
+  background: #0077b5;
+  color: white;
+}
+
+.manager-profile-social-link.manager-profile-github {
+  background: #24292e;
+  color: white;
+}
+
+.manager-profile-social-link.manager-profile-twitter {
+  background: #1da1f2;
+  color: white;
+}
+
+/* ============================================
+   PROFILE ACTIONS
+   ============================================ */
+.manager-profile-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 2px solid #f1f3f5;
+  flex-wrap: wrap;
+}
+
+.manager-profile-btn-edit {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.3);
+}
+
+.manager-profile-btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(26, 26, 46, 0.4);
+}
+
+.manager-profile-btn-save {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.manager-profile-btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.4);
+}
+
+.manager-profile-btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.manager-profile-btn-cancel {
+  background: #f1f3f5;
+  color: #495057;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-btn-cancel:hover {
+  background: #e9ecef;
+}
+
+/* ============================================
+   LOADING
+   ============================================ */
+.manager-profile-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes managerProfileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes managerProfileSlideUp {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .manager-profile-container {
+    padding: 12px;
+  }
+
+  .manager-profile-header {
+    padding: 24px 16px 20px;
+  }
+
+  .manager-profile-header h3 {
+    font-size: 18px;
+  }
+
+  .manager-profile-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .manager-profile-avatar {
+    font-size: 36px;
+  }
+
+  .manager-profile-tabs {
+    padding: 12px 16px 0;
+    gap: 2px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .manager-profile-tab {
+    font-size: 12px;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .manager-profile-body {
+    padding: 16px;
+  }
+
+  .manager-profile-info-row {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 12px;
+  }
+
+  .manager-profile-info-row label {
+    min-width: auto;
+    font-size: 12px;
+  }
+
+  .manager-profile-info-row span {
+    font-size: 13px;
+  }
+
+  .manager-profile-actions {
+    flex-direction: column;
+  }
+
+  .manager-profile-btn-edit,
+  .manager-profile-btn-save,
+  .manager-profile-btn-cancel {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .manager-profile-add-skill,
+  .manager-profile-add-language,
+  .manager-profile-add-dept {
+    flex-direction: column;
+  }
+
+  .manager-profile-add-skill button,
+  .manager-profile-add-language button,
+  .manager-profile-add-dept button {
+    width: 100%;
+  }
+
+  .manager-profile-camera-buttons,
+  .manager-profile-crop-buttons {
+    flex-direction: column;
+  }
+
+  .manager-profile-camera-buttons button,
+  .manager-profile-crop-buttons button {
+    width: 100%;
+  }
+
+  .manager-profile-social-links {
+    flex-direction: column;
+  }
+
+  .manager-profile-social-link {
+    justify-content: center;
+  }
+
+  .manager-profile-departments-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .manager-profile-container {
+    padding: 8px;
+  }
+
+  .manager-profile-card {
+    border-radius: 12px;
+  }
+
+  .manager-profile-header h3 {
+    font-size: 16px;
+  }
+
+  .manager-profile-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .manager-profile-avatar {
+    font-size: 30px;
+  }
+
+  .manager-profile-role-badge {
+    font-size: 11px;
+    padding: 2px 12px;
+  }
+
+  .manager-profile-tab {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .manager-profile-edit-row input,
+  .manager-profile-edit-row select,
+  .manager-profile-edit-row textarea {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+.manager-profile-crop-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.manager-profile-crop-content::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border-radius: 4px;
+}
+
+.manager-profile-crop-content::-webkit-scrollbar-thumb {
+  background: #c4c9d4;
+  border-radius: 4px;
+}
+
+.manager-profile-crop-content::-webkit-scrollbar-thumb:hover {
+  background: #a8aeb9;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #1a1a2e;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+  .manager-profile-btn-edit,
+  .manager-profile-btn-save {
+    border: 2px solid ButtonText;
+  }
+
+  .manager-profile-photo {
+    border: 4px solid CanvasText;
+  }
+}
+/* ============================================
+   FIX: TAB CONTENT - FIXED HEIGHT
+   ============================================ */
+.manager-profile-tab-content {
+  min-height: 320px;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease;
+}
+
+/* Optional: Add smooth fade between tabs */
+.manager-profile-tab-content {
+  animation: managerProfileTabFade 0.3s ease;
+}
+
+@keyframes managerProfileTabFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ============================================
+   ✅ FIX: Make all tabs fit in one row
+   ============================================ */
+
+.manager-profile-tabs {
+  display: flex !important;
+  flex-wrap: nowrap !important;  /* ✅ Prevent wrapping */
+  overflow-x: auto !important;   /* ✅ Add scroll if needed */
+  gap: 2px !important;
+  padding: 12px 16px 0 16px !important;
+  background: #f8f9fa;
+  border-bottom: 2px solid #e9ecef;
+  -webkit-overflow-scrolling: touch; /* ✅ Smooth scroll on mobile */
+}
+
+.manager-profile-tab {
+  flex: 0 0 auto !important;     /* ✅ Prevent shrinking */
+  padding: 8px 14px !important;   /* ✅ Smaller padding */
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 13px !important;     /* ✅ Smaller font */
+  font-weight: 500;
+  color: #6c757d;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s ease;
+  white-space: nowrap !important;  /* ✅ Prevent text wrapping */
+}
+
+.manager-profile-tab:hover {
+  color: #1a1a2e;
+  background: rgba(13, 110, 253, 0.05);
+}
+
+.manager-profile-tab.manager-profile-active {
+  color: #0d6efd;
+  background: white;
+  border-bottom: 3px solid #0d6efd;
+}
+
+/* ✅ Hide scrollbar but keep functionality */
+.manager-profile-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.manager-profile-tabs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.manager-profile-tabs::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.manager-profile-tabs::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* ✅ For Firefox */
+.manager-profile-tabs {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f1f1f1;
+}
+/* ============================================
+   ✅ PHOTO HISTORY TAB - Manager Profile
+   ============================================ */
+
+/* Photo History Header */
+.manager-profile-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 16px 0;
+  border-bottom: 2px solid #e9ecef;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.manager-profile-history-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.manager-profile-clear-history-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-clear-history-btn:hover {
+  background: #c82333;
+  transform: scale(1.02);
+}
+
+/* No History State */
+.manager-profile-no-history {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  font-size: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+}
+
+/* History List */
+.manager-profile-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* History List Scrollbar */
+.manager-profile-history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.manager-profile-history-list::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border-radius: 4px;
+}
+
+.manager-profile-history-list::-webkit-scrollbar-thumb {
+  background: #c4c9d4;
+  border-radius: 4px;
+}
+
+.manager-profile-history-list::-webkit-scrollbar-thumb:hover {
+  background: #a8aeb9;
+}
+
+/* History Item */
+.manager-profile-history-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-history-item:hover {
+  border-color: #1a1a2e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateX(4px);
+}
+
+/* Photo Preview */
+.manager-profile-history-photo-preview {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e9ecef;
+}
+
+.manager-profile-history-photo-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* History Details */
+.manager-profile-history-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.manager-profile-history-action {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.manager-profile-history-time {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Current Badge */
+.manager-profile-history-current-badge {
+  background: #28a745;
+  color: white;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* History Actions (Revert & Delete buttons) */
+.manager-profile-history-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.manager-profile-history-revert-btn {
+  background: #0d6efd;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.manager-profile-history-revert-btn:hover {
+  background: #0b5ed7;
+  transform: scale(1.05);
+}
+
+.manager-profile-history-delete-btn {
+  background: none;
+  border: none;
+  color: #6c757d;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 4px;
+}
+
+.manager-profile-history-delete-btn:hover {
+  color: #dc3545;
+  transform: scale(1.2);
+}
+
+/* ============================================
+   ✅ RESPONSIVE - Photo History
+   ============================================ */
+
+@media (max-width: 768px) {
+  .manager-profile-history-item {
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .manager-profile-history-photo-preview {
+    width: 44px;
+    height: 44px;
+  }
+
+  .manager-profile-history-details {
+    flex: 1 1 100%;
+    order: 2;
+  }
+
+  .manager-profile-history-current-badge {
+    order: 3;
+  }
+
+  .manager-profile-history-actions {
+    order: 4;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .manager-profile-history-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .manager-profile-clear-history-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .manager-profile-history-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .manager-profile-history-photo-preview {
+    width: 60px;
+    height: 60px;
+  }
+
+  .manager-profile-history-details {
+    align-items: center;
+  }
+
+  .manager-profile-history-actions {
+    justify-content: center;
+  }
+
+  .manager-profile-history-current-badge {
+    font-size: 10px;
+    padding: 2px 10px;
+  }
+
+  .manager-profile-history-revert-btn {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
+/* ============================================
+   ✅ ANIMATION FOR HISTORY ITEMS
+   ============================================ */
+
+.manager-profile-history-item {
+  animation: managerProfileHistorySlideIn 0.3s ease;
+}
+
+@keyframes managerProfileHistorySlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Stagger animation for multiple items */
+.manager-profile-history-item:nth-child(1) { animation-delay: 0.05s; }
+.manager-profile-history-item:nth-child(2) { animation-delay: 0.10s; }
+.manager-profile-history-item:nth-child(3) { animation-delay: 0.15s; }
+.manager-profile-history-item:nth-child(4) { animation-delay: 0.20s; }
+.manager-profile-history-item:nth-child(5) { animation-delay: 0.25s; }
+/* ============================================
+   PROJECTS - Global Selectors
+   ============================================ */
+
+/* Container */
+.projects-manager-container {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  animation: projectsFadeIn 0.5s ease;
+}
+
+/* Header */
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.projects-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.projects-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.projects-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Projects List */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Project Card */
+.projects-project-card {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.projects-project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+}
+
+/* Priority Borders for Project Cards */
+.projects-project-card.priority-high {
+  border-left: 3px solid #dc2626;
+}
+
+.projects-project-card.priority-medium {
+  border-left: 3px solid #f59e0b;
+}
+
+.projects-project-card.priority-low {
+  border-left: 3px solid #10b981;
+}
+
+.projects-project-card h3 {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  color: #1e293b;
+}
+
+/* Project Header */
+.projects-project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.projects-project-actions-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Priority Badges */
+.projects-priority-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.projects-priority-high {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.projects-priority-medium {
+  color: #f59e0b;
+  background: #fef3c7;
+}
+
+.projects-priority-low {
+  color: #10b981;
+  background: #d1fae5;
+}
+
+/* Project Description */
+.projects-project-desc {
+  color: #64748b;
+  font-size: 13px;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+/* Project Dates */
+.projects-project-dates {
+  color: #64748b;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+/* Progress */
+.projects-project-progress {
+  margin: 12px 0;
+}
+
+.projects-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.projects-progress-label span {
+  font-weight: bold;
+  font-size: 12px;
+  color: #475569;
+}
+
+.projects-progress-label strong {
+  font-size: 13px;
+  color: #1e293b;
+}
+
+.projects-progress-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.projects-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+/* Progress Stats */
+.projects-progress-stats {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.projects-progress-stats small {
+  font-size: 10px;
+  color: #64748b;
+}
+
+/* Project Status */
+.projects-project-status {
+  margin-top: 10px;
+}
+
+.projects-status-planned {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+  background: #f1f5f9;
+  padding: 2px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.projects-status-active {
+  color: #10b981;
+  font-size: 11px;
+  font-weight: 500;
+  background: #d1fae5;
+  padding: 2px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.projects-status-completed {
+  color: #3b82f6;
+  font-size: 11px;
+  font-weight: 500;
+  background: #dbeafe;
+  padding: 2px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.projects-status-on-hold {
+  color: #f59e0b;
+  font-size: 11px;
+  font-weight: 500;
+  background: #fef3c7;
+  padding: 2px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.projects-status-cancelled {
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 500;
+  background: #fee2e2;
+  padding: 2px 12px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Delete Button */
+.projects-delete-project-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.projects-delete-project-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* No Projects */
+.projects-no-projects {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8fafc;
+  border-radius: 16px;
+  grid-column: 1 / -1;
+}
+
+.projects-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.projects-no-projects p {
+  color: #64748b;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.projects-no-projects small {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* Loading */
+.projects-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* ============================================
+   FIXED: FORM STYLES - Matches Reference Design
+   ============================================ */
+.projects-form-group {
+  margin-bottom: 20px;
+}
+
+.projects-form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.projects-form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-family: inherit;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.projects-form-control:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.projects-form-control::placeholder {
+  color: #9ca3af;
+}
+
+.projects-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ============================================
+   FIXED: MODAL STYLES
+   ============================================ */
+.projects-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: projectsFadeIn 0.2s ease;
+}
+
+.projects-modal-content {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: projectsSlideUp 0.3s ease;
+  padding: 0;
+}
+
+@keyframes projectsSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.projects-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px 16px 32px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.projects-modal-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.projects-modal-header button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: all 0.2s;
+  padding: 0 4px;
+}
+
+.projects-modal-header button:hover {
+  color: #ef4444;
+}
+
+.projects-modal-body {
+  padding: 24px 32px 32px 32px;
+}
+
+/* Delete Modal */
+.projects-delete-modal {
+  max-width: 400px;
+}
+
+.projects-delete-warning {
+  text-align: center;
+  padding: 10px;
+}
+
+.projects-warning-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.projects-warning-text {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: 10px;
+}
+
+/* ============================================
+   FIXED: MODAL BUTTONS
+   ============================================ */
+.projects-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 32px 32px 32px;
+  border-top: 1px solid #e2e8f0;
+  background: #fafafa;
+  border-radius: 0 0 20px 20px;
+}
+
+.projects-btn-cancel {
+  padding: 10px 24px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #4b5563;
+  flex: 0 0 auto;
+}
+
+.projects-btn-cancel:hover {
+  background: #f3f4f6;
+}
+
+.projects-btn-submit {
+  padding: 10px 28px;
+  background: #6366f1;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 0 0 auto;
+}
+
+.projects-btn-submit:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.projects-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.projects-btn-delete {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: all 0.3s ease;
+}
+
+.projects-btn-delete:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes projectsFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .projects-manager-container {
+    padding: 16px;
+  }
+  
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .projects-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .projects-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .projects-modal-content {
+    width: 95%;
+    max-width: 95%;
+  }
+  
+  .projects-modal-header {
+    padding: 20px 24px 12px 24px;
+  }
+  
+  .projects-modal-body {
+    padding: 20px 24px 24px 24px;
+  }
+  
+  .projects-modal-buttons {
+    padding: 16px 24px 24px 24px;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .projects-btn-cancel,
+  .projects-btn-submit,
+  .projects-btn-delete {
+    flex: 1;
+    padding: 10px 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-manager-container {
+    padding: 12px;
+  }
+  
+  .projects-project-card {
+    padding: 12px;
+  }
+  
+  .projects-project-card h3 {
+    font-size: 14px;
+  }
+  
+  .projects-modal-header {
+    padding: 16px 18px 10px 18px;
+  }
+  
+  .projects-modal-body {
+    padding: 16px 18px 18px 18px;
+  }
+  
+  .projects-modal-buttons {
+    padding: 12px 18px 18px 18px;
+    flex-direction: column;
+  }
+  
+  .projects-btn-cancel,
+  .projects-btn-submit,
+  .projects-btn-delete {
+    flex: none;
+    width: 100%;
+  }
+}

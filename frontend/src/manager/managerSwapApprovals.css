@@ -1,0 +1,402 @@
+/* ============================================
+   SWAP APPROVALS - Global Selectors
+   ============================================ */
+
+/* Container */
+.swap-approvals-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #f5f7fa;
+  min-height: 100vh;
+  animation: swapApprovalsFadeIn 0.5s ease;
+}
+
+/* Header */
+.swap-approvals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 16px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.swap-approvals-header h4 {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.swap-approvals-pending-count {
+  background: #ffc107;
+  color: #856404;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* No Pending */
+.swap-no-pending {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.swap-no-pending p {
+  font-size: 18px;
+  color: #495057;
+  margin: 0;
+}
+
+.swap-no-pending small {
+  color: #6c757d;
+  margin-top: 8px;
+  display: block;
+}
+
+/* Approvals List */
+.swap-approvals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Approval Card */
+.swap-approval-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #ffc107;
+  transition: all 0.3s ease;
+}
+
+.swap-approval-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateX(4px);
+}
+
+/* Approval Header */
+.swap-approval-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.swap-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.swap-requester-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.swap-requester-info .swap-icon {
+  font-size: 28px;
+}
+
+.swap-requester-info h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.swap-requester-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* Status Badges */
+.swap-status-approved {
+  background: #d4edda;
+  color: #155724;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.swap-status-rejected {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.swap-status-pending {
+  background: #fff3cd;
+  color: #856404;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Swap Details */
+.swap-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.swap-shift-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.swap-shift-detail .swap-label {
+  color: #6c757d;
+  font-size: 13px;
+  min-width: 140px;
+}
+
+.swap-shift-detail strong {
+  color: #1a1a2e;
+  font-size: 14px;
+}
+
+.swap-shift-detail.swap-from {
+  border-left: 3px solid #0d6efd;
+}
+
+.swap-shift-detail.swap-to {
+  border-left: 3px solid #28a745;
+}
+
+.swap-arrow {
+  text-align: center;
+  color: #6c757d;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+.swap-reason-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.swap-reason-detail span {
+  color: #6c757d;
+  font-size: 13px;
+  min-width: 80px;
+}
+
+.swap-reason-detail p {
+  margin: 0;
+  color: #495057;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.swap-agreement-status {
+  text-align: center;
+  padding: 8px;
+  background: #d4edda;
+  border-radius: 8px;
+  color: #155724;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.swap-agreement-status span::before {
+  content: '✓ ';
+  font-weight: 700;
+}
+
+/* Approval Actions */
+.swap-approval-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+  justify-content: flex-end;
+}
+
+.swap-btn-approve {
+  padding: 10px 24px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swap-btn-approve:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.swap-btn-reject {
+  padding: 10px 24px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swap-btn-reject:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Loading */
+.swap-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.swap-loading::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  border: 3px solid #e9ecef;
+  border-top-color: #0d6efd;
+  border-radius: 50%;
+  animation: swapSpin 0.8s linear infinite;
+}
+
+@keyframes swapSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation */
+@keyframes swapApprovalsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .swap-approvals-container {
+    padding: 12px;
+  }
+
+  .swap-approvals-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .swap-approval-card {
+    padding: 16px;
+  }
+
+  .swap-approval-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .swap-requester-info {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  .swap-requester-info .swap-icon {
+    font-size: 24px;
+  }
+
+  .swap-shift-detail {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .swap-shift-detail .swap-label {
+    min-width: auto;
+  }
+
+  .swap-arrow {
+    padding: 8px 0;
+  }
+
+  .swap-approval-actions {
+    flex-direction: column;
+  }
+
+  .swap-btn-approve,
+  .swap-btn-reject {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .swap-reason-detail {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .swap-approvals-container {
+    padding: 8px;
+  }
+
+  .swap-approval-card {
+    padding: 12px;
+  }
+
+  .swap-requester-info h4 {
+    font-size: 14px;
+  }
+
+  .swap-shift-detail strong {
+    font-size: 12px;
+  }
+}

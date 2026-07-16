@@ -1,0 +1,346 @@
+/* fronted/src/manager/ManagerDashboard.css */
+
+/* ============================================
+   GLOBAL SELECTORS - Manager Dashboard Component
+   ============================================ */
+
+/* ============================================
+   DASHBOARD LAYOUT
+   ============================================ */
+.manager-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.manager-main-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 20px;
+  animation: managerDashboardFadeIn 0.5s ease;
+}
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+.manager-top-bar {
+  background: white;
+  padding: 20px 25px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.manager-welcome-text h3 {
+  font-size: 18px;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.manager-welcome-text p {
+  color: #64748b;
+  font-size: 13px;
+  margin: 0;
+}
+
+.manager-top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ============================================
+   NOTIFICATION BUTTON
+   ============================================ */
+.manager-notification-btn {
+  position: relative;
+  background: #f1f5f9;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.manager-notification-btn:hover {
+  background: #e2e8f0;
+  transform: scale(1.05);
+}
+
+.manager-notification-btn .manager-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ============================================
+   USER INFO
+   ============================================ */
+.manager-user-info-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  padding: 5px 15px;
+  border-radius: 40px;
+}
+
+.manager-user-avatar-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.manager-user-avatar-small {
+  font-size: 30px;
+}
+
+.manager-user-avatar-small-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4CAF50;
+}
+
+.manager-user-info-header strong {
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.manager-user-info-header small {
+  font-size: 11px;
+  color: #64748b;
+  display: block;
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+.manager-content-area {
+  padding: 0;
+}
+
+/* ============================================
+   LOADING
+   ============================================ */
+.manager-dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 16px;
+  background: #f0f2f5;
+}
+
+.manager-dashboard-loading .manager-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: managerDashboardSpin 0.8s linear infinite;
+}
+
+@keyframes managerDashboardSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.manager-dashboard-loading p {
+  color: #64748b;
+  font-size: 16px;
+  margin: 0;
+}
+
+.manager-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 18px;
+}
+
+/* ============================================
+   ANIMATION
+   ============================================ */
+@keyframes managerDashboardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 992px) {
+  .manager-main-content {
+    margin-left: 80px;
+    padding: 16px;
+  }
+
+  .manager-top-bar {
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .manager-welcome-text h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .manager-main-content {
+    margin-left: 0;
+    padding: 12px;
+  }
+
+  .manager-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 16px;
+  }
+
+  .manager-top-bar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .manager-welcome-text h3 {
+    font-size: 16px;
+  }
+
+  .manager-user-info-header {
+    padding: 4px 12px;
+  }
+
+  .manager-user-info-header strong {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .manager-main-content {
+    padding: 8px;
+  }
+
+  .manager-top-bar {
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .manager-welcome-text h3 {
+    font-size: 14px;
+  }
+
+  .manager-welcome-text p {
+    font-size: 12px;
+  }
+
+  .manager-user-avatar-small-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .manager-user-info-header strong {
+    font-size: 11px;
+  }
+
+  .manager-user-info-header small {
+    font-size: 10px;
+  }
+
+  .manager-notification-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+}.manager-top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.manager-notification-bell {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.manager-notification-bell .notif-wrapper {
+  position: relative;
+}
+
+.manager-notification-bell .notif-bell {
+  cursor: pointer;
+  font-size: 22px;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.manager-notification-bell .notif-bell:hover {
+  background: rgba(79, 70, 229, 0.1);
+}
+
+.manager-notification-bell .notif-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white;
+}
+
+.manager-notification-bell .notif-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 400px;
+  max-height: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .manager-notification-bell .notif-dropdown {
+    width: 340px;
+    right: -80px;
+  }
+}

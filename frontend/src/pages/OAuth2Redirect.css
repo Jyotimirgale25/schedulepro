@@ -1,0 +1,125 @@
+/* src/pages/OAuth2Redirect.css */
+
+/* ===== CONTAINER ===== */
+.oauth2-redirect-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== CARD ===== */
+.oauth2-redirect-card {
+    background: #ffffff;
+    padding: 50px 40px 40px 40px;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    animation: oauth2RedirectSlideUp 0.5s ease;
+}
+
+@keyframes oauth2RedirectSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== LOGO ===== */
+.oauth2-redirect-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.oauth2-redirect-logo-icon {
+    font-size: 36px;
+}
+
+.oauth2-redirect-logo-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+}
+
+.oauth2-redirect-logo-highlight {
+    color: #667eea;
+}
+
+/* ===== SPINNER ===== */
+.oauth2-redirect-spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 24px 0;
+}
+
+.oauth2-redirect-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #f0f0f0;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    animation: oauth2RedirectSpin 0.8s linear infinite;
+}
+
+@keyframes oauth2RedirectSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== MESSAGES ===== */
+.oauth2-redirect-message {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 8px 0;
+}
+
+.oauth2-redirect-sub-message {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .oauth2-redirect-card {
+        padding: 32px 24px 28px 24px;
+    }
+
+    .oauth2-redirect-logo-text {
+        font-size: 22px;
+    }
+
+    .oauth2-redirect-logo-icon {
+        font-size: 28px;
+    }
+
+    .oauth2-redirect-spinner {
+        width: 48px;
+        height: 48px;
+        border-width: 4px;
+    }
+
+    .oauth2-redirect-message {
+        font-size: 16px;
+    }
+
+    .oauth2-redirect-sub-message {
+        font-size: 13px;
+    }
+}

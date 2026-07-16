@@ -1,0 +1,345 @@
+/* ============================================
+   TEAM SCHEDULE - Global Selectors
+   ============================================ */
+
+/* Team Schedule Container */
+.team-schedule-container {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  animation: teamScheduleFadeIn 0.5s ease;
+}
+
+/* Header */
+.team-schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.team-schedule-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.team-schedule-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.team-schedule-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Employee Count */
+.team-schedule-employee-count {
+  background: #e0e7ff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #1e40af;
+  font-size: 14px;
+}
+
+.team-schedule-warning-text {
+  display: block;
+  color: #dc2626;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+/* Table Wrapper */
+.team-schedule-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+/* Table Styles */
+.team-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.team-schedule-table th {
+  text-align: left;
+  padding: 14px 12px;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.team-schedule-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eef2f7;
+  color: #334155;
+}
+
+.team-schedule-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* No Data */
+.team-schedule-no-data {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+}
+
+/* Status Badges */
+.team-schedule-status-scheduled {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.team-schedule-status-pending {
+  background: #fef3c7;
+  color: #d97706;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.team-schedule-status-completed {
+  background: #e0e7ff;
+  color: #3b82f6;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Delete Button */
+.team-schedule-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.team-schedule-delete-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Modal Overlay */
+.team-schedule-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: teamScheduleFadeIn 0.2s ease;
+}
+
+/* Modal Content */
+.team-schedule-modal-content {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: teamScheduleSlideUp 0.3s ease;
+}
+
+@keyframes teamScheduleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal Header */
+.team-schedule-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.team-schedule-modal-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.team-schedule-modal-header button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: all 0.2s;
+}
+
+.team-schedule-modal-header button:hover {
+  color: #ef4444;
+}
+
+/* Form Styles */
+.team-schedule-modal-content form {
+  padding: 22px;
+}
+
+.team-schedule-form-group {
+  margin-bottom: 18px;
+}
+
+.team-schedule-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.team-schedule-form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.team-schedule-form-control:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+select.team-schedule-form-control {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+}
+
+/* Modal Buttons */
+.team-schedule-modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.team-schedule-btn-cancel,
+.team-schedule-btn-submit {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.team-schedule-btn-cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.team-schedule-btn-cancel:hover {
+  background: #e2e8f0;
+}
+
+.team-schedule-btn-submit {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.team-schedule-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Animation */
+@keyframes teamScheduleFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-schedule-container {
+    padding: 16px;
+  }
+  
+  .team-schedule-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .team-schedule-table th,
+  .team-schedule-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+  
+  .team-schedule-btn-primary {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .team-schedule-modal-content {
+    width: 95%;
+  }
+  
+  .team-schedule-modal-header {
+    padding: 14px 18px;
+  }
+  
+  .team-schedule-modal-header h4 {
+    font-size: 16px;
+  }
+  
+  .team-schedule-modal-content form {
+    padding: 16px;
+  }
+}
