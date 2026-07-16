@@ -2,8 +2,6 @@
 
 # 📅 Schedule Pro - Enterprise Schedule Management System
 
-A complete, production-ready employee schedule management system built with Spring Boot and React.
-
 # 🚀 Overview
 
 Schedule Pro is an enterprise-grade employee scheduling and project management system designed to streamline workforce management. It provides role-based dashboards for Admins, Managers, and Employees, enabling efficient schedule creation, leave management, task tracking, and team collaboration.
@@ -101,9 +99,6 @@ Before you begin, ensure you have the following installed:
 - **Git** (for cloning)
 
 ---
-
-## 🚀 Quick Start
-
 ## 🚀 Quick Start
 ```bash
 
@@ -126,5 +121,6 @@ npm start
 📍 API:
      backend: http://localhost:8080    
      Frontend: http://localhost:3000                     
-📍 Swagger: http://localhost:8080/swagger-ui.html    
+📍 Swagger: http://localhost:8080/swagger-ui.html
+📍 Actuator: http://localhost:8080/actuator/health     
 
