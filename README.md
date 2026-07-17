@@ -108,6 +108,7 @@ cd schedulepro
 
 2. Backend Setup
 cd schedulepro-backend
+cp .env.example .env     
 ./mvnw spring-boot:run
 
 3. Frontend Setup
@@ -121,5 +122,6 @@ npm start
      backend: http://localhost:8080    
      Frontend: http://localhost:3000                     
 📍 Swagger: http://localhost:8080/swagger-ui.html
-📍 Actuator: http://localhost:8080/actuator/health     
+📍 Actuator: http://localhost:8080/actuator/health
+📍 API Docs:     http://localhost:8080/api-docs    
 
