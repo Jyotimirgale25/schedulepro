@@ -22,7 +22,8 @@ public class ScheduleproBackendApplication {
         ║     📍 API: http://localhost:8080                         ║
         ║     📍 Swagger: http://localhost:8080/swagger-ui.html    ║
         ║     📍 Actuator: http://localhost:8080/actuator/health   ║
-        ║                                                           ║
+        ║     📍 API Docs: http://localhost:8080/api-docs  
+                                                            ║
         ║     ✅ Database: PostgreSQL (Ready)                       ║
         ║     ✅ JWT Authentication: Configured                     ║
         ║     ✅ OAuth2 Ready: Google/GitHub                        ║

@@ -21,7 +21,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
-
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 
 import java.util.Arrays;
@@ -69,6 +70,18 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(
+                "/swagger-ui.html",
+                "/swagger-ui/**",
+                "/api-docs",
+
+                "/api-docs/**",
+                "/webjars/**",
+                "/swagger-resources/**"
+        );
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -88,13 +101,22 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/auth/login",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/api-docs/**",
+                                "/webjars/**",
+                                "/api-docs",
+                                "/swagger-resources/**",
+                                "/actuator/health",
                                 "/api/auth/send-otp",
                                 "/api/auth/resend-otp",
                                 "/api/auth/verify-otp",
                                 "/api/auth/forgot-password",
                                 "/api/auth/verify-password-otp",
                                 "/api/auth/reset-password",
-                                "/api/auth/register"
+                                "/api/auth/register",
+                                "/oauth2/**",
+                                "/login/**"
                         ).permitAll()
 
                         // ✅ OAuth2 endpoints
