@@ -2,6 +2,7 @@ package com.schedulepro.common.config.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +28,22 @@ public class JwtTokenProvider {
     @Value("${jwt.expiration}")
     private int jwtExpiration;
 
+    // ✅ ADD THIS METHOD - It validates the secret when app starts
+    @PostConstruct
+    public void init() {
+        if (jwtSecret == null || jwtSecret.trim().isEmpty()) {
+            log.error("❌❌❌ JWT SECRET NOT CONFIGURED! ❌❌❌");
+            log.error("Please set JWT_SECRET environment variable");
+            log.error("Example: export JWT_SECRET=yourSuperSecretKey1234567890");
+            throw new IllegalStateException("JWT secret is required but not provided");
+        }
+
+        if (jwtSecret.length() < 32) {
+            log.warn("⚠️ JWT secret is less than 32 characters. This is insecure for production!");
+        }
+
+        log.info("✅ JWT Secret loaded successfully (length: {})", jwtSecret.length());
+    }
     private SecretKey key() {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
