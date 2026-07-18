@@ -35,5 +35,5 @@ cypress/screenshots/
 # Docker
 Dockerfile
 .dockerignore
-nginx.conf
+
 docker-compose*.yaml
