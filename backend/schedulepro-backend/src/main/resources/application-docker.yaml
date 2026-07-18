@@ -1,0 +1,77 @@
+# ================================================
+# SCHEDULE PRO - DOCKER ENVIRONMENT
+# ================================================
+spring:
+  # ==========================================
+  # DATABASE - Connect to Docker PostgreSQL
+  # ==========================================
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/ScheduleProDB}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin123}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  # ==========================================
+  # JPA - Optimized for Docker
+  # ==========================================
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          batch_size: 20
+
+  # ==========================================
+  # EMAIL - Use Mailtrap in Docker
+  # ==========================================
+  mail:
+    host: ${MAIL_HOST:smtp.mailtrap.io}
+    port: ${MAIL_PORT:2525}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.mailtrap.io
+
+# ============================================
+# JWT - Docker-specific
+# ============================================
+jwt:
+  secret: ${JWT_SECRET:dockerDevSecretKey12345678901234567890}
+  expiration: ${JWT_EXPIRATION_MS:86400000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+
+# ============================================
+# CORS - Allow Docker frontend
+# ============================================
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend}
+
+# ============================================
+# LOGGING - Less verbose for Docker
+# ============================================
+logging:
+  level:
+    com.schedulepro: INFO
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+
+# ============================================
+# APP - Docker-specific settings
+# ============================================
+app:
+  file:
+    upload-dir: ${FILE_UPLOAD_DIR:/app/uploads}
+  base-url: ${BASE_URL:http://localhost:8080}

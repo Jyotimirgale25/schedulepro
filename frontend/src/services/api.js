@@ -1,10 +1,15 @@
 import axios from 'axios';
 
+
+// ============================================
+// ✅ Environment variable for API URL
+// ============================================
+const API_BASE_URL = process.env.REACT_APP_API_URL || '/api';
+
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: API_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
 });
-
 // PUBLIC ENDPOINTS (No JWT Required)
 // ============================================
 const PUBLIC_ENDPOINTS = [

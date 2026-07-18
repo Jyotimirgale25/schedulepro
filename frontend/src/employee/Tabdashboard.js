@@ -74,7 +74,7 @@ const loadSchedules = useCallback(async () => {
     
     if (response && response.data && Array.isArray(response.data)) {
       const schedulesData = response.data;
-      const upcomingSchedules = schedulesData.slice(0, 3);
+      const upcomingSchedules = schedulesData.slice(0, 2);
       setSchedules(upcomingSchedules);
       
       // ✅ DEBUG: Log all statuses

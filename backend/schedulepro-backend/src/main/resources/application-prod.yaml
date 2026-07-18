@@ -1,0 +1,100 @@
+# ================================================
+# SCHEDULE PRO - PRODUCTION ENVIRONMENT
+# ================================================
+
+spring:
+  # ==========================================
+  # DATABASE - MUST be set in environment
+  # ==========================================
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 20
+      connection-timeout: 10000
+      idle-timeout: 300000
+      max-lifetime: 1800000
+
+  # ==========================================
+  # JPA - Production safe
+  # ==========================================
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+        generate_statistics: false
+
+  # ==========================================
+  # EMAIL - MUST be set in environment
+  # ==========================================
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: ${MAIL_HOST}
+
+# ============================================
+# JWT - MUST be set in environment
+# ============================================
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION_MS:3600000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+
+# ============================================
+# CORS - MUST be set in environment
+# ============================================
+cors:
+  allowed-origins: ${CORS_ORIGINS}
+
+# ============================================
+# LOGGING - Minimal for production
+# ============================================
+logging:
+  level:
+    com.schedulepro: WARN
+    org.springframework: ERROR
+    org.springframework.security: WARN
+  file:
+    name: /var/log/schedulepro/application.log
+    max-size: 100MB
+    max-history: 30
+  pattern:
+    file: "%d{ISO8601} %-5level [%thread] %logger{36} - %msg%n"
+
+# ============================================
+# APP - Production settings
+# ============================================
+app:
+  file:
+    upload-dir: ${FILE_UPLOAD_DIR:/var/data/schedulepro/uploads}
+  base-url: ${BASE_URL}
+
+# ============================================
+# ACTUATOR - Production monitoring
+# ============================================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true

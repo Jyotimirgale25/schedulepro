@@ -13,6 +13,7 @@ com\schedulepro\admin\service\AdminSwapService.class
 TestDBConnection.class
 com\schedulepro\admin\dto\response\AnnouncementResponseDTO.class
 com\schedulepro\employee\dto\response\InvitationDTO$InvitationDTOBuilder.class
+com\schedulepro\common\config\security\CustomOAuth2SuccessHandler.class
 com\schedulepro\admin\dto\request\UpdateDepartmentRequest$UpdateDepartmentRequestBuilder.class
 com\schedulepro\employee\dto\response\DashboardResponseDTO$StatsDTO$StatsDTOBuilder.class
 com\schedulepro\employee\repository\LeaveRequestRepository.class
@@ -23,6 +24,7 @@ com\schedulepro\manager\dto\response\ManagerStatsDTO.class
 com\schedulepro\admin\dto\response\ReportTasksDTO.class
 com\schedulepro\admin\service\AdminLeaveService.class
 com\schedulepro\employee\dto\response\LeaveBalanceDTO.class
+com\schedulepro\auth\dto\request\ForgotPasswordRequest$ForgotPasswordRequestBuilder.class
 com\schedulepro\common\response\ApiResponse.class
 com\schedulepro\auth\dto\response\LoginResponse$UserInfo.class
 com\schedulepro\admin\dto\response\AnnouncementResponse$AnnouncementResponseBuilder.class
@@ -50,6 +52,7 @@ com\schedulepro\manager\service\ManagerLeaveService.class
 com\schedulepro\admin\dto\request\DepartmentRequest.class
 com\schedulepro\admin\dto\response\ReportResponseDTO.class
 com\schedulepro\employee\dto\response\SwapResponseDTO$SwapResponseDTOBuilder.class
+com\schedulepro\admin\dto\request\AnnouncementRequestDTO$AnnouncementRequestDTOBuilder.class
 com\schedulepro\admin\dto\response\TaskResponseDTO$TaskResponseDTOBuilder.class
 com\schedulepro\admin\dto\request\UpdateScheduleRequest$UpdateScheduleRequestBuilder.class
 com\schedulepro\admin\service\AdminNotificationService.class
@@ -202,8 +205,10 @@ com\schedulepro\admin\dto\response\ReportUserDTO$ReportUserDTOBuilder.class
 com\schedulepro\employee\dto\response\DashboardResponseDTO$StatsDTO.class
 com\schedulepro\admin\controller\AdminAnnouncementController.class
 com\schedulepro\admin\dto\response\AdminNotificationDTO$AdminNotificationDTOBuilder.class
+com\schedulepro\auth\dto\request\ForgotPasswordRequest.class
 com\schedulepro\admin\dto\request\CreateScheduleRequest$CreateScheduleRequestBuilder.class
 com\schedulepro\employee\service\EmployeeTaskService.class
+com\schedulepro\manager\controller\ManagerAnnouncementController.class
 com\schedulepro\employee\entity\SwapRequest.class
 com\schedulepro\common\exception\UnauthorizedException.class
 com\schedulepro\manager\dto\response\ReportDTO$AttendanceStatsDTO.class
@@ -283,6 +288,7 @@ com\schedulepro\admin\dto\request\LeaveActionRequest.class
 com\schedulepro\manager\controller\ReportController.class
 com\schedulepro\employee\dto\request\ProfileUpdateRequest$EmergencyContactDTO$EmergencyContactDTOBuilder.class
 com\schedulepro\admin\dto\response\DepartmentDTO$DepartmentDTOBuilder.class
+com\schedulepro\employee\service\AnnouncementService.class
 com\schedulepro\manager\dto\response\ActivityDTO$ActivityDTOBuilder.class
 com\schedulepro\admin\dto\request\ProjectRequestDTO.class
 com\schedulepro\employee\event\NotificationEventListener.class

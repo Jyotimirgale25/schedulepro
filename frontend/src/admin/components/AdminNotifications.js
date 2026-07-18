@@ -35,6 +35,7 @@ const AdminNotifications = ({ user }) => {
   const [userNotifications, setUserNotifications] = useState([]);
   const [showUserModal, setShowUserModal] = useState(false);
   const [typeDistribution, setTypeDistribution] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [topUsers, setTopUsers] = useState([]);
 
   const INITIAL_DISPLAY_COUNT = 4;
@@ -585,51 +586,6 @@ const AdminNotifications = ({ user }) => {
         </div>
       </div>
 
-      {/* Stats Extra - Distribution & Top Users */}
-      <div className="admin-notif-stats-extra">
-        <div className="admin-notif-stats-distribution">
-          <h5>📊 Notification Types Distribution</h5>
-          <div className="admin-notif-distribution-chart">
-            {Object.keys(typeDistribution).length === 0 ? (
-              <p className="admin-notif-no-data">No data available</p>
-            ) : (
-              Object.entries(typeDistribution).map(([type, count]) => (
-                <div key={type} className="admin-notif-distribution-item">
-                  <span className="admin-notif-distribution-label">{type}</span>
-                  <div className="admin-notif-distribution-bar-wrapper">
-                    <div 
-                      className="admin-notif-distribution-bar" 
-                      style={{ 
-                        width: `${Math.min((count / Math.max(...Object.values(typeDistribution))) * 100, 100)}%` 
-                      }}
-                    />
-                    <span className="admin-notif-distribution-count">{count}</span>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-        
-        <div className="admin-notif-top-users">
-          <h5>🏆 Top Users with Notifications</h5>
-          {topUsers.length === 0 ? (
-            <p className="admin-notif-no-data">No data available</p>
-          ) : (
-            topUsers.map((user, index) => (
-              <div key={index} className="admin-notif-top-user">
-                <span className="admin-notif-top-rank">#{index + 1}</span>
-                <span className="admin-notif-top-name">
-                  {typeof user === 'string' ? user : user.name || user.userName || 'Unknown'}
-                </span>
-                <span className="admin-notif-top-count">
-                  {typeof user === 'object' ? user.count || user.notificationCount || 0 : 0}
-                </span>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
 
       {/* Results Info with View All / Show Less */}
       <div className="admin-notif-results-info">

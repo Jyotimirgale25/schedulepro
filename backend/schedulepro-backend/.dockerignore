@@ -1,0 +1,41 @@
+# Build artifacts
+target/
+*.jar
+*.war
+*.ear
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Environment files (secrets - NEVER copy these!)
+.env
+.env.*
+!.env.example
+
+# Version control
+.git/
+.gitignore
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Docker files (avoid copying itself)
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Testing
+test-output/
+coverage/
+.surefire/

@@ -1,0 +1,38 @@
+# ================================================
+# DEVELOPMENT ENVIRONMENT
+# Used when SPRING_PROFILES_ACTIVE=dev (default)
+# ================================================
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/ScheduleProDB
+    username: postgres
+    password: project123
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: sweetdemo93@gmail.com
+    password: ${MAIL_PASSWORD:}
+
+jwt:
+  secret: ${JWT_SECRET:devSecretKey1234567890}
+
+cors:
+  allowed-origins: http://localhost:3000
+
+logging:
+  level:
+    com.schedulepro: DEBUG
+    org.springframework.security: DEBUG
