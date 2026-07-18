@@ -132,7 +132,7 @@ services:
   # ================================================
   frontend:
     build:
-      context: ./frontend/schedulepro-frontend
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: schedulepro-frontend
     restart: unless-stopped
