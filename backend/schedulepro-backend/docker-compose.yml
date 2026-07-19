@@ -1,0 +1,120 @@
+version: '3.8'
+
+# ================================================
+# SCHEDULE PRO - DOCKER COMPOSE
+# Complete application stack with all services
+# ================================================
+
+services:
+  # ================================================
+  # 1. POSTGRESQL DATABASE
+  # ================================================
+  postgres:
+    image: postgres:14-alpine
+    container_name: schedulepro-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ScheduleProDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: project123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/schedulepro-backend/src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - schedulepro-network
+
+  # ================================================
+  # 2. BACKEND - SPRING BOOT APPLICATION
+  # ================================================
+  backend:
+    build:
+      context: ./backend/schedulepro-backend
+      dockerfile: Dockerfile
+    container_name: schedulepro-backend
+    env_file:                                    # ← ADD THIS LINE
+      - ./backend/schedulepro-backend/.env.docker  # ← ADD THIS LINE
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_URL: jdbc:postgresql://postgres:5432/ScheduleProDB
+      DB_USERNAME: postgres
+      DB_PASSWORD: project123
+      JWT_SECRET: scheduleProSecretKey2024MustBe32CharsLongAndSecure!!!
+      CORS_ORIGINS: http://localhost:3000,http://localhost,http://frontend
+      BASE_URL: http://localhost:8080
+      FILE_UPLOAD_DIR: /app/uploads
+    ports:
+      - "8080:8080"
+    volumes:
+      - backend_uploads:/app/uploads
+    networks:
+      - schedulepro-network
+
+  # ================================================
+  # 3. FRONTEND - REACT APPLICATION
+  # ================================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: schedulepro-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    environment:
+      REACT_APP_API_URL: http://localhost:8080/api
+    networks:
+      - schedulepro-network
+
+  # ================================================
+  # 4. ADMINER - DATABASE MANAGEMENT (OPTIONAL)
+  # ================================================
+  adminer:
+    image: adminer:latest
+    container_name: schedulepro-adminer
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+      ADMINER_DEFAULT_DB: ScheduleProDB
+      ADMINER_DEFAULT_USER: postgres
+      ADMINER_DEFAULT_PASSWORD: project123
+    networks:
+      - schedulepro-network
+    profiles:
+      - admin
+
+# ================================================
+# NETWORKS
+# ================================================
+networks:
+  schedulepro-network:
+    driver: bridge
+    name: schedulepro-network
+
+# ================================================
+# VOLUMES (Persistent Data)
+# ================================================
+volumes:
+  postgres_data:
+    driver: local
+    name: schedulepro-postgres-data
+  backend_uploads:
+    driver: local
+    name: schedulepro-uploads
