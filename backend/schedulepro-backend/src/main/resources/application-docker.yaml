@@ -8,7 +8,7 @@ spring:
   datasource:
     url: ${DB_URL:jdbc:postgresql://postgres:5432/ScheduleProDB}
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:admin123}
+    password: ${DB_PASSWORD:project123}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
@@ -31,8 +31,8 @@ spring:
   # EMAIL - Use Mailtrap in Docker
   # ==========================================
   mail:
-    host: ${MAIL_HOST:smtp.mailtrap.io}
-    port: ${MAIL_PORT:2525}
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
     username: ${MAIL_USERNAME:}
     password: ${MAIL_PASSWORD:}
     properties:
@@ -42,7 +42,7 @@ spring:
           starttls:
             enable: true
           ssl:
-            trust: smtp.mailtrap.io
+            trust: smtp.gmail.com
 
 # ============================================
 # JWT - Docker-specific
