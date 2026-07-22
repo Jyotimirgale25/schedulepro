@@ -65,7 +65,7 @@ const RegisterPage = () => {
     }
     
     try {
-      const response = await fetch('http://localhost:8080/api/auth/send-otp', {
+      const response = await fetch('/api/auth/send-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const RegisterPage = () => {
       }
     } catch (err) {
       console.error('Registration error:', err);
-      setError('Cannot connect to server. Make sure backend is running on http://localhost:8080');
+      setError('Cannot connect to server. Make sure backend is running on ');
     } finally {
       setLoading(false);
     }

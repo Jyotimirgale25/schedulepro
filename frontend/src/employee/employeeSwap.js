@@ -25,7 +25,7 @@ const Swap = ({ user }) => {
   const loadEmployees = useCallback(async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/employee/team-members', {
+      const response = await fetch('/api/employee/team-members', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -44,7 +44,7 @@ const Swap = ({ user }) => {
     try {
       const token = getAuthToken();
       
-      const outgoingResponse = await fetch('http://localhost:8080/api/employee/swaps', {
+      const outgoingResponse = await fetch('/api/employee/swaps', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (outgoingResponse.ok) {
@@ -53,7 +53,7 @@ const Swap = ({ user }) => {
         console.log('📤 Outgoing swaps:', data);
       }
 
-      const incomingResponse = await fetch('http://localhost:8080/api/employee/swaps/incoming', {
+      const incomingResponse = await fetch('/api/employee/swaps/incoming', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (incomingResponse.ok) {
@@ -94,7 +94,7 @@ const Swap = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/employee/swaps', {
+      const response = await fetch('/api/employee/swaps', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -138,7 +138,7 @@ const Swap = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch(`http://localhost:8080/api/employee/swaps/${request.id}/accept`, {
+      const response = await fetch(`/api/employee/swaps/${request.id}/accept`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -168,7 +168,7 @@ const Swap = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch(`http://localhost:8080/api/employee/swaps/${request.id}/reject`, {
+      const response = await fetch(`/api/employee/swaps/${request.id}/reject`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

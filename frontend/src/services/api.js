@@ -4,7 +4,7 @@ import axios from 'axios';
 // ============================================
 // ✅ Environment variable for API URL
 // ============================================
-const API_BASE_URL = process.env.REACT_APP_API_URL || '/api';
+const API_BASE_URL = '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -169,7 +169,7 @@ export const authApi = {
  * Or use the button link in Login page
  */
 googleLogin: () => {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = '/oauth2/authorization/google';
 },
 
 /**

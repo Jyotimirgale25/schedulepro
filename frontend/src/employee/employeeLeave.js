@@ -32,7 +32,7 @@ const Leaves = ({ user }) => {
   const loadLeaveRequests = useCallback(async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/employee/leaves', {
+      const response = await fetch('/api/employee/leaves', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -48,7 +48,7 @@ const Leaves = ({ user }) => {
   const loadLeaveBalance = useCallback(async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/employee/leaves/balance', {
+      const response = await fetch('/api/employee/leaves/balance', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -71,7 +71,7 @@ const Leaves = ({ user }) => {
   const saveLeaveRequest = async (newLeave) => {
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/employee/leaves', {
+      const response = await fetch('/api/employee/leaves', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

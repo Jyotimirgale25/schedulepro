@@ -12,6 +12,7 @@ import AdminNotifications from './admin/components/AdminNotifications';
 import ManagerNotifications from './manager/ManagerNotifications';
 import ForgotPassword from './pages/ForgotPassword';
 import OAuth2Redirect from './pages/OAuth2Redirect';
+import OAuthCallback from './pages/OAuthCallback';
 
 function App() {
   // ✅ Lift sidebar state to App level
@@ -30,7 +31,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/oauth2/redirect" element={<OAuth2Redirect />} />
-        
+        <Route path="/oauth2/redirect" element={<OAuthCallback />} />
         {/* ✅ Pass sidebar state to EmployeeDashboard */}
         <Route 
           path="/employee/dashboard" 

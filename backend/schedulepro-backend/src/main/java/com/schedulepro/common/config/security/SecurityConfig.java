@@ -47,7 +47,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://localhost",
+                "http://localhost:3000",
+                "http://frontend"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
@@ -154,7 +158,7 @@ public class SecurityConfig {
                         .successHandler(customOAuth2SuccessHandler)
                         .failureHandler((request, response, exception) -> {
                             log.error("OAuth2 Login Failed", exception);
-                            response.sendRedirect("http://localhost:3000/login?error=oauth_failed");
+                            response.sendRedirect("http://localhost/login?error=oauth_failed");
                         })
                 )
                 // ===== AUTHENTICATION PROVIDER =====

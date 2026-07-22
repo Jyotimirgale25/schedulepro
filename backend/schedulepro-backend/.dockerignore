@@ -1,41 +1,86 @@
-# Build artifacts
+# ============================================
+# BUILD ARTIFACTS
+# ============================================
 target/
 *.jar
 *.war
 *.ear
+*.class
 
-# IDE files
+# ============================================
+# IDE FILES
+# ============================================
 .idea/
 *.iml
 .vscode/
 .classpath
 .project
 .settings/
+.mvn/
+mvnw
+mvnw.cmd
 
-# Environment files (secrets - NEVER copy these!)
+# ============================================
+# ENVIRONMENT FILES (SECRETS - NEVER COPY!)
+# ============================================
 .env
 .env.*
 !.env.example
+.env.docker
+.env.local
+.env.dev
+.env.qa
+.env.prod
 
-# Version control
+# ============================================
+# VERSION CONTROL
+# ============================================
 .git/
 .gitignore
+.gitattributes
 
-# Logs
+# ============================================
+# LOGS
+# ============================================
 logs/
 *.log
+*.log.*
 
-# OS files
+# ============================================
+# OS FILES
+# ============================================
 .DS_Store
 Thumbs.db
 *.tmp
+*.swp
+*.swo
+*~
 
-# Docker files (avoid copying itself)
+# ============================================
+# DOCKER FILES (AVOID COPYING ITSELF)
+# ============================================
 Dockerfile
 .dockerignore
 docker-compose*.yml
+docker-compose*.yaml
 
-# Testing
+# ============================================
+# TESTING
+# ============================================
 test-output/
 coverage/
 .surefire/
+*.test
+*.tests
+
+# ============================================
+# APPLICATION TEMPORARY FILES
+# ============================================
+*.log
+*.pid
+*.lock
+*.tmp
+
+# ============================================
+# SPRING BOOT
+# ============================================

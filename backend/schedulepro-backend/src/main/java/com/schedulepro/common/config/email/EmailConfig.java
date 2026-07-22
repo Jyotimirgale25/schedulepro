@@ -40,6 +40,12 @@ public class EmailConfig {
         mailSender.setUsername(mailUsername);
         mailSender.setPassword(mailPassword);
 
+        System.out.println("📧 Email Config:");
+        System.out.println("   Host: " + mailHost);
+        System.out.println("   Port: " + mailPort);
+        System.out.println("   Username: " + mailUsername);
+        System.out.println("   Password: " + (mailPassword != null && !mailPassword.isEmpty() ? "SET ✅" : "NOT SET ❌"));
+
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", smtpAuth);

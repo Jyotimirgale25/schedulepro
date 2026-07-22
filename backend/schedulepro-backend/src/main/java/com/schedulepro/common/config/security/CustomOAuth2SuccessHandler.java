@@ -40,7 +40,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             log.info("JWT generated");
 
             String redirectUrl =
-                    "http://localhost:3000/oauth2/redirect?token=" + token;
+                    "http://localhost/oauth2/redirect?token=" + token;
 
             log.info("Redirecting to {}", redirectUrl);
 
@@ -48,7 +48,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
         } catch (Exception e) {
             log.error("OAuth success handler failed", e);
-            throw e;
+            response.sendRedirect("http://localhost/login?error=oauth_failed");
         }
     }
 }

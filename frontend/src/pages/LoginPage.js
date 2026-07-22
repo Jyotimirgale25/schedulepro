@@ -22,7 +22,7 @@ const LoginPage = () => {
   
   const handleGoogleLogin = () => {
     // ✅ Direct redirect without using api
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = '/oauth2/authorization/google';
 };
 
 
@@ -33,7 +33,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

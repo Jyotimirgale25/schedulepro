@@ -18,7 +18,7 @@ const LeaveOverview = ({ user }) => {
     setLoading(true);
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/admin/leaves', {
+      const response = await fetch('/api/admin/leaves', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const LeaveOverview = ({ user }) => {
       const token = getAuthToken();
       const endpoint = status === 'APPROVED' ? 'approve' : 'reject';
       
-      const response = await fetch(`http://localhost:8080/api/admin/leaves/${id}/${endpoint}`, {
+      const response = await fetch(`/api/admin/leaves/${id}/${endpoint}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -135,7 +135,7 @@ const LeaveOverview = ({ user }) => {
   const confirmClearAll = async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('http://localhost:8080/api/admin/leaves/all', {
+      const response = await fetch('/api/admin/leaves/all', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -23,7 +23,7 @@ const OAuthCallback = () => {
         console.log('Token stored in localStorage');
 
         // Fetch user details
-        fetch('http://localhost:8080/api/auth/me', {
+        fetch('/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
