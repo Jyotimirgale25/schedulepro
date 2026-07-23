@@ -19,13 +19,13 @@ COPY frontend/ ./
 RUN npm run build
 
 # ============================================
-# STAGE 3: Final Image
+# STAGE 3: Final Image (UPDATED)
 # ============================================
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # Install nginx
-RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache nginx
 
 # Copy backend JAR
 COPY --from=backend-build /app/target/*.jar /app/app.jar
@@ -46,7 +46,7 @@ RUN echo 'server { \
         root /usr/share/nginx/html; \
         try_files $uri /index.html; \
     } \
-}' > /etc/nginx/sites-available/default
+}' > /etc/nginx/http.d/default.conf
 
 # Expose ports
 EXPOSE 80
