@@ -1,159 +1,29 @@
-name: Deploy Schedule Pro
+# =================================================
+# STAGE 1: Build React application
+# =================================================
+FROM node:20-alpine AS build    # ← Changed from 18 to 20
 
-on:
-  push:
-    branches: [ master, main ]
-  workflow_dispatch:
+WORKDIR /app
 
-env:
-  JAVA_VERSION: '17'
-  NODE_VERSION: '18'
+COPY package*.json ./
 
-jobs:
-  # ============================================
-  # JOB 1: Build and Test Backend
-  # ============================================
-  test-backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+RUN npm install
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+COPY . .
 
-      - name: Build and test backend
-        run: |
-          cd backend/schedulepro-backend
-          mvn clean test
+RUN npm run build
 
-      - name: Package backend
-        run: |
-          cd backend/schedulepro-backend
-          mvn package -DskipTests
+# =================================================
+# STAGE 2: Production with Nginx
+# =================================================
+FROM nginx:alpine
 
-      - name: Upload backend JAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-jar
-          path: backend/schedulepro-backend/target/*.jar
+RUN rm /etc/nginx/conf.d/default.conf
 
-  # ============================================
-  # JOB 2: Build and Test Frontend
-  # ============================================
-  test-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
+COPY --from=build /app/build /usr/share/nginx/html
 
-      - name: Install dependencies
-        run: |
-          cd frontend
-          npm ci
+EXPOSE 80
 
-      - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
-
-      - name: Upload frontend build
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-build
-          path: frontend/build/
-
-  # ============================================
-  # JOB 3: Build Docker Images
-  # ============================================
-  docker-build:
-    needs: [test-backend, test-frontend]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Download backend JAR
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-jar
-          path: backend/schedulepro-backend/target/
-
-      - name: Download frontend build
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-build
-          path: frontend/build/
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-
-      - name: Build and push backend image
-        uses: docker/build-push-action@v4
-        with:
-          context: ./backend/schedulepro-backend
-          push: true
-          tags: |
-            ${{ secrets.DOCKER_USERNAME }}/schedulepro-backend:latest
-            ${{ secrets.DOCKER_USERNAME }}/schedulepro-backend:${{ github.sha }}
-
-      - name: Build and push frontend image
-        uses: docker/build-push-action@v4
-        with:
-          context: ./frontend
-          push: true
-          tags: |
-            ${{ secrets.DOCKER_USERNAME }}/schedulepro-frontend:latest
-            ${{ secrets.DOCKER_USERNAME }}/schedulepro-frontend:${{ github.sha }}
-
-  # ============================================
-  # JOB 4: Deploy to Server
-  # ============================================
-  deploy:
-    needs: docker-build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup SSH key
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
-          chmod 400 key.pem
-
-      - name: Copy docker-compose to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "docker-compose.yml"
-          target: "/home/${{ secrets.DEPLOY_USER }}/schedulepro/"
-
-      - name: Deploy on server
-        run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} '
-            cd /home/${{ secrets.DEPLOY_USER }}/schedulepro/
-            docker-compose pull
-            docker-compose up -d --remove-orphans
-            docker system prune -f
-          '
+CMD ["nginx", "-g", "daemon off;"]
