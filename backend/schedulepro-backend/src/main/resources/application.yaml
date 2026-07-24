@@ -5,10 +5,11 @@ spring:
     name: schedulepro-backend
 
   datasource:
-    url: ${DB_URL:postgresql://schedulepro:VGpccT5oTNxbmvIiZUZ7ube3SKOgRhz2@dpg-d9hmnhupbkes73acr370-a.oregon-postgres.render.com/schedulepro_db}
+    url: ${DB_URL:postgresql://schedulepro:VGpccT5oTNxbmvIiZUZ7ube3SKOgRhz2@dpg-d9hmnhupbkes73acr370-a/schedulepro_db}
     username: ${DB_USERNAME:schedulepro}
     password: ${DB_PASSWORD:VGpccT5oTNxbmvIiZUZ7ube3SKOgRhz2}
     driver-class-name: org.postgresql.Driver
+
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
@@ -108,3 +109,12 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     tryItOutEnabled: true
+
+server:
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: ${SSL_PASSWORD}
+    key-store-type: PKCS12
+  http:
+    redirect-to-https: true
