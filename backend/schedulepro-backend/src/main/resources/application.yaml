@@ -82,7 +82,7 @@ spring:
     allow-bean-definition-overriding: true
 
 jwt:
-  secret: ${JWT_SECRET:}
+  secret: ${JWT_SECRET:scheduleProSecretKey2024MustBe32CharsLongAndSecure!!!}
   expiration: 86400000
   refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
 
@@ -110,11 +110,3 @@ springdoc:
     path: /swagger-ui.html
     tryItOutEnabled: true
 
-server:
-  ssl:
-    enabled: true
-    key-store: classpath:keystore.p12
-    key-store-password: ${SSL_PASSWORD}
-    key-store-type: PKCS12
-  http:
-    redirect-to-https: true
