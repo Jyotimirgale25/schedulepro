@@ -93,5 +93,5 @@ springdoc:
 
 app:
   file:
-    upload-dir: ${FILE_UPLOAD_DIR:/app/uploads}
-  base-url: ${BASE_URL}
+   upload-dir: ${FILE_UPLOAD_DIR:/app/uploads}
+   base-url: ${BASE_URL}
