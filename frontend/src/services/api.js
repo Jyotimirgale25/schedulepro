@@ -4,8 +4,8 @@ import axios from 'axios';
 // ============================================
 // ✅ Environment variable for API URL
 // ============================================
-const API_BASE_URL = 'https://schedulepro-backend.onrender.com/api';
 
+const API_BASE_URL = 'https://schedulepro-1.onrender.com/api';
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
