@@ -11,16 +11,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
+
+
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
+
+
+    @Value("${app.base-url:http://localhost}")
+    private String baseUrl;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -40,7 +47,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             log.info("JWT generated");
 
             String redirectUrl =
-                    "http://localhost/oauth2/redirect?token=" + token;
+                    "/oauth2/redirect?token=" + token;
 
             log.info("Redirecting to {}", redirectUrl);
 

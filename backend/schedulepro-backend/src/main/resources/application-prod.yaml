@@ -61,7 +61,7 @@ jwt:
 # CORS - MUST be set in environment
 # ============================================
 cors:
-  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend}
+  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-2.onrender.com,https://schedulepro-frontend.onrender.com}
 
 # ============================================
 # LOGGING - Minimal for production

@@ -86,7 +86,7 @@ jwt:
   refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
 
 cors:
-  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend}
+  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-2.onrender.com,https://schedulepro-frontend.onrender.com}
 
 logging:
   level:

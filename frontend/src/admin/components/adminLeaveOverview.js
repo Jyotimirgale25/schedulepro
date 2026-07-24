@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './adminLeaveOverview.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 const LeaveOverview = ({ user }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [filter, setFilter] = useState('all');
@@ -18,7 +19,7 @@ const LeaveOverview = ({ user }) => {
     setLoading(true);
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/admin/leaves', {
+      const response = await fetch(`${API_URL}/admin/leaves`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ const LeaveOverview = ({ user }) => {
       const token = getAuthToken();
       const endpoint = status === 'APPROVED' ? 'approve' : 'reject';
       
-      const response = await fetch(`/api/admin/leaves/${id}/${endpoint}`, {
+      const response = await fetch(`${API_URL}/admin/leaves/${id}/${endpoint}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -135,7 +136,7 @@ const LeaveOverview = ({ user }) => {
   const confirmClearAll = async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/admin/leaves/all', {
+      const response = await fetch(`${API_URL}/admin/leaves/all`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

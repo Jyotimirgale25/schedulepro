@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 import {
   FaEye,
@@ -19,7 +20,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
+  const API_URL = process.env.REACT_APP_API_URL || '/api';
   const handleGoogleLogin = () => {
     // ✅ Direct redirect without using api
     window.location.href = '/oauth2/authorization/google';
@@ -33,7 +34,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

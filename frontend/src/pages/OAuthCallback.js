@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 const OAuthCallback = () => {
     const navigate = useNavigate();
+    
     const [searchParams] = useSearchParams();
     const [error, setError] = useState('');
     const token = searchParams.get('token');
@@ -23,7 +25,7 @@ const OAuthCallback = () => {
         console.log('Token stored in localStorage');
 
         // Fetch user details
-        fetch('/api/auth/me', {
+        fetch(`${API_URL}/auth/me`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './managerLeaveApprovals.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
+
 const LeaveApprovals = ({ user }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ const LeaveApprovals = ({ user }) => {
     setLoading(true);
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/manager/leaves/pending', {
+      const response = await fetch(`${API_URL}/manager/leaves/pending`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -39,7 +41,7 @@ const LeaveApprovals = ({ user }) => {
   const updateLeaveStatus = async (leaveId, status, rejectReason = '') => {
     try {
       const token = getAuthToken();
-      const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPROVED' ? 'approve' : 'reject'}`, {
+const response = await fetch(`${API_URL}/manager/leaves/${leaveId}/${status === 'APPROVED' ? 'approve' : 'reject'}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -6,6 +6,7 @@ import './RegisterPage.css';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL || '/api';
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -65,7 +66,7 @@ const RegisterPage = () => {
     }
     
     try {
-      const response = await fetch('/api/auth/send-otp', {
+      const response = await fetch(`${API_URL}/auth/send-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

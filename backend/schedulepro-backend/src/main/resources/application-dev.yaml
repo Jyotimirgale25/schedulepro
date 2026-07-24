@@ -112,7 +112,7 @@ jwt:
 # CORS
 # ============================================
 cors:
-  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend}
+  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-2.onrender.com,https://schedulepro-frontend.onrender.com}
 
 # ============================================
 # LOGGING

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './employeeSwap.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 const Swap = ({ user }) => {
   const [swapRequests, setSwapRequests] = useState([]);
   const [incomingSwapRequests, setIncomingSwapRequests] = useState([]);
@@ -25,7 +26,7 @@ const Swap = ({ user }) => {
   const loadEmployees = useCallback(async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/employee/team-members', {
+      const response = await fetch(`${API_URL}/employee/team-members`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -44,7 +45,7 @@ const Swap = ({ user }) => {
     try {
       const token = getAuthToken();
       
-      const outgoingResponse = await fetch('/api/employee/swaps', {
+      const outgoingResponse = await fetch(`${API_URL}/employee/swaps`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (outgoingResponse.ok) {
@@ -53,7 +54,7 @@ const Swap = ({ user }) => {
         console.log('📤 Outgoing swaps:', data);
       }
 
-      const incomingResponse = await fetch('/api/employee/swaps/incoming', {
+      const incomingResponse = await fetch(`${API_URL}/employee/swaps/incoming`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (incomingResponse.ok) {
@@ -94,7 +95,7 @@ const Swap = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/employee/swaps', {
+      const response = await fetch(`${API_URL}/employee/swaps`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -138,7 +139,7 @@ const Swap = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch(`/api/employee/swaps/${request.id}/accept`, {
+      const response = await fetch(`${API_URL}/employee/swaps/${request.id}/accept`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -168,7 +169,7 @@ const Swap = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch(`/api/employee/swaps/${request.id}/reject`, {
+      const response = await fetch(`${API_URL}/employee/swaps/${request.id}/reject`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -21,9 +21,7 @@ services:
       - schedulepro-network
 
   backend:
-    build:
-      context: ./backend/schedulepro-backend
-      dockerfile: Dockerfile
+    image: jyotimirgale/schedulepro-backend:latest
     container_name: schedulepro-backend
     restart: unless-stopped
     env_file:
@@ -41,9 +39,7 @@ services:
       - schedulepro-network
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: jyotimirgale/schedulepro-frontend:latest
     container_name: schedulepro-frontend
     restart: unless-stopped
     depends_on:

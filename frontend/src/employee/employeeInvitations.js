@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './employeeInvitations.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 const Invitations = ({ user }) => {
   const [invitations, setInvitations] = useState([]);
   const [history, setHistory] = useState([]);
@@ -23,7 +24,7 @@ const Invitations = ({ user }) => {
     setLoading(true);
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/employee/invitations', {
+      const response = await fetch(`${API_URL}/employee/invitations`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -46,7 +47,7 @@ const Invitations = ({ user }) => {
   const loadHistory = useCallback(async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/employee/invitations/history', {
+      const response = await fetch(`${API_URL}/employee/invitations/history`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -68,7 +69,7 @@ const Invitations = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch(`/api/employee/invitations/${inviteId}/delete`, {
+      const response = await fetch(`${API_URL}/employee/invitations/${inviteId}/delete`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -98,7 +99,7 @@ const Invitations = ({ user }) => {
 
     try {
       const token = getAuthToken();
-      const response = await fetch(`/api/employee/invitations/history/clear`, {
+      const response = await fetch(`${API_URL}/employee/invitations/history/clear`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -142,7 +143,7 @@ const Invitations = ({ user }) => {
       const token = getAuthToken();
       console.log('📤 Accepting invitation:', selectedInvite.id);
       
-      const response = await fetch(`/api/employee/invitations/${selectedInvite.id}/accept`, {
+      const response = await fetch(`${API_URL}/employee/invitations/${selectedInvite.id}/accept`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -197,7 +198,7 @@ const Invitations = ({ user }) => {
       console.log('📤 Rejecting invitation:', selectedInvite.id);
       console.log('📤 Reason:', rejectReason);
       
-      const response = await fetch(`/api/employee/invitations/${selectedInvite.id}/reject`, {
+      const response = await fetch(`${API_URL}/employee/invitations/${selectedInvite.id}/reject`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

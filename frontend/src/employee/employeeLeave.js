@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './employeeLeave.css';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 const Leaves = ({ user }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -48,7 +49,7 @@ const Leaves = ({ user }) => {
   const loadLeaveBalance = useCallback(async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/employee/leaves/balance', {
+      const response = await fetch(`${API_URL}/employee/leaves/balance`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -71,7 +72,7 @@ const Leaves = ({ user }) => {
   const saveLeaveRequest = async (newLeave) => {
     try {
       const token = getAuthToken();
-      const response = await fetch('/api/employee/leaves', {
+      const response = await fetch(`${API_URL}/employee/leaves`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
