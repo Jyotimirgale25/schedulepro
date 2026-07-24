@@ -20,7 +20,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const API_URL = process.env.REACT_APP_API_URL || '/api';
+  const API_URL = 'https://schedulepro-1.onrender.com/api';
   const handleGoogleLogin = () => {
     // ✅ Direct redirect without using api
     window.location.href = '/oauth2/authorization/google';
