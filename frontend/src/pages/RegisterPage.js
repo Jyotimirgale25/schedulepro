@@ -4,9 +4,10 @@ import { FaEye, FaEyeSlash, FaUserShield, FaUserTie, FaUser } from 'react-icons/
 import Logo from '../components/Logo';
 import './RegisterPage.css';
 
+
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const API_URL = process.env.REACT_APP_API_URL || '/api';
+  const API_URL = 'https://schedulepro-1.onrender.com/api';
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
