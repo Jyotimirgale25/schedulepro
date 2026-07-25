@@ -35,7 +35,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000,https://schedulepro-2.onrender.com, https://schedulepro-1.onrender.com")
 @Slf4j
 public class AuthController {
 
