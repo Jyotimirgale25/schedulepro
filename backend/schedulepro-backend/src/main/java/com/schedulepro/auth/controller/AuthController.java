@@ -11,6 +11,9 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.Collections;
 import com.schedulepro.auth.service.AuthService;
 import com.schedulepro.auth.entity.User;
@@ -126,13 +129,18 @@ public class AuthController {
 
         return ResponseEntity.ok(response);
     }
-
-    // ============================================
-    // FORGOT PASSWORD - Send OTP
-    // ============================================
-    // ============================================
-// FORGOT PASSWORD - Send OTP (FIXED)
-// ============================================
+    @GetMapping("/test-smtp")
+    public ResponseEntity<?> testSmtp() {
+        try {
+            // Try to connect to Gmail SMTP
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress("smtp.gmail.com", 465), 5000);
+            socket.close();
+            return ResponseEntity.ok("SMTP connection successful!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("SMTP failed: " + e.getMessage());
+        }
+    }
 // ============================================
 // FORGOT PASSWORD - Send OTP (FIXED)
 // ============================================
@@ -246,6 +254,7 @@ public class AuthController {
                     .body(Map.of("success", false, "error", e.getMessage()));
         }
     }
+
     // ============================================
 // ✅ GOOGLE LOGIN (Client-side OAuth)
 // ============================================
