@@ -46,7 +46,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
             log.info("JWT generated");
 
-            String redirectUrl =
+            String redirectUrl =baseUrl +
                     "/oauth2/redirect?token=" + token;
 
             log.info("Redirecting to {}", redirectUrl);
