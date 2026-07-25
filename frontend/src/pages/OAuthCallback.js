@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const API_URL = process.env.REACT_APP_API_URL || '/api';
+const API_URL = 'https://schedulepro-1.onrender.com/api';
 const OAuthCallback = () => {
     const navigate = useNavigate();
     
