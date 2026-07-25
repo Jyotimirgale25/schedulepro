@@ -17,7 +17,7 @@ public class EmailConfig {
     @Value("${spring.mail.host}")
     private String mailHost;
 
-    @Value("${spring.mail.port}")
+    @Value("${spring.mail.port :587}")
     private int mailPort;
 
     @Value("${spring.mail.username}")
@@ -49,7 +49,7 @@ public class EmailConfig {
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", smtpAuth);
-        props.put("mail.smtp.starttls.enable", starttlsEnable);
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "false");
 
         return mailSender;

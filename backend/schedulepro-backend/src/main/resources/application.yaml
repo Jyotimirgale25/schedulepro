@@ -38,7 +38,7 @@ spring:
 
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}
-    port: ${MAIL_PORT:465}
+    port: 587
     username: ${MAIL_USERNAME:}
     password: ${MAIL_PASSWORD:}
     properties:
@@ -46,11 +46,10 @@ spring:
         smtp:
           auth: true
           starttls:
-            enable: false
+            enable: true
           ssl:
             trust: smtp.gmail.com
-          socketFactory:
-            class: javax.net.ssl.SSLSocketFactory
+
 
 
   # ==========================================
@@ -111,3 +110,5 @@ springdoc:
     path: /swagger-ui.html
     tryItOutEnabled: true
 
+app:
+  base-url: ${BASE_URL:https://schedulepro-1.onrender.com,https://schedulepro-2.onrender.com}
