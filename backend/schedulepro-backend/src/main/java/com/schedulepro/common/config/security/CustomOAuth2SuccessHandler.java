@@ -23,7 +23,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @Value("${app.base-url:http://localhost}")
+    @Value("${app.base-url:http://localhost:8080}")
     private String baseUrl;
 
     @Override
