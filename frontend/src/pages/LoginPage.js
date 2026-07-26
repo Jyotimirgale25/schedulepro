@@ -21,11 +21,15 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleGoogleLogin = () => {
-    // ✅ Direct redirect without using api
-    window.location.href = '/oauth2/authorization/google';
+const handleGoogleLogin = () => {
+    console.log('🟢 Google login button clicked!');
+    console.log('🟢 Current URL:', window.location.href);
+    
+    const url = 'http://localhost:8080/oauth2/authorization/google';
+    console.log('🟢 Redirecting to:', url);
+    
+    window.location.href = url;
 };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();

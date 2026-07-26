@@ -45,7 +45,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             log.info("JWT generated");
 
             // ✅ Redirect to frontend with token and role
-            String redirectUrl ="http://localhost/oauth2/redirect?token=" + token + "&role=" + role;
+            String redirectUrl = baseUrl + "/oauth2/redirect?token=" + token + "&role=" + role;
 
             log.info("Redirecting to {}", redirectUrl);
 
