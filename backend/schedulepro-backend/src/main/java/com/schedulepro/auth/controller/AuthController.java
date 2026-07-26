@@ -4,7 +4,6 @@ import com.schedulepro.auth.dto.request.LoginRequest;
 import com.schedulepro.auth.dto.request.SendOtpRequest;
 import com.schedulepro.auth.dto.request.VerifyOtpRequest;
 import com.schedulepro.auth.dto.response.LoginResponse;
-import com.schedulepro.auth.dto.request.ForgotPasswordRequest;
 import com.schedulepro.auth.dto.response.OtpResponse;
 import com.schedulepro.auth.repository.UserRepository;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -14,6 +13,8 @@ import com.google.api.client.json.gson.GsonFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import com.schedulepro.auth.service.AuthService;
 import com.schedulepro.auth.entity.User;
@@ -38,8 +39,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000,https://schedulepro-2.onrender.com, https://schedulepro-1.onrender.com")
 @Slf4j
+@CrossOrigin(origins = {
+        "http://localhost",
+        "http://localhost:3000",
+        "https://schedulepro-frontend.onrender.com",
+        "https://schedulepro-2.onrender.com",
+        "https://schedulepro-1.onrender.com"
+})
 public class AuthController {
 
     private final AuthService authService;
@@ -56,7 +63,7 @@ public class AuthController {
     }
 
     // ============================================
-    // VERIFY OTP (Registration) - FIXED!
+    // VERIFY OTP (Registration)
     // ============================================
     @PostMapping("/verify-otp")
     public ResponseEntity<OtpResponse> verifyOtp(@Valid @RequestBody VerifyOtpRequest request) {
@@ -126,13 +133,14 @@ public class AuthController {
         response.put("employeeId", user.getEmployeeId());
         response.put("department", user.getDepartment());
         response.put("position", user.getPosition());
+        response.put("profilePhoto", user.getProfilePhoto());
 
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("/test-smtp")
     public ResponseEntity<?> testSmtp() {
         try {
-            // Try to connect to Gmail SMTP
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress("smtp.gmail.com", 465), 5000);
             socket.close();
@@ -141,15 +149,13 @@ public class AuthController {
             return ResponseEntity.status(500).body("SMTP failed: " + e.getMessage());
         }
     }
-// ============================================
-// FORGOT PASSWORD - Send OTP (FIXED)
-// ============================================
+
+    // ============================================
+    // FORGOT PASSWORD - Send OTP
+    // ============================================
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> request) {
         log.info("📧 Forgot password request received");
-
-        // ✅ Log the entire request
-        System.out.println("🔍 Request body: " + request);
 
         String email = request.get("email");
         log.info("📧 Email: {}", email);
@@ -176,6 +182,7 @@ public class AuthController {
                 "otp", otp
         ));
     }
+
     // ============================================
     // FORGOT PASSWORD - Verify OTP
     // ============================================
@@ -256,8 +263,8 @@ public class AuthController {
     }
 
     // ============================================
-// ✅ GOOGLE LOGIN (Client-side OAuth)
-// ============================================
+    // ✅ GOOGLE LOGIN (Client-side OAuth)
+    // ============================================
     @PostMapping("/google-login")
     public ResponseEntity<?> googleLogin(@RequestBody Map<String, String> request) {
         String idToken = request.get("token");
@@ -296,12 +303,23 @@ public class AuthController {
                             User newUser = User.builder()
                                     .email(email)
                                     .username(email)
-                                    .fullName(name)
+                                    .fullName(name != null ? name : email)
                                     .role("EMPLOYEE")
-
+                                    .provider("google")  // ✅ ADDED
+                                    .providerId(payload.getSubject())  // ✅ ADDED
+                                    .profilePhoto(picture)  // ✅ ADDED
+                                    .isActive(true)
+                                    .isVerified(true)
+                                    .joinDate(LocalDate.now())
+                                    .employeeId("OAUTH-" + System.currentTimeMillis())
+                                    .createdAt(LocalDateTime.now())
                                     .build();
                             return userRepository.save(newUser);
                         });
+
+                // ✅ Update last login for existing user
+                user.setLastLogin(LocalDateTime.now());
+                userRepository.save(user);
 
                 String token = tokenProvider.generateToken(email, user.getRole());
 
@@ -317,7 +335,8 @@ public class AuthController {
                         "phone", user.getPhone(),
                         "employeeId", user.getEmployeeId(),
                         "department", user.getDepartment(),
-                        "position", user.getPosition()
+                        "position", user.getPosition(),
+                        "profilePhoto", user.getProfilePhoto()
                 ));
 
                 return ResponseEntity.ok(response);

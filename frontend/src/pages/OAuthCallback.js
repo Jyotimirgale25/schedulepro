@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-
 const OAuthCallback = () => {
     const navigate = useNavigate();
-    
     const [searchParams] = useSearchParams();
     const [error, setError] = useState('');
     const token = searchParams.get('token');
@@ -24,7 +22,7 @@ const OAuthCallback = () => {
         localStorage.setItem('accessToken', token);
         console.log('Token stored in localStorage');
 
-        // Fetch user details
+        // ✅ Fetch user details using relative path (works in Docker & Render)
         fetch('/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`

@@ -17,7 +17,7 @@ public class EmailConfig {
     @Value("${spring.mail.host}")
     private String mailHost;
 
-    @Value("${spring.mail.port :587}")
+    @Value("${spring.mail.port:587}")  // ✅ FIXED: Removed space
     private int mailPort;
 
     @Value("${spring.mail.username}")
@@ -26,10 +26,10 @@ public class EmailConfig {
     @Value("${spring.mail.password}")
     private String mailPassword;
 
-    @Value("${spring.mail.properties.mail.smtp.auth}")
+    @Value("${spring.mail.properties.mail.smtp.auth:true}")  // ✅ Added default
     private String smtpAuth;
 
-    @Value("${spring.mail.properties.mail.smtp.starttls.enable}")
+    @Value("${spring.mail.properties.mail.smtp.starttls.enable:true}")  // ✅ Added default
     private String starttlsEnable;
 
     @Bean
@@ -49,7 +49,7 @@ public class EmailConfig {
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", smtpAuth);
-        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.enable", starttlsEnable);
         props.put("mail.debug", "false");
 
         return mailSender;

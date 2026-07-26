@@ -7,24 +7,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-
-
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
-
 
     @Value("${app.base-url:http://localhost}")
     private String baseUrl;
@@ -43,10 +40,12 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             log.info("Email: {}", principal.getEmail());
 
             String token = jwtTokenProvider.generateToken(authentication);
+            String role = principal.getRole();
 
             log.info("JWT generated");
 
-            String redirectUrl =baseUrl + "/oauth2/redirect?token=" + token;
+            // ✅ Redirect to frontend with token and role
+            String redirectUrl = baseUrl + "/oauth2/redirect?token=" + token + "&role=" + role;
 
             log.info("Redirecting to {}", redirectUrl);
 
@@ -54,7 +53,8 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
         } catch (Exception e) {
             log.error("OAuth success handler failed", e);
-            response.sendRedirect("http://localhost/login?error=oauth_failed");
+            // ✅ FIXED: Use baseUrl for error redirect
+            response.sendRedirect(baseUrl + "/login?error=oauth_failed");
         }
     }
 }

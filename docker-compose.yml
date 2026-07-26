@@ -31,6 +31,7 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      BASE_URL: http://localhost 
     ports:
       - "8080:8080"
     volumes:
