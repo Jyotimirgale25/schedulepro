@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const API_URL = 'https://schedulepro-1.onrender.com/api';
+
 const OAuthCallback = () => {
     const navigate = useNavigate();
     
@@ -25,7 +25,7 @@ const OAuthCallback = () => {
         console.log('Token stored in localStorage');
 
         // Fetch user details
-        fetch(`${API_URL}/auth/me`, {
+        fetch('/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

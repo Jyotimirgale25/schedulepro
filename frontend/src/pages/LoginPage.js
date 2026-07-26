@@ -20,7 +20,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const API_URL = 'https://schedulepro-1.onrender.com/api';
+
   const handleGoogleLogin = () => {
     // ✅ Direct redirect without using api
     window.location.href = '/oauth2/authorization/google';
@@ -34,7 +34,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

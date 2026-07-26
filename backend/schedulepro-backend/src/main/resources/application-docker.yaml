@@ -4,9 +4,9 @@ spring:
   # DATABASE - Connect to Docker PostgreSQL
   # ==========================================
   datasource:
-    url: ${DB_URL:postgresql://schedulepro:VGpccT5oTNxbmvIiZUZ7ube3SKOgRhz2@dpg-d9hmnhupbkes73acr370-a/schedulepro_db}
-    username: ${DB_USERNAME:schedulepro}
-    password: ${DB_PASSWORD:VGpccT5oTNxbmvIiZUZ7ube3SKOgRhz2}
+    url: ${DB_URL:postgresql://schedulepro:postgresql://postgres:5432/ScheduleProDB}
+    username: ${DB_USERNAME:postgre}
+    password: ${DB_PASSWORD:project123}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
@@ -87,4 +87,4 @@ logging:
 app:
   file:
     upload-dir: ${FILE_UPLOAD_DIR:/app/uploads}
-    base-url: ${BASE_URL:https://schedulepro-1.onrender.com}
+  base-url: ${BASE_URL:http://localhost:8080}
