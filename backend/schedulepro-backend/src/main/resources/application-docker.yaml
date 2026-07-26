@@ -5,7 +5,7 @@ spring:
   # ==========================================
   datasource:
     url: ${DB_URL:postgresql://schedulepro:postgresql://postgres:5432/ScheduleProDB}
-    username: ${DB_USERNAME:postgre}
+    username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:project123}
     hikari:
       maximum-pool-size: 10
