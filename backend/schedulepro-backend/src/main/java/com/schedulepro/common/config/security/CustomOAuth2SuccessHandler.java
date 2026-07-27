@@ -23,7 +23,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @Value("${app.base-url:http://localhost:8080}")
+    @Value("${app.base-url:http://localhost}")
     private String baseUrl;
 
     @Override
@@ -35,6 +35,9 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         log.info("Success handler started");
 
         try {
+            log.info("🔍 Principal class: {}", authentication.getPrincipal().getClass().getName());
+            log.info("🔍 Principal: {}", authentication.getPrincipal());
+            log.info("🔍 Authentication: {}", authentication);
             CustomOAuth2User principal = (CustomOAuth2User) authentication.getPrincipal();
 
             log.info("Email: {}", principal.getEmail());

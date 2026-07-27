@@ -1,44 +1,74 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const OAuth2Redirect = () => {
     const navigate = useNavigate();
-    const location = useLocation();
+    const [searchParams] = useSearchParams();
+    
+    // ✅ Get BOTH token and role from URL
+    const token = searchParams.get('token');
+    const role = searchParams.get('role');
 
     useEffect(() => {
-        console.log('🔑 OAuth2 Redirect Page Loaded');
-        console.log('🔑 Full URL:', window.location.href);
-        console.log('🔑 Location Search:', location.search);
+        console.log('🔐 OAuth2 Redirect Page Loaded');
+        console.log('🔐 Full URL:', window.location.href);
+        console.log('🔐 Token:', token ? 'YES' : 'NO');
+        console.log('🔐 Role:', role);
 
-        const params = new URLSearchParams(location.search);
-        const token = params.get('token');
-
-        console.log('🔑 Token from URL:', token ? 'YES' : 'NO');
-        console.log('🔑 Token value:', token);
-
-        if (token) {
-            localStorage.setItem('accessToken', token);
-            console.log('✅ Token stored in localStorage');
-            
-            const user = JSON.parse(localStorage.getItem('user') || '{}');
-            const role = user.role || 'EMPLOYEE';
-
-            setTimeout(() => {
-                if (role === 'ADMIN') {
-                    navigate('/admin/dashboard');
-                } else if (role === 'MANAGER') {
-                    navigate('/manager/dashboard');
-                } else {
-                    navigate('/employee/dashboard');
-                }
-            }, 1000);
-        } else {
-            console.log('❌ No token found, redirecting to login');
+        if (!token || !role) {
+            console.log('❌ Missing token or role, redirecting to login');
             setTimeout(() => {
                 navigate('/login');
-            }, 1000);
+            }, 2000);
+            return;
         }
-    }, [location, navigate]);
+
+        // ✅ Store token
+        localStorage.setItem('accessToken', token);
+        localStorage.setItem('token', token);
+        console.log('✅ Token stored in localStorage');
+
+        // ✅ Fetch user details
+        fetch('/api/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log('📡 Response status:', res.status);
+            if (!res.ok) {
+                throw new Error('Failed to fetch user');
+            }
+            return res.json();
+        })
+        .then(user => {
+            console.log('👤 User data received:', user);
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            // ✅ Use role from URL or from user data
+            const userRole = user.role || role;
+            console.log('🎯 Redirecting based on role:', userRole);
+            
+            setTimeout(() => {
+            
+                    window.location.href = '/employee/dashboard';
+                
+            }, 1000);
+        })
+        .catch(err => {
+            console.error('❌ Error fetching user:', err);
+            // ✅ If fetch fails, use role from URL
+            setTimeout(() => {
+                if (role === 'ADMIN') {
+                    window.location.href = '/admin/dashboard';
+                } else if (role === 'MANAGER') {
+                    window.location.href = '/manager/dashboard';
+                } else {
+                    window.location.href = '/employee/dashboard';
+                }
+            }, 1000);
+        });
+    }, [token, role, navigate]);
 
     return (
         <div style={{
@@ -59,7 +89,7 @@ const OAuth2Redirect = () => {
                 animation: 'spin 0.8s linear infinite'
             }}></div>
             <p style={{ marginTop: '20px', fontSize: '18px' }}>
-                {localStorage.getItem('accessToken') ? '✅ Logging you in...' : '⏳ Processing...'}
+                {token ? '✅ Logging you in...' : '⏳ Processing...'}
             </p>
             <style>{`
                 @keyframes spin {

@@ -22,13 +22,10 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
 const handleGoogleLogin = () => {
-
-
+    setLoading(true);  
     console.log("Redirecting to 8080");
-
     window.location.replace("http://localhost:8080/oauth2/authorization/google");
 };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

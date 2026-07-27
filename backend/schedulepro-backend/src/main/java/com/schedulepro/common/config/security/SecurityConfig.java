@@ -145,6 +145,7 @@ public class SecurityConfig {
                 )
 
                 // ===== OAUTH2 LOGIN (GOOGLE) =====
+                // ===== OAUTH2 LOGIN (GOOGLE) =====
                 .oauth2Login(oauth2 -> oauth2
                         .authorizationEndpoint(auth -> auth
                                 .authorizationRequestRepository(new HttpSessionOAuth2AuthorizationRequestRepository())
@@ -154,7 +155,13 @@ public class SecurityConfig {
                         )
                         .successHandler(customOAuth2SuccessHandler)
                         .failureHandler((request, response, exception) -> {
-                            log.error("OAuth2 Login Failed", exception);
+                            log.error("❌ OAuth2 Login Failed", exception);
+                            log.error("❌ Exception message: {}", exception.getMessage());
+                            log.error("❌ Exception cause: {}", exception.getCause() != null ? exception.getCause().getMessage() : "No cause");
+
+                            // Print full stack trace for debugging
+                            exception.printStackTrace();
+
                             response.sendRedirect("http://localhost/login?error=oauth_failed");
                         })
                 )
