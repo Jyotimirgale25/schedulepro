@@ -9,11 +9,9 @@ services:
      DB_URL=jdbc:postgresql://postgres:5432/ScheduleProDB
      DB_USERNAME=postgres
      DB_PASSWORD=project123
-        PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
       - ./backend/schedulepro-backend/src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d ScheduleProDB"]
