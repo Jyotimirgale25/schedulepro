@@ -22,7 +22,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
 const handleGoogleLogin = () => {
-    alert("Google button clicked!");
+
 
     console.log("Redirecting to 8080");
 
