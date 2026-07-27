@@ -21,42 +21,42 @@ services:
       - schedulepro-network
 
   backend:
-    build:
-      context: ./backend/schedulepro-backend
-      dockerfile: Dockerfile
-    container_name: schedulepro-backend
-    restart: unless-stopped
-    env_file:
-      - ./.env.docker
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-      BASE_URL: http://localhost
-    ports:
-      - "8080:8080"
-    volumes:
-      - backend_uploads:/app/uploads
-    networks:
-      - schedulepro-network
+  build:
+    context: ./backend/schedulepro-backend
+    dockerfile: Dockerfile
+  container_name: schedulepro-backend
+  restart: unless-stopped
+  env_file:
+    - ./.env.docker
+  depends_on:
+    postgres:
+      condition: service_healthy
+  environment:
+    SPRING_PROFILES_ACTIVE: docker
+    BASE_URL: http://localhost
+  ports:
+    - "8080:8080"
+  volumes:
+    - backend_uploads:/app/uploads
+  networks:
+    - schedulepro-network
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: schedulepro-frontend
-    restart: unless-stopped
-    depends_on:
-      backend:
-        condition: service_healthy
-    ports:
-      - "80:80"
-    environment:
-      REACT_APP_API_URL: http://localhost/api
-      REACT_APP_WS_URL: ws://localhost/ws
-    networks:
-      - schedulepro-network
+  build:
+    context: ./frontend
+    dockerfile: Dockerfile
+  container_name: schedulepro-frontend
+  restart: unless-stopped
+  depends_on:
+    backend:
+      condition: service_healthy
+  ports:
+    - "80:80"
+  environment:
+    REACT_APP_API_URL: http://localhost/api
+    REACT_APP_WS_URL: ws://localhost/ws
+  networks:
+    - schedulepro-network
 
 networks:
   schedulepro-network:
@@ -66,5 +66,7 @@ networks:
 volumes:
   postgres_data:
     driver: local
+    name: schedulepro-postgres-data
   backend_uploads:
     driver: local
+    name: schedulepro-uploads
