@@ -22,13 +22,11 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
 const handleGoogleLogin = () => {
-    console.log('🟢 Google login button clicked!');
-    console.log('🟢 Current URL:', window.location.href);
-    
-    const url = 'http://localhost:8080/oauth2/authorization/google';
-    console.log('🟢 Redirecting to:', url);
-    
-    window.location.href = url;
+    alert("Google button clicked!");
+
+    console.log("Redirecting to 8080");
+
+    window.location.replace("http://localhost:8080/oauth2/authorization/google");
 };
 
   const handleSubmit = async (e) => {

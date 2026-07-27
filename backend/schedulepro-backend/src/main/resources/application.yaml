@@ -113,4 +113,4 @@ springdoc:
 
 
 app:
-  base-url: ${BASE_URL:https:http://localhost:8080}
+  base-url: ${BASE_URL:http://localhost:8080}

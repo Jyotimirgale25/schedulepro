@@ -1,10 +1,6 @@
-
 spring:
-  # ==========================================
-  # DATABASE - Connect to Docker PostgreSQL
-  # ==========================================
   datasource:
-    url: ${DB_URL:postgresql://schedulepro:postgresql://postgres:5432/ScheduleProDB}
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/ScheduleProDB}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:project123}
     hikari:
@@ -12,9 +8,6 @@ spring:
       minimum-idle: 5
       connection-timeout: 30000
 
-  # ==========================================
-  # JPA - Optimized for Docker
-  # ==========================================
   jpa:
     hibernate:
       ddl-auto: update
@@ -25,9 +18,6 @@ spring:
         jdbc:
           batch_size: 20
 
-  # ==========================================
-  # EMAIL - Use Mailtrap in Docker
-  # ==========================================
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}
     port: ${MAIL_PORT:587}
@@ -42,9 +32,6 @@ spring:
           ssl:
             trust: smtp.gmail.com
 
-  # ==========================================
-  # SECURITY - OAUTH2 (HARDCODED)
-  # ==========================================
   security:
     oauth2:
       client:
@@ -57,33 +44,21 @@ spring:
               - profile
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             client-name: Google
-# ============================================
-# JWT - Docker-specific
-# ============================================
+
 jwt:
   secret: ${JWT_SECRET:}
   expiration: 86400000
   refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
 
-# ============================================
-# CORS - Allow Docker frontend
-# ============================================
 cors:
-  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-2.onrender.com,https://schedulepro-frontend.onrender.com,https://schedulepro-1.onrender.com}
+  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend}
 
-# ============================================
-# LOGGING - Less verbose for Docker
-# ============================================
 logging:
   level:
     com.schedulepro: INFO
     org.springframework.security: INFO
     org.hibernate.SQL: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: INFO
 
-# ============================================
-# APP - Docker-specific settings
-# ============================================
 app:
   file:
     upload-dir: ${FILE_UPLOAD_DIR:/app/uploads}
