@@ -21,6 +21,7 @@ services:
       - schedulepro-network
 
   backend:
+  image: jyotimirgale/schedulepro-backend:latest 
   build:
     context: ./backend/schedulepro-backend
     dockerfile: Dockerfile
@@ -42,6 +43,7 @@ services:
     - schedulepro-network
 
   frontend:
+  image: jyotimirgale/schedulepro-frontend:latest 
   build:
     context: ./frontend
     dockerfile: Dockerfile
