@@ -1,62 +1,79 @@
+version: '3.8'
+
 services:
   postgres:
-    image: postgres:14-alpine
+    image: postgres:15-alpine
     container_name: schedulepro-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: ScheduleProDB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: project123
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backend/schedulepro-backend/src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ScheduleProDB"]
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 10s
     networks:
       - schedulepro-network
 
   backend:
-  build:
-    context: ./backend/schedulepro-backend
-    dockerfile: Dockerfile
-  container_name: schedulepro-backend
-  restart: unless-stopped
-  env_file:
-    - ./.env.docker
-  depends_on:
-    postgres:
-      condition: service_healthy
-  environment:
-    SPRING_PROFILES_ACTIVE: docker
-    BASE_URL: http://localhost
-  ports:
-    - "8080:8080"
-  volumes:
-    - backend_uploads:/app/uploads
-  networks:
-    - schedulepro-network
+    build:
+      context: ./backend/schedulepro-backend
+      dockerfile: Dockerfile
+    container_name: schedulepro-backend
+    restart: unless-stopped
+    env_file:
+      - ./.env.docker
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      BASE_URL: http://localhost
+      JAVA_OPTS: "-Xmx512m -Xms256m"
+    ports:
+      - "8080:8080"
+    volumes:
+      - backend_uploads:/app/uploads
+      - ./backend/schedulepro-backend/logs:/app/logs
+    networks:
+      - schedulepro-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   frontend:
-  build:
-    context: ./frontend
-    dockerfile: Dockerfile
-  container_name: schedulepro-frontend
-  restart: unless-stopped
-  depends_on:
-    backend:
-      condition: service_healthy
-  ports:
-    - "80:80"
-  environment:
-    REACT_APP_API_URL: http://localhost/api
-    REACT_APP_WS_URL: ws://localhost/ws
-  networks:
-    - schedulepro-network
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: schedulepro-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    environment:
+      REACT_APP_API_URL: http://localhost/api
+      REACT_APP_WS_URL: ws://localhost/ws
+    networks:
+      - schedulepro-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
 networks:
   schedulepro-network:
@@ -66,7 +83,5 @@ networks:
 volumes:
   postgres_data:
     driver: local
-    name: schedulepro-postgres-data
   backend_uploads:
     driver: local
-    name: schedulepro-uploads
