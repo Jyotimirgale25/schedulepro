@@ -161,10 +161,8 @@ public class SecurityConfig {
 
                             // Print full stack trace for debugging
                             exception.printStackTrace();
-                            String frontendUrl = System.getenv("FRONTEND_URL") != null ?
-                                    System.getenv("FRONTEND_URL") : "http://localhost";
-                            response.sendRedirect(frontendUrl + "/login?error=oauth_failed");
 
+                            response.sendRedirect("http://localhost/login?error=oauth_failed");
                         })
                 )
                 // ===== AUTHENTICATION PROVIDER =====
