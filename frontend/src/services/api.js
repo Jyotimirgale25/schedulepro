@@ -203,7 +203,8 @@ export const employeeApi = {
   getLeaves: () => api.get('/employee/leaves'),
   getLeaveBalance: () => api.get('/employee/leaves/balance'),
   createLeave: (data) => api.post('/employee/leaves', data),
-  
+  deleteLeave: (id) => api.delete(`/employee/leaves/${id}`),
+  getLeaveCalendar: () => api.get('/employee/leaves/calendar'),
   // Tasks
   getTasks: () => api.get('/employee/tasks'),
   updateTaskProgress: (id, progress) => api.put(`/employee/tasks/${id}/progress`, { progress }),
@@ -241,6 +242,8 @@ export const employeeApi = {
   acceptInvitation: (id, data) => api.put(`/employee/invitations/${id}/accept`, data),
   rejectInvitation: (id) => api.put(`/employee/invitations/${id}/reject`),
   getInvitationHistory: () => api.get('/employee/invitations/history'),
+  deleteHistory: (id) => api.delete(`/employee/invitations/${id}/delete`),
+  clearHistory: () => api.delete('/employee/invitations/history/clear'),
   
   // Swaps
   getMySwaps: () => api.get('/employee/swaps'),
@@ -432,7 +435,12 @@ getActiveAnnouncements: () => api.get('/announcements'),
 markAnnouncementRead: (id) => api.post(`/announcements/${id}/read`),
 getAnnouncementUnreadCount: () => api.get('/announcements/unread/count'),
 
-  
+//  LEAVES 
+getLeaves: () => api.get('/admin/leaves'),
+approveLeave: (id, data) => api.put(`/admin/leaves/${id}/approve`, data),
+rejectLeave: (id, data) => api.put(`/admin/leaves/${id}/reject`, data),
+deleteAllLeaves: () => api.delete('/admin/leaves/all'),
+
 // ===== SWAPS =====
 getSwaps: () => api.get('/admin/swaps'),
 getPendingSwaps: () => api.get('/admin/swaps/pending'),

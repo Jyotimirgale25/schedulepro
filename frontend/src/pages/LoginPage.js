@@ -23,8 +23,9 @@ const LoginPage = () => {
 
 const handleGoogleLogin = () => {
     setLoading(true);  
-    console.log("Redirecting to 8080");
-    window.location.replace("http://localhost:8080/oauth2/authorization/google");
+    console.log("Redirecting to Google OAuth...");
+    const baseUrl = process.env.REACT_APP_BASE_URL || 'http://localhost:8080';
+    window.location.replace(`${baseUrl}/oauth2/authorization/google`);
 };
   const handleSubmit = async (e) => {
     e.preventDefault();

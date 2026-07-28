@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { employeeApi } from '../services/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './employeeInvitations.css';
-
 
 const Invitations = ({ user }) => {
   const [invitations, setInvitations] = useState([]);
@@ -17,24 +19,13 @@ const Invitations = ({ user }) => {
     confirmPassword: ''
   });
 
-  const getAuthToken = () => localStorage.getItem('accessToken');
-
-  // Load pending invitations
+  // ✅ Load pending invitations
   const loadInvitations = useCallback(async () => {
     setLoading(true);
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/invitations`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('📧 Pending invitations:', data);
-        setInvitations(data);
-      } else {
-        setInvitations([]);
-      }
+      const response = await employeeApi.getInvitations();
+      console.log('📧 Pending invitations:', response.data);
+      setInvitations(response.data);
     } catch (err) {
       console.error('Error loading invitations:', err);
       setInvitations([]);
@@ -43,188 +34,122 @@ const Invitations = ({ user }) => {
     }
   }, []);
 
-  // Load invitation history (ACCEPTED & REJECTED only)
+  // ✅ Load invitation history
   const loadHistory = useCallback(async () => {
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/invitations/history`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('📜 Invitation history:', data);
-        setHistory(data);
-      }
+      const response = await employeeApi.getInvitationHistory();
+      console.log('📜 Invitation history:', response.data);
+      setHistory(response.data);
     } catch (err) {
       console.error('Error loading history:', err);
+      setHistory([]);
     }
   }, []);
 
-  // ✅ DELETE SINGLE HISTORY RECORD
+  // ✅ Delete single history record
   const deleteHistory = async (inviteId) => {
     if (!window.confirm('Are you sure you want to delete this history record?')) {
       return;
     }
 
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/invitations/${inviteId}/delete`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        alert('✅ History record deleted successfully!');
-        await loadHistory();
-        await loadInvitations();
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to delete history: ' + error);
-      }
+      await employeeApi.deleteHistory(inviteId);
+      toast.success('✅ History record deleted successfully!');
+      await loadHistory();
+      await loadInvitations();
     } catch (err) {
       console.error('❌ Error deleting history:', err);
-      alert('❌ Failed to delete history');
+      toast.error('❌ Failed to delete history');
     }
   };
 
-  // ✅ DELETE ALL HISTORY RECORDS
+  // ✅ Delete all history records
   const deleteAllHistory = async () => {
     if (!window.confirm('Are you sure you want to delete ALL history records?')) {
       return;
     }
 
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/invitations/history/clear`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        alert('✅ All history records deleted successfully!');
-        await loadHistory();
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to delete history: ' + error);
-      }
+      await employeeApi.clearHistory();
+      toast.success('✅ All history records deleted successfully!');
+      await loadHistory();
     } catch (err) {
       console.error('❌ Error deleting history:', err);
-      alert('❌ Failed to delete history');
+      toast.error('❌ Failed to delete history');
     }
   };
 
-  // Accept invitation
+  // ✅ Accept invitation
   const handleSubmitAccept = async (e) => {
     e.preventDefault();
     
     if (!selectedInvite) {
-      alert('No invitation selected');
+      toast.warning('No invitation selected');
       return;
     }
     
     if (acceptForm.password !== acceptForm.confirmPassword) {
-      alert('Passwords do not match');
+      toast.warning('Passwords do not match');
       return;
     }
     
     if (acceptForm.password.length < 6) {
-      alert('Password must be at least 6 characters');
+      toast.warning('Password must be at least 6 characters');
       return;
     }
     
     try {
-      const token = getAuthToken();
       console.log('📤 Accepting invitation:', selectedInvite.id);
       
-      const response = await fetch(`/api/employee/invitations/${selectedInvite.id}/accept`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          password: acceptForm.password,
-          fullName: acceptForm.fullName
-        })
+      await employeeApi.acceptInvitation(selectedInvite.id, {
+        password: acceptForm.password,
+        fullName: acceptForm.fullName
       });
 
-      console.log('📡 Response status:', response.status);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('✅ Invitation accepted:', data);
-        
-        alert(`🎉 Welcome ${acceptForm.fullName}! You have joined the team.`);
-        setShowAcceptModal(false);
-        setSelectedInvite(null);
-        setAcceptForm({ fullName: '', password: '', confirmPassword: '' });
-        
-        await loadInvitations();
-        await loadHistory();
-        window.dispatchEvent(new Event('teamUpdated'));
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to accept invitation: ' + error);
-      }
+      toast.success(`🎉 Welcome ${acceptForm.fullName}! You have joined the team.`);
+      setShowAcceptModal(false);
+      setSelectedInvite(null);
+      setAcceptForm({ fullName: '', password: '', confirmPassword: '' });
+      
+      await loadInvitations();
+      await loadHistory();
+      window.dispatchEvent(new Event('teamUpdated'));
     } catch (err) {
       console.error('❌ Error accepting invitation:', err);
-      alert('❌ Failed to accept invitation. Please try again.');
+      toast.error('❌ Failed to accept invitation. Please try again.');
     }
   };
 
-  // Reject invitation
+  // ✅ Reject invitation
   const handleSubmitReject = async (e) => {
     e.preventDefault();
     
     if (!selectedInvite) {
-      alert('No invitation selected');
+      toast.warning('No invitation selected');
       return;
     }
     
     if (!rejectReason.trim()) {
-      alert('Please provide a reason for rejecting this invitation.');
+      toast.warning('Please provide a reason for rejecting this invitation.');
       return;
     }
     
     try {
-      const token = getAuthToken();
       console.log('📤 Rejecting invitation:', selectedInvite.id);
-      console.log('📤 Reason:', rejectReason);
       
-      const response = await fetch(`/api/employee/invitations/${selectedInvite.id}/reject`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ reason: rejectReason })
-      });
-
-      console.log('📡 Response status:', response.status);
-
-      if (response.ok) {
-        alert('📧 Invitation declined. Your reason has been sent to the manager.');
-        setShowRejectModal(false);
-        setRejectReason('');
-        setSelectedInvite(null);
-        
-        await loadInvitations();
-        await loadHistory();
-        window.dispatchEvent(new Event('teamUpdated'));
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to decline invitation: ' + error);
-      }
+      await employeeApi.rejectInvitation(selectedInvite.id);
+      
+      toast.info('📧 Invitation declined. Your reason has been sent to the manager.');
+      setShowRejectModal(false);
+      setRejectReason('');
+      setSelectedInvite(null);
+      
+      await loadInvitations();
+      await loadHistory();
+      window.dispatchEvent(new Event('teamUpdated'));
     } catch (err) {
       console.error('❌ Error declining invitation:', err);
-      alert('❌ Failed to decline invitation');
+      toast.error('❌ Failed to decline invitation');
     }
   };
 
@@ -282,6 +207,8 @@ const Invitations = ({ user }) => {
 
   return (
     <div className="inv-container">
+      <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className="inv-header">
         <h4>📧 Invitations</h4>
         <p>View and manage your team invitations</p>
@@ -519,6 +446,7 @@ const Invitations = ({ user }) => {
                   value={acceptForm.password}
                   onChange={(e) => setAcceptForm({...acceptForm, password: e.target.value})}
                   required
+                  minLength="6"
                 />
               </div>
               
@@ -531,6 +459,7 @@ const Invitations = ({ user }) => {
                   value={acceptForm.confirmPassword}
                   onChange={(e) => setAcceptForm({...acceptForm, confirmPassword: e.target.value})}
                   required
+                  minLength="6"
                 />
               </div>
               

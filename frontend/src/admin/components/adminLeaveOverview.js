@@ -1,5 +1,7 @@
-// src/admin/LeaveOverview.jsx
 import React, { useState, useEffect, useCallback } from 'react';
+import { adminApi } from '../../services/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './adminLeaveOverview.css';
 
 const LeaveOverview = ({ user }) => {
@@ -11,77 +13,49 @@ const LeaveOverview = ({ user }) => {
   const [showClearModal, setShowClearModal] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const getAuthToken = () => localStorage.getItem('accessToken');
-
-  // Load all leave requests
+  // ✅ Load all leave requests using adminApi
   const loadLeaves = useCallback(async () => {
     setLoading(true);
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/admin/leaves`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to load leaves');
-      }
-
-      const result = await response.json();
+      const response = await adminApi.getLeaves();
+      console.log('📋 Admin leaves loaded:', response.data);
       
       // Handle both response formats
-      if (result.success && result.data) {
-        setLeaveRequests(result.data);
-      } else if (Array.isArray(result)) {
-        setLeaveRequests(result);
+      if (response.data && response.data.success && response.data.data) {
+        setLeaveRequests(response.data.data);
+      } else if (Array.isArray(response.data)) {
+        setLeaveRequests(response.data);
       } else {
-        console.warn('Unexpected response format:', result);
+        console.warn('Unexpected response format:', response.data);
         setLeaveRequests([]);
       }
     } catch (err) {
       console.error('Error loading leaves:', err);
+      toast.error('❌ Failed to load leave requests');
       setLeaveRequests([]);
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Update leave status via backend API
+  // ✅ Update leave status using adminApi
   const updateLeaveStatus = async (id, status, reason = '') => {
     try {
-      const token = getAuthToken();
-      const endpoint = status === 'APPROVED' ? 'approve' : 'reject';
-      
-      const response = await fetch(`/api/admin/leaves/${id}/${endpoint}`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-          status: status,
-          approvalComments: reason
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to ${status} leave`);
-      }
-
-      const result = await response.json();
-      
-      if (result.success) {
-        window.dispatchEvent(new Event('leaveRequestUpdated'));
-        await loadLeaves();
-        return true;
+      let response;
+      if (status === 'APPROVED') {
+        response = await adminApi.approveLeave(id, { approvalComments: reason });
       } else {
-        throw new Error(result.message || `Failed to ${status} leave`);
+        response = await adminApi.rejectLeave(id, { approvalComments: reason });
       }
+      
+      console.log(`✅ Leave ${status}:`, response.data);
+      
+      window.dispatchEvent(new Event('leaveRequestUpdated'));
+      await loadLeaves();
+      return true;
     } catch (err) {
       console.error('Error updating leave:', err);
-      alert(`Failed to ${status} leave request: ${err.message}`);
+      toast.error(`❌ Failed to ${status} leave request`);
       return false;
     }
   };
@@ -106,7 +80,7 @@ const LeaveOverview = ({ user }) => {
     if (window.confirm(`Approve ${leave.userFullName || leave.userId}'s leave request?`)) {
       const success = await updateLeaveStatus(leave.id, 'APPROVED');
       if (success) {
-        alert('Leave approved successfully!');
+        toast.success('✅ Leave approved successfully!');
       }
     }
   };
@@ -120,7 +94,7 @@ const LeaveOverview = ({ user }) => {
     if (selectedLeave) {
       const success = await updateLeaveStatus(selectedLeave.id, 'REJECTED', rejectReason);
       if (success) {
-        alert('Leave rejected successfully!');
+        toast.info('❌ Leave rejected successfully!');
         setShowRejectModal(false);
         setRejectReason('');
         setSelectedLeave(null);
@@ -128,37 +102,20 @@ const LeaveOverview = ({ user }) => {
     }
   };
 
+  // ✅ Clear all leaves using adminApi
   const handleClearAll = () => {
     setShowClearModal(true);
   };
 
   const confirmClearAll = async () => {
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/admin/leaves/all`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to clear leaves');
-      }
-
-      const result = await response.json();
-      
-      if (result.success) {
-        await loadLeaves();
-        setShowClearModal(false);
-        alert('All leave requests cleared successfully!');
-      } else {
-        throw new Error(result.message || 'Failed to clear leaves');
-      }
+      await adminApi.deleteAllLeaves();
+      toast.success('✅ All leave requests cleared successfully!');
+      await loadLeaves();
+      setShowClearModal(false);
     } catch (err) {
       console.error('Error clearing leaves:', err);
-      alert('Failed to clear leave requests');
+      toast.error('❌ Failed to clear leave requests');
     }
   };
 
@@ -180,6 +137,8 @@ const LeaveOverview = ({ user }) => {
 
   return (
     <div className="admin-leave-overview-container">
+      <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className="admin-leave-header">
         <h4>📋 Leave Overview</h4>
         <div className="admin-leave-header-actions">

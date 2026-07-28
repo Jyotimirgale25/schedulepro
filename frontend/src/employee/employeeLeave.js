@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { employeeApi } from '../services/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './employeeLeave.css';
-
 
 const Leaves = ({ user }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -27,77 +29,52 @@ const Leaves = ({ user }) => {
     halfDaySession: 'MORNING'
   });
 
-  const getAuthToken = () => localStorage.getItem('accessToken');
-
-  // Load leaves from backend
+  // ✅ Load leaves from backend using employeeApi
   const loadLeaveRequests = useCallback(async () => {
     try {
-      const token = getAuthToken();
-      const response = await fetch('/api/employee/leaves', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setLeaveRequests(data);
-      }
+      const response = await employeeApi.getLeaves();
+      setLeaveRequests(response.data);
+      console.log('📋 Leaves loaded:', response.data);
     } catch (err) {
       console.error('Error loading leaves:', err);
+      setLeaveRequests([]);
     }
   }, []);
 
-  // Load leave balance from backend
+  // ✅ Load leave balance from backend using employeeApi
   const loadLeaveBalance = useCallback(async () => {
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/leaves/balance`, {
-        headers: { 'Authorization': `Bearer ${token}` }
+      const response = await employeeApi.getLeaveBalance();
+      const data = response.data;
+      setLeaveBalance({
+        casual: data.casualLeaves || 12,
+        sick: data.sickLeaves || 10,
+        annual: data.annualLeaves || 15,
+        emergency: data.emergencyLeaves || 3,
+        totalUsed: 50 - ((data.casualLeaves || 12) + (data.sickLeaves || 10) + 
+                 (data.annualLeaves || 15) + (data.emergencyLeaves || 3))
       });
-      if (response.ok) {
-        const data = await response.json();
-        setLeaveBalance({
-          casual: data.casualLeaves || 12,
-          sick: data.sickLeaves || 10,
-          annual: data.annualLeaves || 15,
-          emergency: data.emergencyLeaves || 3,
-          totalUsed: 50 - ((data.casualLeaves || 12) + (data.sickLeaves || 10) + 
-                   (data.annualLeaves || 15) + (data.emergencyLeaves || 3))
-        });
-      }
     } catch (err) {
       console.error('Error loading balance:', err);
     }
   }, []);
 
-  // Save leave to backend
+  // ✅ Save leave to backend using employeeApi
   const saveLeaveRequest = async (newLeave) => {
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/leaves`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          leaveType: newLeave.type,
-          startDate: newLeave.startDate,
-          endDate: newLeave.endDate,
-          reason: newLeave.reason
-        })
+      const response = await employeeApi.createLeave({
+        leaveType: newLeave.type,
+        startDate: newLeave.startDate,
+        endDate: newLeave.endDate,
+        reason: newLeave.reason,
+        totalDays: newLeave.totalDays
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Leave saved:', data);
-        window.dispatchEvent(new Event('leaveRequestCreated'));
-        return true;
-      } else {
-        const error = await response.text();
-        console.error('Error response:', error);
-        return false;
-      }
+      console.log('✅ Leave saved:', response.data);
+      window.dispatchEvent(new Event('leaveRequestCreated'));
+      return true;
     } catch (err) {
       console.error('Error saving leave:', err);
+      toast.error('❌ Failed to submit leave request');
       return false;
     }
   };
@@ -136,11 +113,11 @@ const Leaves = ({ user }) => {
     if (success) {
       await loadLeaveRequests();
       await loadLeaveBalance();
-      alert('Leave request submitted to manager for approval!');
+      toast.success('✅ Leave request submitted to manager for approval!');
       setShowModal(false);
       setLeaveForm({ startDate: '', endDate: '', reason: '', type: 'CASUAL', halfDay: false, halfDaySession: 'MORNING' });
     } else {
-      alert('Failed to submit leave request. Please try again.');
+      toast.error('❌ Failed to submit leave request. Please try again.');
     }
     setLoading(false);
   };
@@ -178,6 +155,8 @@ const Leaves = ({ user }) => {
 
   return (
     <div className="leave-container">
+      <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className="leave-header">
         <div>
           <h4>📋 Leave Management</h4>
@@ -194,7 +173,7 @@ const Leaves = ({ user }) => {
         </button>
       </div>
 
-      {/* ✅ 5 STATS CARDS - Leave Balance, Used Leaves, Pending, Approved, Rejected */}
+      {/* ✅ 5 STATS CARDS */}
       <div className="leave-stats">
         {/* 1. Leave Balance */}
         <div className="leave-stat-card leave-balance-card">
@@ -339,7 +318,7 @@ const Leaves = ({ user }) => {
                   <option value="SICK">🤒 Sick Leave</option>
                   <option value="ANNUAL">✈️ Annual Leave</option>
                   <option value="EMERGENCY">🚨 Emergency Leave</option>
-                   <option value="Others">Others</option>
+                  <option value="Others">Others</option>
                 </select>
               </div>
 

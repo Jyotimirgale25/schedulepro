@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { managerApi } from '../services/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './managerLeaveApprovals.css';
-
-
 
 const LeaveApprovals = ({ user }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -11,54 +12,40 @@ const LeaveApprovals = ({ user }) => {
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [selectedLeave, setSelectedLeave] = useState(null);
 
-  const getAuthToken = () => localStorage.getItem('accessToken');
-
+  // ✅ Load pending leave requests using managerApi
   const loadLeaveRequests = useCallback(async () => {
     setLoading(true);
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/manager/leaves/pending`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to load leave requests');
-      }
-
-      const data = await response.json();
-      setLeaveRequests(data);
+      const response = await managerApi.getPendingLeaves();
+      setLeaveRequests(response.data);
+      console.log('📋 Pending leaves loaded:', response.data);
     } catch (err) {
       console.error('Error loading leaves:', err);
       setError('Failed to load leave requests');
+      toast.error('❌ Failed to load leave requests');
     } finally {
       setLoading(false);
     }
   }, []);
 
+  // ✅ Update leave status using managerApi
   const updateLeaveStatus = async (leaveId, status, rejectReason = '') => {
     try {
-      const token = getAuthToken();
-const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPROVED' ? 'approve' : 'reject'}`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-          status: status,
+      let response;
+      if (status === 'APPROVED') {
+        response = await managerApi.approveLeave(leaveId, { 
           remarks: rejectReason 
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to ${status} leave request`);
+        });
+      } else {
+        response = await managerApi.rejectLeave(leaveId, { 
+          remarks: rejectReason 
+        });
       }
-
+      
+      console.log(`✅ Leave ${status}:`, response.data);
+      
       // Reload the list
-      loadLeaveRequests();
+      await loadLeaveRequests();
       
       // Dispatch event for other components
       window.dispatchEvent(new Event('leaveRequestUpdated'));
@@ -66,7 +53,7 @@ const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPRO
       return true;
     } catch (err) {
       console.error('Error updating leave:', err);
-      alert(`Failed to ${status} leave request. Please try again.`);
+      toast.error(`❌ Failed to ${status} leave request. Please try again.`);
       return false;
     }
   };
@@ -75,7 +62,7 @@ const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPRO
     if (window.confirm(`Approve ${leave.userFullName}'s leave request?`)) {
       const success = await updateLeaveStatus(leave.id, 'APPROVED');
       if (success) {
-        alert(`✅ Leave approved for ${leave.userFullName}!`);
+        toast.success(`✅ Leave approved for ${leave.userFullName}!`);
       }
     }
   };
@@ -89,7 +76,7 @@ const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPRO
     if (selectedLeave) {
       const success = await updateLeaveStatus(selectedLeave.id, 'REJECTED', rejectReason);
       if (success) {
-        alert(`❌ Leave rejected for ${selectedLeave.userFullName}`);
+        toast.info(`❌ Leave rejected for ${selectedLeave.userFullName}`);
         setShowRejectModal(false);
         setRejectReason('');
         setSelectedLeave(null);
@@ -102,15 +89,15 @@ const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPRO
     
     // Listen for new leave requests
     const handleLeaveUpdate = () => {
-        loadLeaveRequests();
+      loadLeaveRequests();
     };
     
     window.addEventListener('leaveRequestCreated', handleLeaveUpdate);
     window.addEventListener('leaveRequestUpdated', handleLeaveUpdate);
     
     return () => {
-        window.removeEventListener('leaveRequestCreated', handleLeaveUpdate);
-        window.removeEventListener('leaveRequestUpdated', handleLeaveUpdate);
+      window.removeEventListener('leaveRequestCreated', handleLeaveUpdate);
+      window.removeEventListener('leaveRequestUpdated', handleLeaveUpdate);
     };
   }, [loadLeaveRequests]);
 
@@ -130,6 +117,8 @@ const response = await fetch(`/api/manager/leaves/${leaveId}/${status === 'APPRO
 
   return (
     <div className="leave-approvals-container">
+      <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className="leave-approvals-header">
         <h4>📋 Pending Leave Approvals</h4>
         <span className="leave-approvals-pending-count">{leaveRequests.length} pending</span>

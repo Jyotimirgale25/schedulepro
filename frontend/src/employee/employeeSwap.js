@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { employeeApi } from '../services/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './employeeSwap.css';
-
 
 const Swap = ({ user }) => {
   const [swapRequests, setSwapRequests] = useState([]);
@@ -20,20 +22,12 @@ const Swap = ({ user }) => {
   const [activeTab, setActiveTab] = useState('myRequests');
   const [employees, setEmployees] = useState([]);
 
-  const getAuthToken = () => localStorage.getItem('accessToken');
-
   // ===== LOAD EMPLOYEES FROM BACKEND =====
   const loadEmployees = useCallback(async () => {
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/team-members`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setEmployees(data);
-        console.log('✅ Team members loaded:', data);
-      }
+      const response = await employeeApi.getTeamMembers();
+      setEmployees(response.data);
+      console.log('✅ Team members loaded:', response.data);
     } catch (err) {
       console.error('Error loading team members:', err);
     }
@@ -43,25 +37,15 @@ const Swap = ({ user }) => {
   const loadSwapRequests = useCallback(async () => {
     setLoading(true);
     try {
-      const token = getAuthToken();
-      
-      const outgoingResponse = await fetch(`/api/employee/swaps`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (outgoingResponse.ok) {
-        const data = await outgoingResponse.json();
-        setSwapRequests(data);
-        console.log('📤 Outgoing swaps:', data);
-      }
+      // ✅ Get outgoing swaps
+      const outgoingResponse = await employeeApi.getMySwaps();
+      setSwapRequests(outgoingResponse.data);
+      console.log('📤 Outgoing swaps:', outgoingResponse.data);
 
-      const incomingResponse = await fetch(`/api/employee/swaps/incoming`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (incomingResponse.ok) {
-        const data = await incomingResponse.json();
-        setIncomingSwapRequests(data);
-        console.log('📥 Incoming swaps:', data);
-      }
+      // ✅ Get incoming swaps
+      const incomingResponse = await employeeApi.getIncomingSwaps();
+      setIncomingSwapRequests(incomingResponse.data);
+      console.log('📥 Incoming swaps:', incomingResponse.data);
     } catch (err) {
       console.error('Error loading swap requests:', err);
     } finally {
@@ -77,7 +61,7 @@ const Swap = ({ user }) => {
     const selectedEmployee = employees.find(emp => String(emp.id) === String(swapForm.targetEmployeeId));
 
     if (!selectedEmployee) {
-      alert('Please select a valid employee');
+      toast.warning('Please select a valid employee');
       setLoading(false);
       return;
     }
@@ -94,40 +78,25 @@ const Swap = ({ user }) => {
     };
 
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/swaps`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newRequest)
+      const response = await employeeApi.createSwap(newRequest);
+      console.log('✅ Swap request created:', response.data);
+      toast.success('✅ Swap request sent to employee! Waiting for their response.');
+      setShowRequestModal(false);
+      setSwapForm({
+        targetEmployeeId: '',
+        requesterScheduleId: '',
+        targetScheduleId: '',
+        requesterShiftDate: '',
+        targetShiftDate: '',
+        requesterShiftTime: '',
+        targetShiftTime: '',
+        reason: ''
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('✅ Swap request created:', data);
-        alert('✅ Swap request sent to employee! Waiting for their response.');
-        setShowRequestModal(false);
-        setSwapForm({
-          targetEmployeeId: '',
-          requesterScheduleId: '',
-          targetScheduleId: '',
-          requesterShiftDate: '',
-          targetShiftDate: '',
-          requesterShiftTime: '',
-          targetShiftTime: '',
-          reason: ''
-        });
-        await loadSwapRequests();
-        window.dispatchEvent(new Event('swapRequestCreated'));
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to create swap request: ' + error);
-      }
+      await loadSwapRequests();
+      window.dispatchEvent(new Event('swapRequestCreated'));
     } catch (err) {
       console.error('Error creating swap:', err);
-      alert('❌ Failed to create swap request');
+      toast.error('❌ Failed to create swap request');
     } finally {
       setLoading(false);
     }
@@ -138,28 +107,14 @@ const Swap = ({ user }) => {
     if (!window.confirm(`Accept swap request from ${request.requesterName}?`)) return;
 
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/swaps/${request.id}/accept`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('✅ Swap accepted:', data);
-        alert('✅ Request accepted! Forwarded to manager for final approval.');
-        await loadSwapRequests();
-        window.dispatchEvent(new Event('swapRequestUpdated'));
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to accept swap: ' + error);
-      }
+      const response = await employeeApi.acceptSwap(request.id);
+      console.log('✅ Swap accepted:', response.data);
+      toast.success('✅ Request accepted! Forwarded to manager for final approval.');
+      await loadSwapRequests();
+      window.dispatchEvent(new Event('swapRequestUpdated'));
     } catch (err) {
       console.error('Error accepting swap:', err);
-      alert('❌ Failed to accept swap');
+      toast.error('❌ Failed to accept swap');
     }
   };
 
@@ -168,35 +123,21 @@ const Swap = ({ user }) => {
     if (!window.confirm('Decline this swap request?')) return;
 
     try {
-      const token = getAuthToken();
-      const response = await fetch(`/api/employee/swaps/${request.id}/reject`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('✅ Swap rejected:', data);
-        alert('✅ Swap request declined.');
-        await loadSwapRequests();
-        window.dispatchEvent(new Event('swapRequestUpdated'));
-      } else {
-        const error = await response.text();
-        alert('❌ Failed to decline swap: ' + error);
-      }
+      const response = await employeeApi.rejectSwap(request.id);
+      console.log('✅ Swap rejected:', response.data);
+      toast.info('✅ Swap request declined.');
+      await loadSwapRequests();
+      window.dispatchEvent(new Event('swapRequestUpdated'));
     } catch (err) {
       console.error('Error declining swap:', err);
-      alert('❌ Failed to decline swap');
+      toast.error('❌ Failed to decline swap');
     }
   };
 
   // ===== CANCEL MY SWAP REQUEST =====
   const handleCancelRequest = async (requestId) => {
     if (!window.confirm('Cancel this swap request?')) return;
-    alert('⏳ Cancel functionality coming soon!');
+    toast.info('⏳ Cancel functionality coming soon!');
   };
 
   // ===== USE EFFECT =====
@@ -235,6 +176,8 @@ const Swap = ({ user }) => {
 
   return (
     <div className="swap-container">
+      <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className="swap-header">
         <h4>🔄 Shift Swap Requests</h4>
         <button className="swap-btn-primary" onClick={() => setShowRequestModal(true)}>
@@ -329,7 +272,7 @@ const Swap = ({ user }) => {
         </div>
       )}
 
-      {/* Incoming Requests - APPROVE & REJECT BUTTONS HERE */}
+      {/* Incoming Requests */}
       {activeTab === 'incoming' && (
         <div className="swap-requests">
           <h5>📥 Incoming Swap Requests</h5>
@@ -357,7 +300,7 @@ const Swap = ({ user }) => {
                   <strong>Reason:</strong> {request.reason}
                 </div>
                 
-                {/* ✅ APPROVE & REJECT BUTTONS - VISIBLE WHEN PENDING */}
+                {/* ✅ APPROVE & REJECT BUTTONS */}
                 {request.targetStatus === 'PENDING' && (
                   <div className="swap-card-footer">
                     <button 
