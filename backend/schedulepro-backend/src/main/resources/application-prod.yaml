@@ -1,6 +1,9 @@
-# ================================================
-# SCHEDULE PRO - PRODUCTION ENVIRONMENT
-# ================================================
+# ============================================
+# SCHEDULE PRO - PRODUCTION CONFIGURATION
+# ============================================
+# Used when SPRING_PROFILES_ACTIVE=prod
+# All sensitive values come from environment variables
+# ============================================
 
 spring:
   # ==========================================
@@ -10,6 +13,7 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 50
       minimum-idle: 20
@@ -18,7 +22,7 @@ spring:
       max-lifetime: 1800000
 
   # ==========================================
-  # JPA - Production safe
+  # JPA - Production safe (NO auto DDL)
   # ==========================================
   jpa:
     hibernate:
@@ -31,15 +35,16 @@ spring:
         order_inserts: true
         order_updates: true
         generate_statistics: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   # ==========================================
-  # EMAIL - MUST be set in environment
+  # EMAIL - SendGrid (Production)
   # ==========================================
   mail:
-    host: ${MAIL_HOST:smtp.gmail.com}
+    host: ${MAIL_HOST:smtp.sendgrid.net}
     port: ${MAIL_PORT:587}
-    username: ${MAIL_USERNAME:}
-    password: ${MAIL_PASSWORD:}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -47,7 +52,35 @@ spring:
           starttls:
             enable: true
           ssl:
-            trust: ${MAIL_HOST}
+            trust: smtp.sendgrid.net
+
+  # ==========================================
+  # OAUTH2 - Google
+  # ==========================================
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:}
+            client-secret: ${GOOGLE_CLIENT_SECRET:}
+            scope:
+              - email
+              - profile
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: Google
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+    default-property-inclusion: non_null
 
 # ============================================
 # JWT - MUST be set in environment
@@ -61,8 +94,7 @@ jwt:
 # CORS - MUST be set in environment
 # ============================================
 cors:
-
-  allowed-origins: ${CORS_ORIGINS:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-1.onrender.com,https://schedulepro-frontend.onrender.com,https://schedulepro-2.onrender.com}
+  allowed-origins: ${CORS_ORIGINS}
 
 # ============================================
 # LOGGING - Minimal for production
@@ -72,6 +104,7 @@ logging:
     com.schedulepro: WARN
     org.springframework: ERROR
     org.springframework.security: WARN
+    org.hibernate: WARN
   file:
     name: /var/log/schedulepro/application.log
     max-size: 100MB
@@ -83,8 +116,6 @@ logging:
 # APP - Production settings
 # ============================================
 app:
-  file:
-    upload-dir: ${FILE_UPLOAD_DIR:/var/data/schedulepro/uploads}
   base-url: ${BASE_URL}
 
 # ============================================
@@ -94,8 +125,14 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, metrics, prometheus
-  metrics:
-    export:
-      prometheus:
-        enabled: true
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tryItOutEnabled: false
