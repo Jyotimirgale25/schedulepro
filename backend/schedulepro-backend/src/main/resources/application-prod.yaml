@@ -15,8 +15,8 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 50
-      minimum-idle: 20
+      maximum-pool-size: 5
+      minimum-idle: 2
       connection-timeout: 10000
       idle-timeout: 300000
       max-lifetime: 1800000
@@ -31,11 +31,14 @@ spring:
     properties:
       hibernate:
         jdbc:
-          batch_size: 50
+          batch_size: 20
         order_inserts: true
         order_updates: true
         generate_statistics: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+        server:
+          port: ${PORT:8080}
 
   # ==========================================
   # EMAIL - SendGrid (Production)

@@ -53,6 +53,8 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
+# Add this to your Dockerfile
+ENTRYPOINT ["java", "-Xmx256m", "-Xms128m", "-jar", "app.jar"]
 
 # Optional: Pass JVM options via environment
 # ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar app.jar"]
