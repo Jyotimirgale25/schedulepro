@@ -11,4 +11,5 @@ public class OtpResponse {
     private String otp;  // ← ADD THIS FIELD
     private String email;
     private LoginResponse.UserInfo user;
+    private int expiresIn;
 }
