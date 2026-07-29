@@ -75,7 +75,7 @@ jobs:
           path: frontend/build/
 
   # ============================================
-  # JOB 3: Build Docker Images
+  # JOB 3: Build Docker Images & Push
   # ============================================
   docker-build:
     needs: [test-backend, test-frontend]
@@ -123,3 +123,32 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/schedulepro-frontend:latest
             ${{ secrets.DOCKER_USERNAME }}/schedulepro-frontend:${{ github.sha }}
+
+  # ============================================
+  # JOB 4: Deploy to Render
+  # ============================================
+  deploy-render:
+    needs: docker-build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy Backend to Render
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": "true"}' \
+            "https://api.render.com/v1/services/${{ secrets.RENDER_BACKEND_SERVICE_ID }}/deploys"
+
+      - name: Wait for Backend Deploy
+        run: sleep 30
+
+      - name: Deploy Frontend to Render
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": "true"}' \
+            "https://api.render.com/v1/services/${{ secrets.RENDER_FRONTEND_SERVICE_ID }}/deploys"
