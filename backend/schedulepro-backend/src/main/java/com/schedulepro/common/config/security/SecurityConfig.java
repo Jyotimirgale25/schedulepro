@@ -38,8 +38,9 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
-    @Value("${cors.allowed-origins:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-2.onrender.com,https://schedulepro-1.onrender.com}")
+    @Value("${cors.allowed-origins:http://localhost,http://localhost:3000,http://frontend,https://schedulepro-backend.onrender.com,https://schedulepro-frontend.onrender.com}")
     private String allowedOrigins;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -162,7 +163,10 @@ public class SecurityConfig {
                             // Print full stack trace for debugging
                             exception.printStackTrace();
 
-                            response.sendRedirect("http://localhost/login?error=oauth_failed");
+                            // ✅ Use BASE_URL from environment
+                            String frontendUrl = System.getenv("FRONTEND_URL") != null ?
+                                    System.getenv("FRONTEND_URL") : "http://localhost";
+                            response.sendRedirect(frontendUrl + "/login?error=oauth_failed");
                         })
                 )
                 // ===== AUTHENTICATION PROVIDER =====
