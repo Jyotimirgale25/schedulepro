@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private final JavaMailSender mailSender;
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.from}")
     private String fromEmail;
     public void sendOtpEmail(String toEmail, String otp) {
         // ✅ Run email sending in background thread
