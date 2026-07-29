@@ -17,11 +17,11 @@ public class EmailService {
     @Value("${sendgrid.api.key}")
     private String apiKey;
 
-    @Value("${sendgrid.from.email}")
+    // ✅ FIXED: Use spring.mail.from instead
+    @Value("${spring.mail.from}")
     private String fromEmail;
 
     public void sendOtpEmail(String toEmail, String otp) {
-        // ✅ Run email sending in background thread
         new Thread(() -> {
             try {
                 log.info("📧 Sending OTP email via SendGrid API to: {}", toEmail);
@@ -31,7 +31,6 @@ public class EmailService {
                 request.setMethod(Method.POST);
                 request.setEndpoint("mail/send");
 
-                // ✅ Build JSON body
                 String body = String.format(
                         "{" +
                                 "\"personalizations\":[{" +
