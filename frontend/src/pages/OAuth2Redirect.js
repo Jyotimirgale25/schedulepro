@@ -29,7 +29,7 @@ const OAuth2Redirect = () => {
         console.log('✅ Token stored in localStorage');
 
         // ✅ Fetch user details
-        fetch('/api/auth/me', {
+        fetch('https://schedulepro-backend.onrender.com/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-
 // ============================================
 // ✅ Environment variable for API URL
 // ============================================
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || '/api'; 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
@@ -163,19 +162,11 @@ export const authApi = {
   },
 // ===== 4. OAUTH2 =====
 
-/**
- * Redirect to Google OAuth2 login
- * Call this by navigating to: /oauth2/authorization/google
- * Or use the button link in Login page
- */
 googleLogin: () => {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    const baseUrl = process.env.REACT_APP_BASE_URL || 'http://localhost:8080';  // ✅ UPDATED
+    window.location.href = `${baseUrl}/oauth2/authorization/google`;
 },
 
-/**
- * Handle OAuth2 redirect - Extract token from URL
- * Used by OAuth2Redirect page
- */
 handleOAuth2Redirect: (token) => {
     if (token) {
         localStorage.setItem('accessToken', token);
