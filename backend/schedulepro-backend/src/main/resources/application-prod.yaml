@@ -1,9 +1,3 @@
-# ============================================
-# SCHEDULE PRO - PRODUCTION CONFIGURATION
-# ============================================
-# Used when SPRING_PROFILES_ACTIVE=prod
-# All sensitive values come from environment variables
-# ============================================
 
 spring:
   # ==========================================
@@ -43,7 +37,7 @@ spring:
   mail:
     host: ${MAIL_HOST:smtp.sendgrid.net}
     port: ${MAIL_PORT:587}
-    username: ${MAIL_USERNAME:schedulepro-render}
+    username: ${MAIL_USERNAME:apikey}
     password: ${MAIL_PASSWORD}
     properties:
       mail:
@@ -53,6 +47,7 @@ spring:
             enable: true
           ssl:
             trust: smtp.sendgrid.net
+    from: ${MAIL_FROM}  # ← FIXED: Correct format
 
   # ==========================================
   # OAUTH2 - Google
