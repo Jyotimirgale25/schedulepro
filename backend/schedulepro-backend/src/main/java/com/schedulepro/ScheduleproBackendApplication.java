@@ -15,20 +15,22 @@ public class ScheduleproBackendApplication {
         SpringApplication.run(ScheduleproBackendApplication.class, args);
         System.out.println("""
         \n
-        ╔═══════════════════════════════════════════════════════════╗
-        ║                                                           ║
-        ║     🚀 SCHEDULE PRO BACKEND STARTED SUCCESSFULLY 🚀       ║
-        ║                                                           ║
-        ║     📍 API: http://localhost:8080                         ║
-        ║     📍 Swagger: http://localhost:8080/swagger-ui.html    ║
-        ║     📍 Actuator: http://localhost:8080/actuator/health   ║
-        ║     📍 API Docs: http://localhost:8080/api-docs  
-                                                            ║
-        ║     ✅ Database: PostgreSQL (Ready)                       ║
-        ║     ✅ JWT Authentication: Configured                     ║
-        ║     ✅ OAuth2 Ready: Google/GitHub                        ║
-        ║                                                           ║
-        ╚═══════════════════════════════════════════════════════════╝
+                ╔═══════════════════════════════════════════════════════════════════╗
+                ║                                                                   ║
+                ║     🚀 SCHEDULE PRO BACKEND STARTED SUCCESSFULLY 🚀               ║
+                ║                                                                   ║
+                ║     📍 Backend API: https://schedulepro-Backend.onrender.com      ║
+                ║     📍 Frontend:   https://schedulepro-frontend.onrender.com      ║
+                ║     📍 Swagger:    https://schedulepro-Backend.onrender.com/swagger-ui.html ║
+                ║     📍 Actuator:   https://schedulepro-Backend.onrender.com/actuator/health ║
+                ║     📍 API Docs:   https://schedulepro-Backend.onrender.com/api-docs ║
+                ║                                                                   ║
+                ║     ✅ Database: PostgreSQL (Ready)                               ║
+                ║     ✅ JWT Authentication: Configured                             ║
+                ║     ✅ OAuth2 Ready: Google                                      ║
+                ║     ✅ Email Service: SendGrid (OTP Ready)                        ║
+                ║                                                                   ║
+                ╚═══════════════════════════════════════════════════════════════════╝
         """);
     }
 }
