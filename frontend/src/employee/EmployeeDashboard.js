@@ -15,6 +15,7 @@ import Notifications from './employeeNotifications';
 import { employeeApi } from '../services/api';
 import './EmployeeDashboard.css';
 
+
 const EmployeeDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);

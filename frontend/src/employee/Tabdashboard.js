@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Tabdashboard.css';
 import { employeeApi } from '../services/api';
-import './MobileResponsive.css'; 
+
 
 const Dashboard = ({ user, setActiveTab, isSidebarCollapsed }) => { // ✅ Added isSidebarCollapsed prop
   const [schedules, setSchedules] = useState([]);

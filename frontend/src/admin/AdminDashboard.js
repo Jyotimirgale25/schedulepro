@@ -17,6 +17,7 @@ import Announcements from './components/Announcements';
 import Profile from './components/adminProfile';
 import './AdminDashboard.css';
 
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);

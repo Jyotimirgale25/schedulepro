@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './mDashboard.css';
 import { managerApi } from '../services/api';
-import './MobileResponsive.css'; 
+
 
 const Dashboard = ({ user, setActiveTab }) => {
   const [stats, setStats] = useState({

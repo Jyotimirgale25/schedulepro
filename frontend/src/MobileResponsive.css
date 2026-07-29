@@ -1,0 +1,456 @@
+/* ============================================
+   MOBILE RESPONSIVE - SINGLE FILE
+   Applied to ALL dashboards automatically
+   ============================================ */
+
+/* ===== TABLET & MOBILE ===== */
+@media screen and (max-width: 1024px) {
+    .dashboard-container,
+    .admin-dashboard-container,
+    .manager-dashboard-container,
+    .employee-dashboard-container {
+        padding: 15px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .main-content,
+    .admin-main-content,
+    .manager-main-content,
+    .employee-main-content {
+        margin-left: 0 !important;
+        padding: 15px !important;
+        width: 100% !important;
+    }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+@media screen and (max-width: 768px) {
+    
+    /* ---- Sidebar ---- */
+    .sidebar,
+    .admin-sidebar,
+    .manager-sidebar,
+    .employee-sidebar {
+        position: fixed !important;
+        left: -300px !important;
+        top: 0 !important;
+        height: 100vh !important;
+        width: 280px !important;
+        background: #1a2332 !important;
+        transition: left 0.3s ease !important;
+        z-index: 1000 !important;
+        overflow-y: auto !important;
+    }
+    
+    .sidebar.open,
+    .admin-sidebar.open,
+    .manager-sidebar.open,
+    .employee-sidebar.open {
+        left: 0 !important;
+    }
+    
+    /* ---- Hamburger Menu ---- */
+    .hamburger-menu {
+        display: flex !important;
+        position: fixed !important;
+        top: 15px !important;
+        left: 15px !important;
+        z-index: 1001 !important;
+        background: #1a2332 !important;
+        color: white !important;
+        border: none !important;
+        padding: 12px 16px !important;
+        border-radius: 8px !important;
+        font-size: 22px !important;
+        cursor: pointer !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+    }
+    
+    /* ---- Sidebar Overlay ---- */
+    .sidebar-overlay {
+        display: none !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(0,0,0,0.5) !important;
+        z-index: 999 !important;
+        backdrop-filter: blur(2px) !important;
+    }
+    
+    .sidebar-overlay.active {
+        display: block !important;
+    }
+    
+    /* ---- Stats Grid ---- */
+    .stats-grid,
+    .admin-stats-grid,
+    .manager-stats-grid,
+    .employee-stats-grid,
+    .dashboard-stats {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        margin-top: 70px !important;
+        padding: 0 !important;
+    }
+    
+    /* ---- Stat Cards ---- */
+    .stat-card,
+    .admin-stat-card,
+    .manager-stat-card,
+    .employee-stat-card,
+    .dashboard-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        background: white !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        border: 1px solid #f0f0f0 !important;
+    }
+    
+    .stat-card h3,
+    .admin-stat-card h3,
+    .manager-stat-card h3,
+    .employee-stat-card h3 {
+        font-size: 20px !important;
+        margin: 0 0 5px 0 !important;
+        color: #1a2332 !important;
+    }
+    
+    .stat-card p,
+    .admin-stat-card p,
+    .manager-stat-card p,
+    .employee-stat-card p {
+        font-size: 12px !important;
+        margin: 0 !important;
+        color: #888 !important;
+    }
+    
+    .stat-card small,
+    .admin-stat-card small {
+        font-size: 10px !important;
+        color: #aaa !important;
+        display: block !important;
+        margin-top: 4px !important;
+    }
+    
+    /* ---- Tables ---- */
+    .table-container,
+    .admin-table-container,
+    .manager-table-container,
+    .employee-table-container {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin: 10px -15px !important;
+        padding: 0 15px !important;
+        border-radius: 8px !important;
+    }
+    
+    table,
+    .admin-table,
+    .manager-table,
+    .employee-table {
+        width: 100% !important;
+        min-width: 500px !important;
+        font-size: 12px !important;
+        border-collapse: collapse !important;
+        background: white !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+    
+    table th,
+    table td,
+    .admin-table th,
+    .admin-table td,
+    .manager-table th,
+    .manager-table td,
+    .employee-table th,
+    .employee-table td {
+        padding: 10px 12px !important;
+        text-align: left !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+        white-space: nowrap !important;
+    }
+    
+    table th,
+    .admin-table th,
+    .manager-table th,
+    .employee-table th {
+        background: #f8f9fa !important;
+        font-weight: 600 !important;
+        color: #1a2332 !important;
+        font-size: 11px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    /* ---- Forms ---- */
+    input,
+    select,
+    textarea,
+    .form-control,
+    .admin-form-control,
+    .manager-form-control,
+    .employee-form-control {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 12px !important;
+        border: 1px solid #ddd !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
+        background: white !important;
+        transition: border-color 0.3s !important;
+    }
+    
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #667eea !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(102,126,234,0.1) !important;
+    }
+    
+    label,
+    .form-label {
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #1a2332 !important;
+        display: block !important;
+        margin-bottom: 5px !important;
+    }
+    
+    /* ---- Buttons ---- */
+    button,
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-success,
+    .btn-danger,
+    .btn-warning {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        border: none !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        transition: all 0.3s !important;
+        margin: 4px 0 !important;
+    }
+    
+    .btn-group,
+    .button-group,
+    .action-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .btn-group button,
+    .button-group button,
+    .action-buttons button {
+        width: 100% !important;
+    }
+    
+    /* ---- Modals ---- */
+    .modal,
+    .admin-modal,
+    .manager-modal,
+    .employee-modal {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(0,0,0,0.5) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 2000 !important;
+        padding: 20px !important;
+    }
+    
+    .modal-content,
+    .admin-modal-content,
+    .manager-modal-content,
+    .employee-modal-content {
+        width: 100% !important;
+        max-width: 400px !important;
+        background: white !important;
+        padding: 25px !important;
+        border-radius: 16px !important;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+    
+    .modal-header {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        margin-bottom: 15px !important;
+        padding-bottom: 10px !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+    }
+    
+    .modal-close {
+        float: right !important;
+        background: none !important;
+        border: none !important;
+        font-size: 20px !important;
+        cursor: pointer !important;
+        color: #999 !important;
+        width: auto !important;
+        padding: 5px 10px !important;
+    }
+    
+    /* ---- Headers ---- */
+    h1, .page-title {
+        font-size: 22px !important;
+        margin-top: 60px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    h2, .section-title {
+        font-size: 18px !important;
+        margin-top: 60px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    h3, .card-title {
+        font-size: 16px !important;
+    }
+    
+    /* ---- Welcome Banner ---- */
+    .welcome-banner,
+    .admin-welcome-banner,
+    .manager-welcome-banner,
+    .employee-welcome-banner {
+        padding: 15px !important;
+        margin-top: 60px !important;
+        margin-bottom: 15px !important;
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+    }
+    
+    .welcome-banner h2 {
+        font-size: 18px !important;
+        margin: 0 !important;
+    }
+    
+    .welcome-banner p {
+        font-size: 13px !important;
+        margin: 5px 0 0 0 !important;
+        opacity: 0.9 !important;
+    }
+    
+    /* ---- Quick Actions ---- */
+    .quick-actions,
+    .admin-quick-actions,
+    .manager-quick-actions,
+    .employee-quick-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        margin: 15px 0 !important;
+    }
+    
+    .quick-actions button,
+    .admin-quick-actions button,
+    .manager-quick-actions button,
+    .employee-quick-actions button {
+        padding: 12px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+    }
+}
+
+/* ===== SMALL MOBILE (max-width: 480px) ===== */
+@media screen and (max-width: 480px) {
+    
+    .stats-grid,
+    .admin-stats-grid,
+    .manager-stats-grid,
+    .employee-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .quick-actions,
+    .admin-quick-actions,
+    .manager-quick-actions,
+    .employee-quick-actions {
+        grid-template-columns: 1fr !important;
+    }
+    
+    h1, .page-title {
+        font-size: 20px !important;
+    }
+    
+    h2, .section-title {
+        font-size: 16px !important;
+    }
+    
+    .stat-card h3 {
+        font-size: 18px !important;
+    }
+    
+    table {
+        font-size: 11px !important;
+        min-width: 400px !important;
+    }
+    
+    table th,
+    table td {
+        padding: 8px 10px !important;
+    }
+    
+    .sidebar {
+        width: 260px !important;
+    }
+    
+    .modal-content {
+        padding: 20px !important;
+    }
+    
+    button {
+        padding: 10px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* ===== UTILITIES ===== */
+@media screen and (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+    
+    .full-width-mobile {
+        width: 100% !important;
+    }
+    
+    .scrollable {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* ===== PREVENT IOS ZOOM ===== */
+input,
+select,
+textarea {
+    font-size: 16px !important;
+}
+
+/* ===== TOUCH-FRIENDLY ===== */
+button,
+a,
+.clickable {
+    min-height: 44px !important;
+    min-width: 44px !important;
+}
