@@ -15,7 +15,7 @@ import Profile from './managerProfile';
 import Announcements from './managerAnnouncements';
 import ManagerNotifications from './ManagerNotifications';
 import './ManagerDashboard.css';
-
+import './MobileResponsive.css'; 
 const ManagerDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);

@@ -12,6 +12,7 @@ import AdminNotifications from './admin/components/AdminNotifications';
 import ManagerNotifications from './manager/ManagerNotifications';
 import ForgotPassword from './pages/ForgotPassword';
 import OAuth2Redirect from './pages/OAuth2Redirect';
+import './MobileResponsive.css';  // 
 
 
 function App() {

@@ -313,3 +313,147 @@
     padding: 16px;
   }
 }
+/* ============================================
+   DASHBOARD - MOBILE RESPONSIVE
+   ============================================ */
+
+/* ---- Mobile (max-width: 768px) ---- */
+@media screen and (max-width: 768px) {
+    
+    /* Stats Grid - 2 columns on mobile */
+    .admin-stats-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        margin-top: 10px !important;
+        padding: 0 !important;
+    }
+    
+    /* Stat Cards */
+    .admin-stat-card {
+        padding: 16px !important;
+        border-radius: 12px !important;
+        background: white !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        cursor: pointer !important;
+        transition: transform 0.2s !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+    
+    .admin-stat-card h3 {
+        font-size: 20px !important;
+        margin: 0 !important;
+        color: #1a2332 !important;
+    }
+    
+    .admin-stat-card p {
+        font-size: 12px !important;
+        margin: 2px 0 0 0 !important;
+        color: #888 !important;
+    }
+    
+    .admin-stat-card small {
+        font-size: 10px !important;
+        color: #aaa !important;
+        display: block !important;
+        margin-top: 2px !important;
+    }
+    
+    .admin-stat-icon {
+        font-size: 28px !important;
+        width: 44px !important;
+        height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #f0f0f0 !important;
+        border-radius: 50% !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .admin-stat-info {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+    
+    /* Quick Actions - Stack vertically */
+    .admin-quick-actions {
+        margin-top: 20px !important;
+        padding: 0 !important;
+    }
+    
+    .admin-quick-actions h4 {
+        font-size: 16px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .admin-action-buttons {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+    
+    .admin-action-buttons button {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+        border: 1px solid #e0e0e0 !important;
+        background: white !important;
+        cursor: pointer !important;
+        transition: all 0.3s !important;
+    }
+    
+    .admin-action-buttons button:hover {
+        background: #f0f0f0 !important;
+    }
+    
+    .admin-action-buttons .admin-primary {
+        background: #667eea !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    /* Welcome Banner */
+    .admin-welcome-banner {
+        padding: 15px !important;
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .admin-welcome-banner h2 {
+        font-size: 18px !important;
+        margin: 0 !important;
+    }
+    
+    .admin-welcome-banner p {
+        font-size: 13px !important;
+        margin: 5px 0 0 0 !important;
+        opacity: 0.9 !important;
+    }
+    
+    /* Pending cards highlight */
+    .admin-pending {
+        border-left: 4px solid #ff9800 !important;
+    }
+}
+
+/* ---- Small Mobile (max-width: 480px) ---- */
+@media screen and (max-width: 480px) {
+    
+    .admin-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .admin-action-buttons {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .admin-stat-card h3 {
+        font-size: 18px !important;
+    }
+}

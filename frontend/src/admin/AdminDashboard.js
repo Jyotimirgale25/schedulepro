@@ -25,6 +25,8 @@ const AdminDashboard = () => {
   const [notifications, setNotifications] = useState([]);
   const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const loadNotifications = async () => {
     try {
@@ -162,8 +164,24 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-dashboard">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} user={user} />
-      <div className="admin-main-content">
+      {/* ✅ Hamburger Menu */}
+      <button className="hamburger-menu" onClick={toggleSidebar}>
+        ☰
+      </button>
+
+      {/* ✅ Sidebar Overlay */}
+      <div 
+        className={`sidebar-overlay ${isSidebarOpen ? 'active' : ''}`}
+        onClick={toggleSidebar}
+      />
+
+      {/* ✅ Sidebar with toggle */}
+      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} user={user} />
+      </div>
+
+      {/* ✅ Main Content */}
+      <div className="main-content">
         <div className="admin-top-bar">
           <div className="admin-welcome-text">
             <h3>Welcome , {user.fullName}!</h3>
