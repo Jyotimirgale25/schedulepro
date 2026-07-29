@@ -1,14 +1,4 @@
-# ============================================
-# SCHEDULE PRO - PRODUCTION CONFIGURATION
-# ============================================
-# Used when SPRING_PROFILES_ACTIVE=prod
-# All sensitive values come from environment variables
-# ============================================
-
 spring:
-  # ==========================================
-  # DATABASE - MUST be set in environment
-  # ==========================================
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
@@ -21,12 +11,9 @@ spring:
       idle-timeout: 300000
       max-lifetime: 1800000
 
-  # ==========================================
-  # JPA - Production safe
-  # ==========================================
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update          # ← FIXED
     show-sql: false
     properties:
       hibernate:
@@ -35,16 +22,13 @@ spring:
         order_inserts: true
         order_updates: true
         generate_statistics: false
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  # ==========================================
-  # EMAIL - SendGrid (Production)
-  # ==========================================
   mail:
     host: ${MAIL_HOST:smtp.sendgrid.net}
     port: ${MAIL_PORT:587}
     username: ${MAIL_USERNAME:apikey}
     password: ${MAIL_PASSWORD}
+    from: ${MAIL_FROM}
     properties:
       mail:
         smtp:
@@ -53,20 +37,13 @@ spring:
             enable: true
           ssl:
             trust: smtp.sendgrid.net
-    from: ${MAIL_FROM}
 
-  # ==========================================
-  # SENDGRID API (For HTTP API)
-  # ==========================================
   sendgrid:
     api:
       key: ${SENDGRID_API_KEY}
     from:
       email: ${MAIL_FROM}
 
-  # ==========================================
-  # OAUTH2 - Google
-  # ==========================================
   security:
     oauth2:
       client:
@@ -80,75 +57,16 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             client-name: Google
 
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-      enabled: true
-
-  jackson:
-    serialization:
-      write-dates-as-timestamps: false
-    time-zone: UTC
-    default-property-inclusion: non_null
-
-# ============================================
-# SERVER PORT (for Render)
-# ============================================
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8080}              # ← ADD THIS
 
-# ============================================
-# JWT - MUST be set in environment
-# ============================================
 jwt:
   secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION_MS:3600000}
   refresh-expiration: ${JWT_REFRESH_EXPIRATION_MS:604800000}
 
-# ============================================
-# CORS - MUST be set in environment
-# ============================================
 cors:
   allowed-origins: ${CORS_ORIGINS}
 
-# ============================================
-# LOGGING - Minimal for production
-# ============================================
-logging:
-  level:
-    com.schedulepro: WARN
-    org.springframework: ERROR
-    org.springframework.security: WARN
-    org.hibernate: WARN
-  file:
-    name: /var/log/schedulepro/application.log
-    max-size: 100MB
-    max-history: 30
-  pattern:
-    file: "%d{ISO8601} %-5level [%thread] %logger{36} - %msg%n"
-
-# ============================================
-# APP - Production settings
-# ============================================
 app:
   base-url: ${BASE_URL}
-
-# ============================================
-# ACTUATOR - Production monitoring
-# ============================================
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health, info, metrics
-  endpoint:
-    health:
-      show-details: when-authorized
-
-springdoc:
-  api-docs:
-    path: /api-docs
-  swagger-ui:
-    path: /swagger-ui.html
-    tryItOutEnabled: false
