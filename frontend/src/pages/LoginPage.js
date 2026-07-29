@@ -24,8 +24,7 @@ const LoginPage = () => {
 const handleGoogleLogin = () => {
     setLoading(true);  
     console.log("Redirecting to Google OAuth...");
-    const baseUrl = process.env.REACT_APP_BASE_URL || 'http://localhost:8080';
-    window.location.replace(`${baseUrl}/oauth2/authorization/google`);
+    window.location.replace("https://schedulepro-backend.onrender.com/oauth2/authorization/google");
 };
   const handleSubmit = async (e) => {
     e.preventDefault();
