@@ -117,13 +117,13 @@ const LandingPage = () => {
                 Streamline your workforce management with our intelligent scheduling platform. 
                 Save time, reduce conflicts, and improve productivity.
               </p>
-              <div className="d-flex flex-column flex-sm-row gap-3 hero-buttons">
+              <div className="d-flex gap-3 hero-buttons">
                 <Link to="/register" className="btn btn-light btn-lg px-4">Get Started</Link>
             
               </div>
               <div className="mt-5 hero-stats">
                 <p className="mb-2">Trusted by 500+ companies</p>
-                 <div className="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                <div className="d-flex gap-4">
                   <span>⭐ 4.9 Rating</span>
                   <span>👥 10,000+ Users</span>
                   <span>🏆 Award Winner</span>
@@ -243,7 +243,7 @@ const LandingPage = () => {
             </div>
             <div className="col-md-4">
               <h5>Contact</h5>
-              <p>Email: schedulepro@gmail.com<br/>Phone: +91 9985756485</p>
+              <p>Email: schedulepro@gmail.com<br/>Phone: +919985756485</p>
             </div>
           </div>
           <hr className="mt-4" />
