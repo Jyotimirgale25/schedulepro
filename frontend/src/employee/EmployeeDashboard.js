@@ -22,6 +22,7 @@ const EmployeeDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   const isInitialLoad = useRef(true);
   const fetchInProgress = useRef(false);
@@ -210,7 +211,13 @@ const EmployeeDashboard = () => {
   const renderContent = useCallback(() => {
     switch(activeTab) {
       case 'dashboard':
-        return <Tabdashboard user={user} setActiveTab={handleTabChange} />;
+        return (
+  <Tabdashboard
+    user={user}
+    setActiveTab={handleTabChange}
+    isSidebarCollapsed={false}
+  />
+);
       case 'schedule':
         return <Schedule user={user} />;
       case 'swap':
@@ -267,13 +274,25 @@ const EmployeeDashboard = () => {
 
   return (
     <div className="empdash-dashboard">
-      <Sidebar 
-        activeTab={activeTab} 
-        setActiveTab={handleTabChange} 
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={handleTabChange}
         user={user}
-      />
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+        />
+        {isSidebarOpen && (
+      <div
+       className="empdash-overlay"
+       onClick={() => setIsSidebarOpen(false)}
+       />
+       )}
       <div className="empdash-main-content">
         <div className="empdash-top-bar">
+          <button
+            className="empdash-menu-btn"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)} > ☰
+          </button>
           <div className="empdash-welcome-text">
             <h3>Welcome back, {user.fullName || 'User'}! 👋</h3>
             <p>Here's your work summary</p>

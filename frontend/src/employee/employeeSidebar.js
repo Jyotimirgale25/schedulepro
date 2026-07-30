@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './employeeSidebar.css';
 import { employeeApi } from '../services/api';
 
-const Sidebar = ({ activeTab, setActiveTab, user }) => {
+const Sidebar = ({ activeTab, setActiveTab, user,  isOpen,setIsOpen }) => {
   const navigate = useNavigate();
   const [localUser, setLocalUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -156,7 +156,8 @@ const isGooglePhoto = (photo) => {
       localStorage.removeItem('refreshToken');
       
       // Navigate to login
-      navigate('/login');
+    if (setIsOpen) setIsOpen(false);
+navigate('/login');
     } catch (error) {
       console.log('Logout error:', error);
     }
@@ -281,7 +282,10 @@ const getDisplayPhoto = () => {
   }
 
   return (
-    <div className="employee-sidebar" key={photoUpdateKey}>
+    <div
+    className={`employee-sidebar ${isOpen ? "open" : ""}`}
+    key={photoUpdateKey}
+>
       <div className="sidebar-header">
         <div className="logo">📅 Schedule Pro</div>
         <div className="role-badge">{getRole()}</div>
@@ -292,7 +296,13 @@ const getDisplayPhoto = () => {
           <button
             key={item.id}
             className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
-            onClick={() => setActiveTab(item.id)}
+           onClick={() => {
+    setActiveTab(item.id);
+
+    if (window.innerWidth <= 768) {
+        setIsOpen(false);
+    }
+}}
           >
             <span className="nav-icon">{item.icon}</span>
             <span className="nav-label">{item.label}</span>

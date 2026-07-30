@@ -117,13 +117,13 @@ const LandingPage = () => {
                 Streamline your workforce management with our intelligent scheduling platform. 
                 Save time, reduce conflicts, and improve productivity.
               </p>
-              <div className="d-flex gap-3 hero-buttons">
+              <div className="d-flex flex-column flex-sm-row gap-3 hero-buttons">
                 <Link to="/register" className="btn btn-light btn-lg px-4">Get Started</Link>
             
               </div>
               <div className="mt-5 hero-stats">
                 <p className="mb-2">Trusted by 500+ companies</p>
-                <div className="d-flex gap-4">
+                 <div className="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
                   <span>⭐ 4.9 Rating</span>
                   <span>👥 10,000+ Users</span>
                   <span>🏆 Award Winner</span>

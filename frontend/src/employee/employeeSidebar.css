@@ -271,100 +271,26 @@
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
-@media (max-width: 768px) {
-  .employee-sidebar {
-    width: 72px;
-  }
+@media (max-width:768px){
 
-  .employee-sidebar .logo-text,
-  .employee-sidebar .role-badge,
-  .employee-sidebar .nav-label,
-  .employee-sidebar .user-details,
-  .employee-sidebar .logout-btn span,
-  .employee-sidebar .active-indicator {
-    display: none;
-  }
-
-  .employee-sidebar .nav-item {
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .employee-sidebar .nav-icon {
-    font-size: 20px;
-    width: auto;
-  }
-
-  .employee-sidebar .user-info {
-    justify-content: center;
-    padding: 6px;
-  }
-
-  .employee-sidebar .user-avatar,
-  .employee-sidebar .user-avatar-img {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-  }
-
-  .employee-sidebar .logout-btn {
-    justify-content: center;
-    padding: 8px;
-  }
-
-  .employee-sidebar .sidebar-header {
-    padding: 14px 10px;
-  }
-
-  .employee-sidebar .logo {
-    font-size: 14px;
-    margin-bottom: 0;
-  }
-
-  .employee-sidebar .logo-icon {
-    font-size: 22px;
-  }
-
-  .employee-sidebar .sidebar-footer {
-    padding: 10px 10px 14px;
-  }
+.employee-sidebar{
+    width:280px;
+    transform:translateX(-100%);
+    transition:.3s;
+    z-index:1000;
 }
 
-@media (max-width: 480px) {
-  .employee-sidebar {
-    width: 60px;
-  }
+.employee-sidebar.open{
+    transform:translateX(0);
+}
 
-  .employee-sidebar .nav-icon {
-    font-size: 16px;
-  }
+}
+@media (max-width:480px){
 
-  .employee-sidebar .user-avatar,
-  .employee-sidebar .user-avatar-img {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
-  }
+.employee-sidebar{
+    width:260px;
+}
 
-  .employee-sidebar .logo-icon {
-    font-size: 18px;
-  }
-
-  .employee-sidebar .sidebar-header {
-    padding: 10px 8px;
-  }
-
-  .employee-sidebar .sidebar-nav {
-    padding: 10px 6px;
-  }
-
-  .employee-sidebar .nav-item {
-    padding: 8px;
-  }
-
-  .employee-sidebar .sidebar-footer {
-    padding: 8px 8px 12px;
-  }
 }
 
 /* ============================================
@@ -430,4 +356,19 @@ button:focus-visible {
   font-size: 14px;
   margin: 0;
   font-weight: 400;
+}
+.sidebar-overlay{
+    display:none;
+}
+
+@media(max-width:768px){
+
+.sidebar-overlay{
+    display:block;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    z-index:99;
+}
+
 }

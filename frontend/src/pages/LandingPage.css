@@ -420,3 +420,98 @@ html {
   position: relative;
   z-index: 1;
 }
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+.hero-image,
+.about-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+@media (max-width:991px){
+
+.hero-section{
+    text-align:center;
+    padding:120px 20px 60px;
+    min-height:auto;
+}
+
+.hero-title{
+    font-size:2.2rem !important;
+}
+
+.hero-subtitle{
+    font-size:1.05rem;
+}
+
+.hero-buttons{
+    justify-content:center;
+}
+
+.hero-stats{
+    margin-top:30px;
+}
+
+.about-content{
+    text-align:center;
+}
+
+.about-list li{
+    text-align:left;
+}
+
+}
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .feature-card {
+    margin-bottom: 1rem;
+  }
+   .navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar-nav {
+    margin-top: 1rem;
+  }
+
+  .nav-link {
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-stats {
+    font-size: 0.9rem;
+  }
+
+  .hero-stats .d-flex {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+.hero-image,
+.about-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: auto;
+}
