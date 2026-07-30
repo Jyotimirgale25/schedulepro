@@ -7,36 +7,34 @@
 /* ============================================
    DASHBOARD LAYOUT
    ============================================ */
-.manager-dashboard {
-  display: flex;
-  min-height: 100vh;
-  background: #f0f2f5;
+.manager-dashboard{
+    display:flex;
+    width:100%;
+    min-height:100vh;
+    background:#f0f2f5;
+    overflow-x:hidden;
 }
 
-/* ============================================
-   MAIN CONTENT
-   ============================================ */
-.manager-main-content {
-  flex: 1;
-  margin-left: 260px;
-  padding: 20px;
-  animation: managerDashboardFadeIn 0.5s ease;
+.manager-main-content{
+    flex:1;
+    margin-left:260px;
+    width:calc(100% - 260px);
+    min-height:100vh;
+    padding:20px;
+    overflow-x:hidden;
 }
 
+.manager-content-area{
+    width:100%;
+}
 /* ============================================
    TOP BAR
    ============================================ */
-.manager-top-bar {
-  background: white;
-  padding: 20px 25px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.manager-top-bar-right{
+    display:flex;
+    align-items:center;
+    gap:16px;
 }
-
 .manager-welcome-text h3 {
   font-size: 18px;
   color: #1e293b;
@@ -49,11 +47,6 @@
   margin: 0;
 }
 
-.manager-top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
 
 /* ============================================
    NOTIFICATION BUTTON
@@ -212,8 +205,10 @@
 
 @media (max-width: 768px) {
   .manager-main-content {
-    margin-left: 0;
-    padding: 12px;
+         margin-left:80px;
+      width:calc(100% - 80px);
+      padding:12px;
+      overflow-x:hidden;
   }
 
   .manager-top-bar {

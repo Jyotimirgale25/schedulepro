@@ -243,7 +243,7 @@ const LandingPage = () => {
             </div>
             <div className="col-md-4">
               <h5>Contact</h5>
-              <p>Email: support@ess.com<br/>Phone: +91 998575648512</p>
+              <p>Email: schedulepro@gmail.com<br/>Phone: +91 9985756485</p>
             </div>
           </div>
           <hr className="mt-4" />
