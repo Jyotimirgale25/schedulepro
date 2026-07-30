@@ -169,8 +169,9 @@ const VerifyOtpPage = () => {
                 {/* Header */}
                 <div className="verify-otp-header">
                     <h2>🔐 Verify Your Email</h2>
-                    <p className="verify-otp-subtitle">We've sent a verification code to</p>
+                    <p className="verify-otp-subtitle">We've sent a verification code to spam folder</p>
                     <p className="verify-otp-email-display">{email}</p>
+
                 </div>
 
                 {/* Messages */}
