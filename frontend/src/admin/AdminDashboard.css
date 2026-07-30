@@ -11,7 +11,11 @@
 .admin-main-content {
   flex: 1;
   margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
   padding: 20px;
+  overflow-x: hidden;
+  box-sizing: border-box;
   animation: adminFadeIn 0.5s ease;
 }
 

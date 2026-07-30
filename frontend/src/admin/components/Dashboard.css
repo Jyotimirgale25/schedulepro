@@ -3,6 +3,8 @@
    ============================================ */
 
 .admin-dashboard-container {
+  width: 100%;
+  max-width: 100%;
   animation: adminFadeIn 0.5s ease;
 }
 

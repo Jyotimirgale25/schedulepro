@@ -182,7 +182,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* ✅ Main Content */}
-      <div className="main-content">
+      <div className="admin-main-content">
         <div className="admin-top-bar">
           <div className="admin-welcome-text">
             <h3>Welcome , {user.fullName}!</h3>
